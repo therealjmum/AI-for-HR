@@ -53,15 +53,11 @@ nav{
 
 /* ─── HERO ─── */
 .hero{
-  max-width:1100px;margin:0 auto;padding:80px 40px 96px;
+  max-width:1100px;margin:0 auto;padding:100px 40px 100px;
   border-bottom:1px solid var(--border);
 }
-.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:2px;padding:5px 12px;margin-bottom:24px}
-.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.hero-tag span{font-size:0.7rem;font-weight:700;color:var(--blue-light);text-transform:uppercase;letter-spacing:1.5px}
-.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;letter-spacing:-2px;line-height:1.05;color:#fff;margin-bottom:20px}
-.hero h1 em{color:var(--blue);font-style:normal}
+.hero h1{font-size:clamp(3rem,7vw,5.5rem);font-weight:900;letter-spacing:-3px;line-height:1.05;color:#fff;margin-bottom:20px}
+.hero h1 em{color:#4d9fff;font-style:normal}
 .hero p{font-size:1.05rem;color:var(--text2);max-width:560px;line-height:1.7;margin-bottom:36px}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
 .btn-primary{background:var(--blue);color:#fff;font-size:0.8rem;font-weight:700;padding:12px 24px;border-radius:3px;text-decoration:none;letter-spacing:0.5px;text-transform:uppercase;transition:background 0.15s;border:none;cursor:pointer}
@@ -79,19 +75,6 @@ nav{
 .stat-label{font-size:0.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-top:4px}
 .stat{padding:22px 28px}
 
-/* ─── RESOURCE BANNER ─── */
-.resource-banner{
-  background:linear-gradient(135deg,#0d1a3a 0%,#0a0a0a 100%);
-  border-bottom:1px solid var(--blue-border);
-  padding:20px 40px;
-}
-.resource-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.resource-text{display:flex;align-items:center;gap:12px}
-.resource-badge{background:var(--blue);color:#fff;font-size:0.62rem;font-weight:800;padding:3px 9px;border-radius:2px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
-.resource-desc{font-size:0.85rem;color:var(--text2)}
-.resource-desc strong{color:#fff}
-.resource-link{font-size:0.75rem;font-weight:700;color:var(--blue);text-decoration:none;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;transition:color 0.15s}
-.resource-link:hover{color:var(--blue2)}
 
 /* ─── FILTER TABS ─── */
 .filter-section{max-width:1100px;margin:0 auto;padding:40px 40px 0}
@@ -162,8 +145,8 @@ nav{
 .action-btn.copy-done{border-color:#00c896;color:#00c896}
 
 /* ─── PROMPT TIPS ─── */
-.tips-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 40px}
-.tips-inner{max-width:1100px;margin:0 auto}
+.tips-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 0}
+.tips-inner{max-width:1100px;margin:0 auto;padding:0 40px}
 .tips-header{margin-bottom:40px}
 .tips-header h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;color:#fff;letter-spacing:-1px;margin-bottom:10px}
 .tips-header p{font-size:0.9rem;color:var(--text2);max-width:500px;line-height:1.7}
@@ -238,7 +221,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px;mar
 @media(max-width:600px){
   nav{padding:0 20px}
   .hero,.cards-section,.tips-section,.tools-section,.filter-section{padding-left:20px;padding-right:20px}
-  .resource-banner{padding:16px 20px}
   .stats-inner{padding:0 20px;grid-template-columns:1fr 1fr}
   .cards-grid,.tools-grid,.tips-grid{grid-template-columns:1fr}
   .nav-links{display:none}
@@ -254,32 +236,16 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px;mar
     <a href="#ideas">Ideas</a>
     <a href="#tips">Prompt Tips</a>
     <a href="#tools">Tools</a>
-    <a class="nav-cta" href="https://therealjmum.github.io/time-to-play-ai/" target="_blank" rel="noopener">Start Here →</a>
+    <a class="nav-cta" href="https://therealjmum.github.io/time-to-play-ai/" target="_blank" rel="noopener">AI Tips Here →</a>
   </div>
 </nav>
 
-<!-- ─── RESOURCE BANNER ─── -->
-<div class="resource-banner">
-  <div class="resource-inner">
-    <div class="resource-text">
-      <span class="resource-badge">Start Here</span>
-      <p class="resource-desc"><strong>New to AI?</strong> — A step-by-step guide built for non-technical HR leaders. Free tools, real prompts, a 5-day challenge.</p>
-    </div>
-    <a class="resource-link" href="https://therealjmum.github.io/time-to-play-ai/" target="_blank" rel="noopener">Open the Guide →</a>
-  </div>
-</div>
-
 <!-- ─── HERO ─── -->
 <section class="hero">
-  <div class="hero-tag">
-    <span class="hero-tag-dot"></span>
-    <span>For HR Leaders in Tech</span>
-  </div>
-  <h1>What you can <em>build</em><br>with AI — this week.</h1>
+  <h1>What you can build<br>with AI — <em>people edition.</em></h1>
   <p>Not sure where to get started when it comes to AI and the people space? Here's some ideas to spark your creative juices ⚡</p>
   <div class="hero-actions">
-    <a class="btn-primary" href="https://therealjmum.github.io/time-to-play-ai/" target="_blank" rel="noopener">→ Start Here: Your AI Guide</a>
-    <a class="btn-ghost" href="#ideas">Browse Ideas ↓</a>
+    <a class="btn-primary" href="https://therealjmum.github.io/time-to-play-ai/" target="_blank" rel="noopener">→ Tips on how to start here</a>
   </div>
 </section>
 
