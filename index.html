@@ -1063,30 +1063,6 @@ Please help me:
 
   // ── STRATEGY & OPS ──
   {
-    cat:'compliance', icon:'⚖️',
-    title:'US Employment Law Tracker',
-    summary:'Monitor state and federal law changes and know exactly what action your HR team needs to take.',
-    desc:'Employment law changes constantly — and the penalties for missing them are real. Get a quarterly briefing on what changed, what it means for your handbook, and what you need to do before the deadline.',
-    prompt:`I'm an HR leader at a tech company with employees in: [STATES — e.g. "CA, NY, TX, WA, CO, IL"].
-
-Summarize employment law changes from [TIMEFRAME e.g. "Q1 2025"] that impact us. Focus on:
-1. Wage and hour changes (minimum wage, overtime thresholds, pay transparency)
-2. Leave law updates (FMLA, state-specific sick leave, bereavement, PFML)
-3. Non-compete and non-solicitation enforceability changes by state
-4. AI in hiring regulations (any new rules on automated decision tools)
-5. Anything requiring an employee handbook update or policy change
-
-For each change:
-- State or federal source
-- Effective date
-- What we need to DO (specific action, not just awareness)
-- Risk if we don't act (legal exposure, penalty range)
-- Priority: Immediate / Before next quarter / By end of year
-
-Flag the top 2 I should discuss with employment counsel this month.`,
-    learnMore: null,
-  },
-  {
     cat:'strategy', icon:'🌍',
     title:'International Culture Navigator',
     summary:'Brief managers on cultural norms, communication styles, and HR practices for global teams.',
@@ -1174,6 +1150,55 @@ Also: What are the top 3 mistakes companies make when rolling out a job architec
     learnMore: null,
   },
   {
+    cat:'strategy', icon:'🤖',
+    title:'Your AI Executive Assistant',
+    summary:'Start every week sharp — let AI prep your calendar, clear your inbox backlog, and handle the admin so you can focus on the work that matters.',
+    desc:'The best EAs don\'t just schedule meetings — they think ahead. Use AI to review your week, flag conflicts, draft agendas, summarise outstanding expenses, and surface what actually needs your attention before Monday hits.',
+    prompt:`Act as my Executive Assistant. Help me get ready for the week ahead.
+
+My role: [e.g. "VP People / CHRO at a 300-person tech company"]
+Today's date: [DATE] | Week of: [MONDAY DATE]
+
+Here's what I'm working with:
+- Calendar snapshot: [paste or describe upcoming meetings — titles, times, attendees]
+- Outstanding action items: [LIST any carry-overs from last week]
+- Expenses to submit: [e.g. "3 receipts from team offsite, one Uber, two client dinners — approx $640 total"]
+- Emails / Slack threads needing a response: [paste subjects or describe]
+
+Please help me:
+1. Weekly briefing — give me a 5-bullet "state of the week" with what's high priority, what to defer, and what I can delegate
+2. Calendar review — flag any back-to-backs, missing prep time, or meetings I should decline or shorten
+3. Draft agendas for my top 2 meetings this week (include suggested talking points and what decisions need to be made)
+4. Expense summary — draft a one-paragraph summary I can send to Finance with the spend breakdown and purpose of each item
+5. Suggested reply drafts for the 3 most important outstanding messages (keep each under 100 words, match my tone: direct, warm, no fluff)
+6. End-of-week plan — 3 things I should protect time for this Friday to close the week cleanly`,
+    learnMore: null,
+  },
+  {
+    cat:'compliance', icon:'⚖️',
+    title:'US Employment Law Tracker',
+    summary:'Monitor state and federal law changes and know exactly what action your HR team needs to take.',
+    desc:'Employment law changes constantly — and the penalties for missing them are real. Get a quarterly briefing on what changed, what it means for your handbook, and what you need to do before the deadline. Always to be used in conjunction with employment counsel.',
+    prompt:`I'm an HR leader at a tech company with employees in: [STATES — e.g. "CA, NY, TX, WA, CO, IL"].
+
+Summarize employment law changes from [TIMEFRAME e.g. "Q1 2025"] that impact us. Focus on:
+1. Wage and hour changes (minimum wage, overtime thresholds, pay transparency)
+2. Leave law updates (FMLA, state-specific sick leave, bereavement, PFML)
+3. Non-compete and non-solicitation enforceability changes by state
+4. AI in hiring regulations (any new rules on automated decision tools)
+5. Anything requiring an employee handbook update or policy change
+
+For each change:
+- State or federal source
+- Effective date
+- What we need to DO (specific action, not just awareness)
+- Risk if we don't act (legal exposure, penalty range)
+- Priority: Immediate / Before next quarter / By end of year
+
+Flag the top 2 I should discuss with employment counsel this month.`,
+    learnMore: null,
+  },
+  {
     cat:'compliance', icon:'✈️',
     title:'Immigration Toolkit',
     summary:'Navigate visa sponsorship, green card timelines, and global mobility decisions with confidence.',
@@ -1242,31 +1267,6 @@ Then provide:
 7. A checklist of what HR must do before making any cross-border redundancy or restructure announcement
 
 Note: I will validate all information with qualified local employment counsel before acting.`,
-    learnMore: null,
-  },
-  {
-    cat:'strategy', icon:'🤖',
-    title:'Your AI Executive Assistant',
-    summary:'Start every week sharp — let AI prep your calendar, clear your inbox backlog, and handle the admin so you can focus on the work that matters.',
-    desc:'The best EAs don\'t just schedule meetings — they think ahead. Use AI to review your week, flag conflicts, draft agendas, summarise outstanding expenses, and surface what actually needs your attention before Monday hits.',
-    prompt:`Act as my Executive Assistant. Help me get ready for the week ahead.
-
-My role: [e.g. "VP People / CHRO at a 300-person tech company"]
-Today's date: [DATE] | Week of: [MONDAY DATE]
-
-Here's what I'm working with:
-- Calendar snapshot: [paste or describe upcoming meetings — titles, times, attendees]
-- Outstanding action items: [LIST any carry-overs from last week]
-- Expenses to submit: [e.g. "3 receipts from team offsite, one Uber, two client dinners — approx $640 total"]
-- Emails / Slack threads needing a response: [paste subjects or describe]
-
-Please help me:
-1. Weekly briefing — give me a 5-bullet "state of the week" with what's high priority, what to defer, and what I can delegate
-2. Calendar review — flag any back-to-backs, missing prep time, or meetings I should decline or shorten
-3. Draft agendas for my top 2 meetings this week (include suggested talking points and what decisions need to be made)
-4. Expense summary — draft a one-paragraph summary I can send to Finance with the spend breakdown and purpose of each item
-5. Suggested reply drafts for the 3 most important outstanding messages (keep each under 100 words, match my tone: direct, warm, no fluff)
-6. End-of-week plan — 3 things I should protect time for this Friday to close the week cleanly`,
     learnMore: null,
   },
 ];
