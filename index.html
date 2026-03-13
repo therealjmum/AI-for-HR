@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="AI for HR — What you can build with AI this week.">
 <meta property="og:description" content="30+ use cases and ready-to-use prompts across Talent, Comp, Analytics, Employee Experience, Compliance and more. Built for HR leaders in tech.">
-<meta property="og:image" content="og-image.svg">
+<meta property="og:image" content="https://therealjmum.github.io/AI-for-HR/og-image.svg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AI for HR — What you can build with AI this week.">
 <meta name="twitter:description" content="30+ use cases and ready-to-use prompts across Talent, Comp, Analytics, Employee Experience, Compliance and more.">
-<meta name="twitter:image" content="og-image.svg">
+<meta name="twitter:image" content="https://therealjmum.github.io/AI-for-HR/og-image.svg">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -118,9 +118,9 @@ nav{
 .card:hover{transform:translateY(-2px);border-color:var(--border2)}
 .card-stripe{height:3px}
 .card-body{padding:22px 22px 16px;flex:1;display:flex;flex-direction:column}
-.card-meta{display:flex;align-items:center;gap:8px;margin-bottom:14px}
-.card-icon{font-size:1.3rem}
-.cat-badge{font-size:0.58rem;font-weight:800;padding:3px 8px;border-radius:2px;text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
+.card-meta{display:flex;align-items:center;gap:8px;margin-bottom:14px;min-height:28px}
+.card-icon{font-size:1.3rem;line-height:1;display:flex;align-items:center;width:24px;height:24px}
+.cat-badge{font-size:0.58rem;font-weight:800;padding:3px 8px;border-radius:2px;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;display:inline-flex;align-items:center;height:20px}
 .card h3{font-size:0.95rem;font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-0.3px;line-height:1.3}
 .card-desc{font-size:0.8rem;color:var(--text2);line-height:1.6;flex:1}
 .card-footer{padding:14px 22px 18px;border-top:1px solid var(--border)}
@@ -445,7 +445,7 @@ Format as a table I can paste into our interview guide.`,
     cat:'talent', icon:'✉️',
     title:'Offer Letter Personalization Engine',
     summary:'Create compelling offer narratives that make candidates excited to sign.',
-    desc:'The legal offer letter is not what closes candidates — the accompanying narrative is. Generate a warm, personalized letter that makes the total comp feel real, celebrates why they were chosen, speaks to what they care about most, and communicates the company\'s vision and culture in a way that makes them feel they\'re joining something worth being part of.',
+    desc:'The legal offer letter doesn\'t close candidates — the narrative does. Generate a warm, personalized letter that makes total comp feel real, celebrates why they were chosen, and brings the company\'s vision and culture to life.',
     prompt:`Write a personalized offer narrative (the accompanying letter, not the legal document) for [CANDIDATE NAME], who is joining as [ROLE] at [COMPANY].
 
 Context about this candidate:
@@ -817,7 +817,7 @@ After drafting, add:
     cat:'exp', icon:'🤝',
     title:'Employee Relations Advisor',
     summary:'Navigate complex ER cases with structured guidance, documentation checklists, and legal flags.',
-    desc:'Employee relations cases are high-stakes and hard to navigate alone. Get a structured framework for any ER situation — from the right categorization to documentation requirements to what you should escalate to counsel.',
+    desc:'Employee relations cases are high-stakes and hard to navigate alone. Get a structured framework for any ER situation — from the right categorization to documentation requirements to what you should escalate to counsel. Always to be used in conjunction with employment counsel.',
     prompt:`I'm an HRBP handling an employee relations case. Here are the facts as I know them:
 
 [DESCRIBE THE SITUATION in detail — who is involved, what happened, timeline, any prior documentation, what the employee or manager has said]
@@ -1242,6 +1242,31 @@ Then provide:
 7. A checklist of what HR must do before making any cross-border redundancy or restructure announcement
 
 Note: I will validate all information with qualified local employment counsel before acting.`,
+    learnMore: null,
+  },
+  {
+    cat:'strategy', icon:'🤖',
+    title:'Your AI Executive Assistant',
+    summary:'Start every week sharp — let AI prep your calendar, clear your inbox backlog, and handle the admin so you can focus on the work that matters.',
+    desc:'The best EAs don\'t just schedule meetings — they think ahead. Use AI to review your week, flag conflicts, draft agendas, summarise outstanding expenses, and surface what actually needs your attention before Monday hits.',
+    prompt:`Act as my Executive Assistant. Help me get ready for the week ahead.
+
+My role: [e.g. "VP People / CHRO at a 300-person tech company"]
+Today's date: [DATE] | Week of: [MONDAY DATE]
+
+Here's what I'm working with:
+- Calendar snapshot: [paste or describe upcoming meetings — titles, times, attendees]
+- Outstanding action items: [LIST any carry-overs from last week]
+- Expenses to submit: [e.g. "3 receipts from team offsite, one Uber, two client dinners — approx $640 total"]
+- Emails / Slack threads needing a response: [paste subjects or describe]
+
+Please help me:
+1. Weekly briefing — give me a 5-bullet "state of the week" with what's high priority, what to defer, and what I can delegate
+2. Calendar review — flag any back-to-backs, missing prep time, or meetings I should decline or shorten
+3. Draft agendas for my top 2 meetings this week (include suggested talking points and what decisions need to be made)
+4. Expense summary — draft a one-paragraph summary I can send to Finance with the spend breakdown and purpose of each item
+5. Suggested reply drafts for the 3 most important outstanding messages (keep each under 100 words, match my tone: direct, warm, no fluff)
+6. End-of-week plan — 3 things I should protect time for this Friday to close the week cleanly`,
     learnMore: null,
   },
 ];
