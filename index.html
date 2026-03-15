@@ -3,1442 +3,1494 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI for HR Leaders — What you can build with AI — People Edition</title>
-<meta name="description" content="30+ AI use cases and ready-to-use prompts for HR leaders in tech. Covering Talent, Comp, Analytics, Employee Experience, Compliance and more.">
-
-<!-- Open Graph / Social sharing -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="AI for HR — What you can build with AI — people edition.">
-<meta property="og:description" content="30+ use cases and ready-to-use prompts across Talent, Comp, Analytics, Employee Experience, Compliance and more. Built for HR leaders in tech.">
-<meta property="og:image" content="https://therealjmum.github.io/AI-for-HR/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-
-<!-- Twitter / X -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI for HR — What you can build with AI — people edition.">
-<meta name="twitter:description" content="30+ use cases and ready-to-use prompts across Talent, Comp, Analytics, Employee Experience, Compliance and more.">
-<meta name="twitter:image" content="https://therealjmum.github.io/AI-for-HR/og-image.png">
-
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<title>Org Intelligence — Workforce Blueprint</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+/* ── TOKENS ─────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0a0a;--bg2:#0f0f0f;--bg3:#141414;--bg4:#1a1a1a;
-  --border:#1e1e1e;--border2:#2a2a2a;
-  --text:#f0f0f0;--text2:#c0c0c0;--text3:#999;--text4:#777;
-  --blue:#0052ff;--blue2:#3b74ff;--blue-light:#7ba8ff;--blue-bg:#0d1a3a;--blue-border:#0052ff33;
-  --talent:#0052ff;--comp:#00c896;--exp:#7c3aed;--comms:#f59e0b;--analytics:#06b6d4;--strategy:#ef4444;
+  --bg:#080808;--s1:#0f0f0f;--s2:#171717;--s3:#202020;--s4:#2a2a2a;
+  --b:rgba(255,255,255,.07);--bb:rgba(255,255,255,.13);--bbb:rgba(255,255,255,.2);
+  --t:#F0EDE8;--t2:#888;--t3:#484848;
+  --accent:#4F7CF8;--adim:rgba(79,124,248,.16);
+  --orange:#D97757;--odim:rgba(217,119,87,.16);
+  --human:#A78BFA;--hdim:rgba(167,139,250,.12);
+  --agent:#22D3EE;--qdim:rgba(34,211,238,.1);
+  --green:#34D399;--yellow:#FBBF24;--red:#F87171;
+  --r:8px;--rl:12px;
+  --font:'Inter',system-ui,sans-serif;
 }
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--t);font-family:var(--font);display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
 
-/* ─── NAV ─── */
-nav{
-  position:sticky;top:0;z-index:100;
-  background:rgba(10,10,10,0.92);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
-  padding:0 40px;height:58px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.nav-logo{font-size:1rem;font-weight:800;letter-spacing:-0.5px;color:#fff;text-decoration:none}
-.nav-logo span{color:var(--blue)}
-.nav-links{display:flex;align-items:center;gap:28px}
-.nav-links a{color:var(--text3);font-size:0.75rem;font-weight:500;text-decoration:none;letter-spacing:0.5px;text-transform:uppercase;transition:color 0.15s}
-.nav-links a:hover{color:#fff}
-.nav-cta{background:var(--blue);color:#fff;font-size:0.72rem;font-weight:700;padding:8px 18px;border-radius:3px;text-decoration:none;letter-spacing:0.5px;text-transform:uppercase;transition:background 0.15s}
-.nav-cta:hover{background:var(--blue2)}
+/* ── HEADER ──────────────────────────────────────── */
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:9px 18px;background:rgba(8,8,8,.97);border-bottom:1px solid var(--b);flex-shrink:0;z-index:50;gap:10px}
+.hdr-left{display:flex;align-items:center;gap:10px}
+.logo{width:28px;height:28px;background:var(--accent);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0}
+.app-name{font-size:13px;font-weight:700;letter-spacing:-.3px}
+.app-sub{font-size:9px;color:var(--t3);letter-spacing:.6px;text-transform:uppercase;margin-top:1px}
+/* Mode tabs */
+.mode-tabs{display:flex;background:var(--s2);border:1px solid var(--b);border-radius:7px;overflow:hidden;flex-shrink:0}
+.mode-tab{padding:5px 13px;border:none;background:transparent;color:var(--t2);font-size:11px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .12s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.mode-tab.active{background:var(--s3);color:var(--t)}
+.mode-tab:hover:not(.active){color:var(--t)}
+/* Stats */
+.stats{display:flex;align-items:center;gap:12px;padding:0 12px;border-left:1px solid var(--b);border-right:1px solid var(--b)}
+.stat{display:flex;align-items:center;gap:4px;font-size:10px}
+.sdot{width:5px;height:5px;border-radius:50%}
+.sv{font-weight:700;font-size:11px}.sl{color:var(--t3)}
+/* Header right */
+.hdr-right{display:flex;align-items:center;gap:7px}
+.btn{padding:5px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:all .12s;display:inline-flex;align-items:center;gap:5px;font-family:var(--font);white-space:nowrap}
+.btn-accent{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-accent:hover{filter:brightness(1.1)}
+.btn-ghost{background:transparent;color:var(--t2);border-color:var(--bb)}
+.btn-ghost:hover{background:var(--s2);color:var(--t)}
+.btn-ghost.on{background:var(--adim);color:var(--accent);border-color:rgba(217,119,87,.3)}
+.btn-sm{padding:4px 9px;font-size:10px}
+.jmum{display:flex;align-items:center;gap:5px;padding:4px 10px;background:var(--s2);border:1px solid var(--bb);border-radius:20px}
+.jmum-star{color:var(--accent);font-size:10px}.jmum-text{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.5px}
 
-/* ─── HERO ─── */
-.hero{
-  max-width:1100px;margin:0 auto;padding:140px 40px 100px;
-  border-bottom:1px solid var(--border);
-}
-.hero h1{font-size:clamp(3rem,7vw,5.5rem);font-weight:900;letter-spacing:-3px;line-height:1.05;color:#fff;margin-bottom:20px}
-.hero h1 em{color:#4d9fff;font-style:normal}
-.hero p{font-size:1.05rem;color:var(--text2);max-width:560px;line-height:1.7;margin-bottom:36px}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn-primary{background:var(--blue);color:#fff;font-size:0.8rem;font-weight:700;padding:12px 24px;border-radius:3px;text-decoration:none;letter-spacing:0.5px;text-transform:uppercase;transition:background 0.15s;border:none;cursor:pointer}
-.btn-primary:hover{background:var(--blue2)}
-.btn-ghost{background:transparent;color:var(--text2);font-size:0.8rem;font-weight:600;padding:12px 24px;border-radius:3px;text-decoration:none;border:1px solid var(--border2);transition:all 0.15s;display:inline-flex;align-items:center;gap:8px}
-.btn-ghost:hover{border-color:#555;color:#fff}
+/* ── BODY / LAYOUT ───────────────────────────────── */
+.app-body{display:flex;flex:1;overflow:hidden;min-height:0}
+.main-view{flex:1;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.view{display:none;flex:1;overflow-y:auto;overflow-x:hidden;flex-direction:column;min-height:0}
+.view.active{display:flex}
+#view-overview{overflow-y:auto}
 
-/* ─── STATS BAR ─── */
-.stats{background:var(--bg2);border-bottom:1px solid var(--border)}
-.stats-inner{max-width:1100px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:repeat(4,1fr)}
-.stat{padding:22px 0;border-right:1px solid var(--border)}
-.stat:last-child{border-right:none}
-.stat-num{font-size:1.6rem;font-weight:900;color:#fff;letter-spacing:-1px}
-.stat-num span{color:var(--blue)}
-.stat-label{font-size:0.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-top:4px}
-.stat{padding:22px 28px}
+/* ── NOTES PANEL ─────────────────────────────────── */
+.notes-panel{width:255px;flex-shrink:0;border-left:1px solid var(--b);background:var(--s1);display:flex;flex-direction:column;overflow:hidden;transition:width .22s cubic-bezier(.4,0,.2,1),border-color .22s}
+.notes-panel.hidden{width:0;border-left-color:transparent}
+.notes-panel.hidden>*{opacity:0;pointer-events:none}
+.notes-float{position:fixed;right:0;top:50%;transform:translateY(-50%);background:var(--accent);border:none;border-radius:8px 0 0 8px;padding:12px 7px;cursor:pointer;display:none;flex-direction:column;align-items:center;gap:5px;z-index:40;writing-mode:vertical-rl;box-shadow:-3px 0 18px rgba(217,119,87,.35)}
+.notes-float:hover{filter:brightness(1.1)}
+.notes-float.show{display:flex}
+.notes-float-lbl{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff}
+.notes-hd{padding:11px 13px;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.notes-hd-title{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--t2)}
+.notes-btns{display:flex;gap:4px}
+.nbtn{padding:3px 7px;border-radius:4px;border:1px solid var(--b);background:transparent;color:var(--t3);font-size:10px;cursor:pointer;font-family:var(--font);transition:all .1s}
+.nbtn:hover{background:var(--s2);color:var(--t2)}
+textarea#notes{flex:1;padding:13px;background:transparent;border:none;resize:none;color:var(--t);font-family:var(--font);font-size:11px;line-height:1.65;outline:none;min-height:0}
+textarea#notes::placeholder{color:var(--t3);font-style:italic}
+textarea#notes::-webkit-scrollbar{width:3px}
+textarea#notes::-webkit-scrollbar-thumb{background:var(--bb);border-radius:2px}
+.notes-ft{padding:7px 13px;border-top:1px solid var(--b);flex-shrink:0;display:flex;justify-content:space-between;font-size:9px;color:var(--t3);font-style:italic}
 
+/* ── FOOTER ──────────────────────────────────────── */
+.footer{border-top:1px solid var(--b);padding:8px 18px;background:var(--s1);flex-shrink:0}
+.footer-inner{display:flex;align-items:center;gap:7px;overflow-x:auto}
+.footer-inner::-webkit-scrollbar{height:0}
+.flbl{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--t3);white-space:nowrap;flex-shrink:0}
+.flink{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:4px;background:var(--s2);border:1px solid var(--b);color:var(--t2);font-size:9.5px;text-decoration:none;transition:all .12s;white-space:nowrap;flex-shrink:0}
+.flink:hover{border-color:var(--accent);color:var(--accent);background:var(--s3)}
 
-/* ─── FILTER TABS ─── */
-.filter-section{max-width:1100px;margin:0 auto;padding:40px 40px 24px}
-.ideas-heading{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:#fff;letter-spacing:-1px;margin-bottom:12px}
-.section-label{font-size:0.65rem;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
-.filter-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:0}
-.tab{
-  padding:7px 16px;border-radius:3px;border:1px solid var(--border2);
-  font-size:0.72rem;font-weight:600;color:var(--text3);
-  cursor:pointer;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.5px;
-  background:transparent;
-}
-.tab:hover{border-color:#555;color:var(--text)}
-.tab.active{background:#fff;color:#000;border-color:#fff}
-.tab-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px;vertical-align:middle}
+/* ══════════════════════════════════════════════════
+   OVERVIEW MODE
+══════════════════════════════════════════════════ */
+.ov-top{display:flex;align-items:flex-start;justify-content:space-between;padding:48px 20px 76px;flex-shrink:0;gap:12px}
+.ov-top-left h2{font-size:30px;font-weight:800;letter-spacing:-.8px}
+.ov-top-left p{font-size:12px;color:var(--t2);margin-top:6px;line-height:1.6}
+.build-cta{padding:10px 18px;font-size:12px;font-weight:700;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:7px;font-family:var(--font);transition:filter .12s;flex-shrink:0}
+.build-cta:hover{filter:brightness(1.1)}
+.build-cta-icon{font-size:16px}
 
-/* ─── CARDS GRID ─── */
-.cards-section{max-width:1100px;margin:0 auto;padding:32px 40px 64px}
-.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{
-  background:var(--bg2);border:1px solid var(--border);border-radius:4px;
-  overflow:hidden;transition:transform 0.2s,border-color 0.2s;
-  display:flex;flex-direction:column;
-}
-.card:hover{transform:translateY(-2px);border-color:var(--border2)}
-.card-stripe{height:3px}
-.card-body{padding:22px 22px 16px;flex:1;display:flex;flex-direction:column}
-.card-meta{display:flex;align-items:center;gap:8px;margin-bottom:14px;min-height:28px}
-.card-icon{font-size:1.3rem;line-height:1;display:flex;align-items:center;width:24px;height:24px}
-.cat-badge{font-size:0.58rem;font-weight:800;padding:3px 8px;border-radius:2px;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;display:inline-flex;align-items:center;height:20px}
-.card h3{font-size:0.95rem;font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-0.3px;line-height:1.3}
-.card-desc{font-size:0.8rem;color:var(--text2);line-height:1.6;flex:1}
-.card-footer{padding:14px 22px 18px;border-top:1px solid var(--border)}
+/* Org health bar */
+.health-bar{display:flex;align-items:stretch;gap:12px;padding:10px 20px;border-bottom:1px solid var(--b);flex-shrink:0;overflow-x:auto}
+.health-bar::-webkit-scrollbar{height:0}
+.hm{display:flex;flex-direction:column;gap:2px;padding:8px 14px;background:var(--s2);border:1px solid var(--b);border-radius:7px;min-width:140px;flex-shrink:0}
+.hm-label{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--t3)}
+.hm-value{font-size:16px;font-weight:700;letter-spacing:-.5px}
+.hm-sub{font-size:9px;color:var(--t3)}
+.hm.good .hm-value{color:var(--green)}
+.hm.warn .hm-value{color:var(--yellow)}
+.hm.info .hm-value{color:var(--accent)}
+.hm.agent-c .hm-value{color:var(--agent)}
 
-/* PROMPT AREA */
-.prompt-toggle{
-  background:none;border:none;cursor:pointer;
-  font-size:0.68rem;font-weight:700;color:var(--text3);
-  text-transform:uppercase;letter-spacing:0.8px;
-  display:flex;align-items:center;gap:6px;
-  padding:0;transition:color 0.15s;margin-bottom:10px;
-}
-.prompt-toggle:hover{color:var(--text)}
-.prompt-toggle svg{transition:transform 0.2s}
-.prompt-toggle.open svg{transform:rotate(180deg)}
-.prompt-box{
-  display:none;background:var(--bg);border:1px solid var(--border);border-radius:3px;
-  padding:12px 14px;margin-bottom:12px;position:relative;
-}
-.prompt-box.visible{display:block}
-.prompt-text{
-  font-size:0.73rem;font-family:'Inter',monospace;color:var(--text2);
-  line-height:1.65;white-space:pre-wrap;word-break:break-word;
-  max-height:140px;overflow-y:auto;
-}
-.prompt-text::-webkit-scrollbar{width:4px}
-.prompt-text::-webkit-scrollbar-track{background:transparent}
-.prompt-text::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
-.card-actions{display:flex;gap:6px;flex-wrap:wrap}
-.action-btn{
-  font-size:0.65rem;font-weight:700;padding:7px 12px;border-radius:3px;
-  border:1px solid var(--border2);color:var(--text3);background:transparent;
-  cursor:pointer;transition:all 0.15s;letter-spacing:0.5px;text-transform:uppercase;
-  display:inline-flex;align-items:center;gap:5px;
-}
-.action-btn:hover{border-color:#555;color:#fff}
-.action-btn.claude:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
-.action-btn.gpt:hover{border-color:#19c37d;color:#19c37d;background:#001a0e}
-.action-btn.copy-done{border-color:#00c896;color:#00c896}
+/* Dept tile grid */
+.tile-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;padding:4px 20px 20px;align-items:stretch;grid-auto-rows:220px}
+.dept-tile{background:var(--s2);border:1px solid var(--b);border-radius:var(--rl);cursor:pointer;transition:border-color .12s,box-shadow .12s;display:flex;flex-direction:column;height:100%;overflow:hidden}
+.dept-tile:hover{border-color:var(--bb);box-shadow:0 4px 24px rgba(0,0,0,.5)}
+.tile-head{padding:14px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--b);border-radius:var(--rl) var(--rl) 0 0}
+.tile-icon{font-size:18px;line-height:1;flex-shrink:0}
+.tile-info{flex:1;min-width:0}
+.tile-name{font-size:13px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.tile-desc{font-size:10px;color:var(--t2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile-arrow{font-size:14px;color:var(--t3);transition:transform .12s}
+.dept-tile:hover .tile-arrow{transform:translateX(2px)}
+.tile-stats{padding:10px 16px;display:flex;align-items:center;gap:10px;font-size:11px;border-bottom:1px solid var(--b)}
+.tile-count{display:flex;align-items:center;gap:4px}
+.tile-ratio-track{flex:1;height:4px;background:var(--s4);border-radius:2px;overflow:hidden}
+.tile-ratio-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--human),var(--agent))}
+.tile-ratio-lbl{font-size:9px;color:var(--t2);white-space:nowrap}
+.tile-roles{padding:10px 16px 14px;display:flex;flex-direction:column;gap:5px;flex:1}
+.tile-role-row{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--t)}
+.tile-role-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+/* Span badge tooltip */
+.span-tip{cursor:help;position:relative}
+.span-tip:hover::after{content:attr(data-tip);position:absolute;top:calc(100% + 5px);left:50%;transform:translateX(-50%);background:#1e1e1e;color:var(--t);border:1px solid var(--bb);border-radius:6px;padding:6px 9px;font-size:9.5px;font-weight:400;z-index:9999;pointer-events:none;line-height:1.5;white-space:normal;width:max-content;max-width:220px;box-shadow:0 4px 16px rgba(0,0,0,.5)}
+/* Recommendations section */
+.recs-section{padding:12px 20px;flex-shrink:0}
+.recs-title{font-size:13px;font-weight:700;letter-spacing:-.2px;color:var(--t);margin-bottom:16px}
+.recs-grid{display:flex;flex-wrap:wrap;gap:8px}
+.rec-card{padding:8px 12px;background:var(--s2);border:1px solid var(--b);border-left:3px solid var(--accent);border-radius:6px;font-size:10px;color:var(--t2);line-height:1.5;flex:1;min-width:200px}
+.rec-card strong{color:var(--accent);display:block;margin-bottom:2px;font-size:9px;text-transform:uppercase;letter-spacing:.5px}
 
-/* ─── PROMPT TIPS ─── */
-.tips-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 0}
-.tips-inner{max-width:1100px;margin:0 auto;padding:0 40px}
-.tips-header{margin-bottom:40px}
-.tips-header h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;color:#fff;letter-spacing:-1px;margin-bottom:10px}
-.tips-header p{font-size:0.9rem;color:var(--text2);max-width:500px;line-height:1.7}
-.tips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
-.tip-card{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:22px}
-.tip-num{font-size:0.62rem;font-weight:800;color:var(--blue-light);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
-.tip-title{font-size:0.88rem;font-weight:700;color:#fff;margin-bottom:6px}
-.tip-desc{font-size:0.78rem;color:var(--text2);line-height:1.65}
-.tip-code{background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:10px 12px;margin-top:10px;font-size:0.72rem;font-family:'Inter',monospace;color:#8fb3ff;line-height:1.65}
+/* ══════════════════════════════════════════════════
+   CHART MODE (swimlane)
+══════════════════════════════════════════════════ */
+.chart-toolbar{display:flex;align-items:center;gap:8px;padding:8px 18px;border-bottom:1px solid var(--b);flex-shrink:0;overflow-x:auto}
+.chart-toolbar::-webkit-scrollbar{height:0}
+.filter-group{display:flex;background:var(--s2);border:1px solid var(--b);border-radius:6px;overflow:hidden}
+.fbtn{padding:4px 11px;border:none;background:transparent;color:var(--t2);font-size:10px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .12s}
+.fbtn.active{background:var(--s3);color:var(--t)}
+.auto-legend{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:9px}
+.al-item{display:flex;align-items:center;gap:4px;color:var(--t3)}
+.al-dot{width:7px;height:7px;border-radius:50%}
 
-/* SAMPLE PROMPTS TO TRY */
-.sample-prompts{margin-top:0}
-.sample-prompts h3{font-size:0.65rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
-.sample-row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.sample-card{
-  background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:18px;
-  cursor:pointer;transition:all 0.2s;position:relative;
-}
-.sample-card:hover{border-color:var(--border2);transform:translateY(-1px)}
-.sample-card-label{font-size:0.6rem;font-weight:700;color:var(--blue-light);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
-.sample-card-prompt{font-size:0.78rem;color:var(--text2);line-height:1.6;font-family:'Inter',monospace}
-.sample-card-actions{display:flex;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+.chart-canvas{flex:1;overflow:auto;padding:18px}
+.chart-canvas::-webkit-scrollbar{width:5px;height:5px}
+.chart-canvas::-webkit-scrollbar-thumb{background:var(--bb);border-radius:3px}
+.dept-grid{display:flex;gap:14px;align-items:flex-start;min-width:max-content;padding:0 8px}
 
-/* ─── TOOLS ─── */
-.tools-section{max-width:1100px;margin:0 auto;padding:64px 40px}
-.tools-header{margin-bottom:32px}
-.tools-header h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;color:#fff;letter-spacing:-1px;margin-bottom:10px}
-.tools-header p{font-size:0.85rem;color:var(--text2);max-width:480px;line-height:1.7}
-.tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.tool-card{
-  background:var(--bg2);border:1px solid var(--border);border-radius:4px;
-  padding:20px;transition:all 0.2s;text-decoration:none;display:block;
-}
-.tool-card:hover{border-color:var(--border2);transform:translateY(-2px)}
-.tool-icon{font-size:1.6rem;margin-bottom:10px;display:block}
-.tool-name{font-size:0.85rem;font-weight:700;color:#fff;margin-bottom:4px}
-.tool-desc{font-size:0.72rem;color:var(--text3);line-height:1.5}
-.tool-tag{font-size:0.58rem;font-weight:700;color:var(--text4);text-transform:uppercase;letter-spacing:1px;margin-top:8px}
+/* dept column */
+.dc{width:260px;flex-shrink:0;display:flex;flex-direction:column;gap:6px}
+.dc-head{padding:9px 11px;border-radius:var(--r);background:var(--s2);border:1px solid var(--b);display:flex;align-items:center;gap:7px;user-select:none;position:relative;overflow:visible}
+.dc-head::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--dc-color,var(--accent));border-radius:var(--r) 0 0 var(--r)}
+.dc-icon{font-size:13px;line-height:1;flex-shrink:0}
+.dc-info{flex:1;min-width:0}
+.dc-name{font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase}
+.dc-desc{font-size:8.5px;color:var(--t3);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-meta{display:flex;align-items:center;gap:3px;flex-shrink:0}
+.dc-cnt{font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;background:var(--s3);color:var(--t2)}
+.dc-edbtn{opacity:0;background:none;border:none;color:var(--t3);cursor:pointer;font-size:9px;padding:2px 4px;border-radius:3px;transition:opacity .1s}
+.dc-head:hover .dc-edbtn{opacity:1}
+.dc-edbtn:hover{background:var(--s3);color:var(--t2)}
+.dc-tgl{background:none;border:none;color:var(--t3);cursor:pointer;font-size:9px;padding:0}
+.dc-tgl:hover{color:var(--t2)}
 
-/* ─── FOOTER ─── */
-footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px;margin-top:0}
-.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
-.footer-left p{font-size:0.75rem;color:var(--text3);line-height:1.7}
-.footer-left a{color:var(--blue);text-decoration:none}
-.footer-links{display:flex;gap:24px}
-.footer-links a{font-size:0.72rem;color:var(--text3);text-decoration:none;transition:color 0.15s}
-.footer-links a:hover{color:#fff}
+.dz{display:flex;flex-direction:column;gap:7px;min-height:50px;padding:3px;border-radius:var(--r);border:1px dashed transparent;transition:all .12s}
+.dz.drag-over{border-color:var(--accent);background:var(--adim)}
+.dz.col{display:none}
+.add-btn{padding:7px;border-radius:6px;border:1px dashed var(--b);background:transparent;color:var(--t3);font-size:9px;cursor:pointer;text-align:center;transition:all .12s;font-family:var(--font);width:100%}
+.add-btn:hover{border-color:var(--bb);color:var(--t2);background:var(--s2)}
 
-/* ─── TOAST ─── */
-.toast{
-  position:fixed;bottom:28px;right:28px;z-index:999;
-  background:#1a1a1a;border:1px solid #333;border-radius:4px;
-  padding:12px 18px;font-size:0.78rem;color:#fff;font-weight:600;
-  opacity:0;transform:translateY(8px);transition:all 0.25s;
-  max-width:300px;line-height:1.4;pointer-events:none;
-}
-.toast.show{opacity:1;transform:translateY(0)}
-.toast-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#00c896;margin-right:8px;vertical-align:middle}
+/* role card */
+.rcard{padding:9px 10px;background:var(--s2);border:1px solid var(--b);border-radius:var(--r);cursor:grab;user-select:none;transition:transform .12s,box-shadow .12s,border-color .12s,background .12s;position:relative}
+.rcard:active{cursor:grabbing}
+/* border-left set inline per card: dept color for human, agent teal for agents */
+.rcard[data-type=agent]{border-left:2px solid var(--agent)}
+.rcard[data-type=human]:hover{background:var(--s3);border-color:var(--bb);box-shadow:0 4px 16px rgba(0,0,0,.25);transform:translateY(-1px)}
+.rcard[data-type=agent]:hover{background:var(--s3);border-color:var(--bb);box-shadow:0 4px 16px rgba(34,211,238,.08);transform:translateY(-1px)}
+.rcard.dragging{opacity:.3;transform:scale(.96)}
+.rc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:4px;margin-bottom:2px}
+.rc-title{font-size:10.5px;font-weight:600;line-height:1.3;flex:1}
+.badge{display:inline-flex;align-items:center;gap:2px;padding:1px 5px;border-radius:8px;font-size:8.5px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.bh{background:var(--hdim);color:var(--human);border:1px solid rgba(167,139,250,.2)}
+.ba{background:var(--qdim);color:var(--agent);border:1px solid rgba(34,211,238,.18)}
+.rc-name{font-size:9.5px;color:var(--t2);margin-bottom:3px}
+.rc-cap{font-size:9px;color:var(--t3);line-height:1.4;margin-bottom:4px}
+.rc-owner{font-size:8.5px;color:var(--agent);opacity:.8;margin-bottom:4px;display:flex;align-items:center;gap:3px}
+.rc-owner::before{content:'↑';font-size:9px}
+.rc-tags{display:flex;flex-wrap:wrap;gap:2px;margin-bottom:2px}
+.tag{padding:1px 4px;border-radius:3px;font-size:8.5px;background:var(--s3);color:var(--t3);border:1px solid var(--b)}
+/* Automation potential badge */
+.auto-badge{padding:1px 5px;border-radius:10px;font-size:8px;font-weight:700;letter-spacing:.3px}
+/* Automate/Augment/Advise framework — positive opportunity framing */
+.auto-low{background:rgba(167,139,250,.12);color:var(--human);border:1px solid rgba(167,139,250,.25)}   /* Advise  = human-essential, purple */
+.auto-mid{background:rgba(217,119,87,.14);color:var(--orange);border:1px solid rgba(217,119,87,.3)}    /* Augment = human+AI collab, orange */
+.auto-high{background:rgba(34,211,238,.12);color:var(--agent);border:1px solid rgba(34,211,238,.25)}   /* Automate = strong AI opp, teal */
+.auto-done{background:var(--qdim);color:var(--agent);border:1px solid rgba(34,211,238,.18)}
+.rc-actions{display:flex;gap:2px;margin-top:6px;opacity:0;transition:opacity .12s;border-top:1px solid var(--b);padding-top:5px}
+.rcard:hover .rc-actions{opacity:1}
+.rcbtn{padding:2px 6px;border-radius:3px;border:1px solid var(--b);background:var(--s1);color:var(--t3);font-size:8.5px;cursor:pointer;font-family:var(--font);transition:all .1s}
+.rcbtn:hover{background:var(--s2);color:var(--t2)}
+.rcbtn.del:hover{border-color:var(--red);color:var(--red)}
 
-/* ─── HIDDEN ─── */
-.card.hidden{display:none}
+/* Span of control warning */
+.span-warn{font-size:8px;padding:1px 5px;border-radius:10px;font-weight:700}
+.span-ok{background:rgba(52,211,153,.1);color:var(--green)}
+.span-warn-y{background:rgba(251,191,36,.1);color:var(--yellow)}
+.span-warn-r{background:rgba(248,113,113,.1);color:var(--red)}
 
-/* ─── RESPONSIVE ─── */
-@media(max-width:900px){
-  .cards-grid{grid-template-columns:repeat(2,1fr)}
-  .tools-grid{grid-template-columns:repeat(2,1fr)}
-  .tips-grid{grid-template-columns:1fr 1fr}
-  .sample-row{grid-template-columns:1fr}
-  .stats-inner{grid-template-columns:1fr 1fr}
-  .stat:nth-child(2){border-right:none}
-}
-@media(max-width:600px){
-  nav{padding:0 20px}
-  .hero,.cards-section,.tips-section,.tools-section,.filter-section{padding-left:20px;padding-right:20px}
-  .stats-inner{padding:0 20px;grid-template-columns:1fr 1fr}
-  .cards-grid,.tools-grid,.tips-grid{grid-template-columns:1fr}
-  .nav-links{display:none}
-}
+/* Orch layer */
+.orch{margin-top:16px;padding:14px 16px;background:var(--s1);border:1px solid rgba(34,211,238,.12);border-radius:var(--rl);position:relative;overflow:hidden}
+.orch::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--agent),transparent 70%);opacity:.5}
+.orch-hd{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.orch-title{font-size:8.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--agent)}
+.orch-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(34,211,238,.3),transparent)}
+.orch-sub{font-size:8.5px;color:var(--t3)}
+.orch-cards{display:flex;gap:8px;flex-wrap:wrap}
+.oc{padding:9px 11px;background:var(--s2);border:1px solid rgba(34,211,238,.1);border-left:2px solid var(--agent);border-radius:var(--r);min-width:160px;flex:0 0 auto}
+.oc-title{font-size:10px;font-weight:600;margin-bottom:2px}
+.oc-name{font-size:8.5px;color:var(--agent);font-weight:600;margin-bottom:3px}
+.oc-desc{font-size:9px;color:var(--t3);line-height:1.4;margin-bottom:5px}
+.oc-tags{display:flex;flex-wrap:wrap;gap:2px}
+.oc-tag{padding:1px 4px;border-radius:3px;font-size:8px;background:var(--qdim);color:var(--agent);border:1px solid rgba(34,211,238,.15)}
+
+/* ══════════════════════════════════════════════════
+   BUILD MODE (tree)
+══════════════════════════════════════════════════ */
+.build-toolbar{display:flex;align-items:center;gap:8px;padding:8px 18px;border-bottom:1px solid var(--b);flex-shrink:0}
+.build-hint{font-size:10px;color:var(--t3);margin-left:auto}
+.build-canvas{flex:1;overflow:auto;position:relative;display:flex;align-items:flex-start;justify-content:center}
+.build-canvas::-webkit-scrollbar{width:5px;height:5px}
+.build-canvas::-webkit-scrollbar-thumb{background:var(--bb);border-radius:3px}
+#tree-svg{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}
+.tree-root-wrap{display:flex;flex-direction:column;align-items:center;padding:36px 60px 60px;min-width:max-content;position:relative;z-index:1}
+
+/* tree node */
+.tnode{display:flex;flex-direction:column;align-items:center}
+.tchildren{display:flex;gap:18px;padding-top:46px;position:relative}
+.tcard{width:188px;background:var(--s2);border:1px solid var(--b);border-radius:var(--r);cursor:pointer;transition:border-color .12s,box-shadow .12s;position:relative;display:flex;flex-direction:column}
+.tcard[data-type=human]{border-left:3px solid var(--human)}
+.tcard[data-type=agent]{border-left:3px solid var(--agent)}
+.tcard:hover,.tcard.selected{border-color:var(--bb);box-shadow:0 4px 20px rgba(0,0,0,.5)}
+.tcard.selected[data-type=human]{box-shadow:0 0 0 2px rgba(167,139,250,.3)}
+.tcard.selected[data-type=agent]{box-shadow:0 0 0 2px rgba(34,211,238,.25)}
+.tc-head{display:flex;align-items:center;gap:7px;padding:9px 10px 6px}
+.tc-type-icon{font-size:13px;flex-shrink:0}
+.tc-body{flex:1;min-width:0}
+.tc-title{font-size:10px;font-weight:600;line-height:1.3}
+.tc-name{font-size:9px;color:var(--t2);margin-top:1px}
+.tc-foot{display:flex;align-items:center;justify-content:space-between;padding:5px 10px 8px}
+.tc-auto-badge{font-size:8px;font-weight:700;padding:1px 5px;border-radius:8px}
+.tc-actions{display:flex;gap:3px;opacity:0;transition:opacity .12s}
+.tcard:hover .tc-actions{opacity:1}
+.tc-add{width:18px;height:18px;border-radius:50%;border:1px solid var(--bb);background:var(--s3);color:var(--t2);font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .1s;font-family:var(--font)}
+.tc-add:hover{background:var(--accent);color:#080808;border-color:var(--accent)}
+.tc-del{width:18px;height:18px;border-radius:50%;border:1px solid var(--b);background:var(--s3);color:var(--t3);font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .1s;font-family:var(--font)}
+.tc-del:hover{background:var(--red);color:#fff;border-color:var(--red)}
+/* type toggle on node */
+.tc-type-toggle{display:flex;width:100%;background:transparent;border:none;border-top:1px solid var(--b);padding:5px 10px;gap:0;cursor:pointer;font-family:var(--font)}
+.tt-opt{flex:1;padding:3px;font-size:8.5px;font-weight:700;border-radius:4px;text-align:center;color:var(--t3);transition:all .1s}
+.tt-opt.active.human{background:var(--hdim);color:var(--human)}
+.tt-opt.active.agent{background:var(--qdim);color:var(--agent)}
+/* Build mode right panel */
+.build-side{width:0;flex-shrink:0;border-left:1px solid var(--b);background:var(--s1);display:flex;flex-direction:column;overflow:hidden;transition:width .2s}
+.build-side.open{width:240px}
+.bs-head{padding:11px 13px;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between}
+.bs-title{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--t2)}
+.bs-close{background:none;border:none;color:var(--t3);cursor:pointer;font-size:13px}
+.bs-form{padding:13px;display:flex;flex-direction:column;gap:10px;overflow-y:auto}
+.bs-form::-webkit-scrollbar{width:3px}
+.bs-form::-webkit-scrollbar-thumb{background:var(--bb);border-radius:2px}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fg label{font-size:9px;font-weight:700;color:var(--t2);letter-spacing:.3px;text-transform:uppercase}
+.fg input,.fg select,.fg textarea{padding:7px 10px;background:var(--s2);border:1px solid var(--bb);border-radius:5px;color:var(--t);font-family:var(--font);font-size:11px;outline:none;transition:border-color .12s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--accent)}
+.fg textarea{min-height:60px;resize:vertical}
+.fg select option{background:var(--s2)}
+.type-row{display:flex;background:var(--s2);border:1px solid var(--b);border-radius:6px;overflow:hidden}
+.type-btn{flex:1;padding:7px;border:none;background:transparent;color:var(--t2);font-size:10px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all .12s;display:flex;align-items:center;justify-content:center;gap:4px}
+.type-btn.active.th{background:var(--hdim);color:var(--human)}
+.type-btn.active.ta{background:var(--qdim);color:var(--agent)}
+.auto-row{display:flex;gap:4px}
+.auto-opt{flex:1;padding:4px;border-radius:5px;border:1px solid var(--b);background:transparent;color:var(--t3);font-size:9px;font-weight:700;cursor:pointer;font-family:var(--font);text-align:center;transition:all .1s}
+.auto-opt.low.sel{background:rgba(52,211,153,.1);color:var(--green);border-color:rgba(52,211,153,.3)}
+.auto-opt.mid.sel{background:rgba(251,191,36,.1);color:var(--yellow);border-color:rgba(251,191,36,.3)}
+.auto-opt.high.sel{background:rgba(248,113,113,.1);color:var(--red);border-color:rgba(248,113,113,.3)}
+
+/* Empty build state */
+.build-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:60px;text-align:center;min-height:300px}
+.build-empty-icon{font-size:48px;opacity:.3}
+.build-empty-title{font-size:16px;font-weight:700;color:var(--t2)}
+.build-empty-sub{font-size:12px;color:var(--t3);max-width:280px;line-height:1.5}
+
+/* ── MODAL ───────────────────────────────────────── */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.74);display:flex;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(6px);animation:fi .15s ease}
+.modal{background:var(--s2);border:1px solid var(--bb);border-radius:var(--rl);padding:20px;width:370px;max-width:92vw;animation:su .18s ease}
+.modal-title{font-size:14px;font-weight:700;margin-bottom:14px}
+.mform{display:flex;flex-direction:column;gap:10px}
+.modal-actions{display:flex;justify-content:flex-end;gap:6px;margin-top:4px}
+.btn-danger{background:transparent;color:var(--red);border:1px solid rgba(248,113,113,.3);border-radius:6px;padding:5px 12px;font-size:10px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all .12s}
+.btn-danger:hover{background:rgba(248,113,113,.1)}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+@keyframes su{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}
 </style>
 </head>
 <body>
 
-<!-- ─── NAV ─── -->
-<nav>
-  <a class="nav-logo" href="#">HR <span>×</span> AI</a>
-  <div class="nav-links">
-    <a href="#ideas">Ideas</a>
-    <a href="#tips">Prompt Tips</a>
-    <a href="#tools">Tools</a>
-    <a class="nav-cta" href="https://therealjmum.github.io/time-to-play-ai/" target="_blank" rel="noopener">AI Tips Here →</a>
-  </div>
-</nav>
-
-<!-- ─── HERO ─── -->
-<section class="hero">
-  <h1>What you can build<br>with AI — <em>people edition.</em></h1>
-  <p>Not sure where to get started when it comes to AI and the people space? Here's some ideas to spark your creative juices ⚡</p>
-  <div class="hero-actions">
-    <a class="btn-primary" href="https://therealjmum.github.io/time-to-play-ai/" target="_blank" rel="noopener">→ Tips on how to start here</a>
-  </div>
-</section>
-
-<!-- ─── FILTER TABS ─── -->
-<section id="ideas" class="filter-section">
-  <h2 class="ideas-heading">Ideas on what to build</h2>
-  <div class="section-label">Browse by Category</div>
-  <div class="filter-tabs">
-    <button class="tab active" data-filter="all">All Ideas</button>
-    <button class="tab" data-filter="talent"><span class="tab-dot" style="background:#0052ff"></span>Talent</button>
-    <button class="tab" data-filter="comp"><span class="tab-dot" style="background:#00c896"></span>Comp &amp; Benefits</button>
-    <button class="tab" data-filter="exp"><span class="tab-dot" style="background:#7c3aed"></span>Employee Experience</button>
-    <button class="tab" data-filter="comms"><span class="tab-dot" style="background:#f59e0b"></span>Communications</button>
-    <button class="tab" data-filter="analytics"><span class="tab-dot" style="background:#06b6d4"></span>Analytics</button>
-    <button class="tab" data-filter="strategy"><span class="tab-dot" style="background:#ef4444"></span>Strategy &amp; Ops</button>
-    <button class="tab" data-filter="compliance"><span class="tab-dot" style="background:#f97316"></span>Compliance</button>
-  </div>
-</section>
-
-<!-- ─── CARDS ─── -->
-<section class="cards-section">
-  <div class="cards-grid" id="cardsGrid"></div>
-</section>
-
-<!-- ─── PROMPT TIPS ─── -->
-<section id="tips" class="tips-section">
-  <div class="tips-inner">
-    <div class="tips-header">
-      <h2>Write better prompts.<br>Get better results.</h2>
-      <p>The difference between a mediocre and a magical AI output is almost always the prompt. Here's what separates great HR prompts from generic ones.</p>
-    </div>
-    <div class="tips-grid">
-      <div class="tip-card">
-        <div class="tip-num">Tip 01</div>
-        <div class="tip-title">Give it your context</div>
-        <div class="tip-desc">AI doesn't know you work at a 150-person Series B SaaS company in San Francisco. Tell it. Every time. The more specific you are, the more relevant the output.</div>
-        <div class="tip-code">❌ "Write a job description"<br>✅ "Write a JD for a Senior HRBP at a 200-person fintech startup in NYC, reporting to the CPO"</div>
-      </div>
-      <div class="tip-card">
-        <div class="tip-num">Tip 02</div>
-        <div class="tip-title">Assign it a role</div>
-        <div class="tip-desc">Tell Claude or ChatGPT who to be. "Act as an experienced CHRO" or "You are an employment lawyer in California" dramatically shapes the tone and depth of the response.</div>
-        <div class="tip-code">✅ "Act as an experienced HR Business Partner who specializes in tech companies and has coached 50+ managers on performance conversations"</div>
-      </div>
-      <div class="tip-card">
-        <div class="tip-num">Tip 03</div>
-        <div class="tip-title">Specify the format</div>
-        <div class="tip-desc">Don't let AI decide how to structure the output. Tell it exactly what you want: a table, bullet points, a numbered list, a Notion-ready doc, a 150-word summary.</div>
-        <div class="tip-code">✅ "Format as a table with columns: Level, Salary Range, Bonus %, Equity %. Then add a 2-sentence summary below."</div>
-      </div>
-      <div class="tip-card">
-        <div class="tip-num">Tip 04</div>
-        <div class="tip-title">Constrain the output</div>
-        <div class="tip-desc">AI will write forever if you let it. Give it limits: word counts, number of items, reading level, tone. Constraints force it to prioritize and produce cleaner output.</div>
-        <div class="tip-code">✅ "Keep the total under 300 words. Use plain language a new hire would understand on day one. Avoid HR jargon."</div>
-      </div>
-      <div class="tip-card">
-        <div class="tip-num">Tip 05</div>
-        <div class="tip-title">Treat it like a conversation</div>
-        <div class="tip-desc">Your first response is a starting point, not a final answer. Follow up. Say "make this more direct," "add a more empathetic tone," or "what am I missing?" Iterate fast.</div>
-        <div class="tip-code">✅ Follow-ups that work:<br>"Make it sound less corporate"<br>"Add a section on legal risk"<br>"Give me 3 alternative versions"</div>
-      </div>
-      <div class="tip-card">
-        <div class="tip-num">Tip 06</div>
-        <div class="tip-title">Ask it to flag gaps</div>
-        <div class="tip-desc">One of the most powerful moves: ask AI to tell you what it doesn't know, what it's assuming, or what questions you should be asking. It turns the tool into a thought partner.</div>
-        <div class="tip-code">✅ "After drafting, list 3 things you assumed that I should verify, and 2 questions a skeptical executive might ask me."</div>
-      </div>
-    </div>
-
-    <!-- SAMPLE PROMPTS -->
-    <div class="sample-prompts">
-      <h3>Starter Prompts — Click to Try</h3>
-      <div class="sample-row" id="sampleRow"></div>
+<!-- ═══ HEADER ═══ -->
+<header class="hdr">
+  <div class="hdr-left">
+    <div class="logo">AI</div>
+    <div>
+      <div class="app-name">Org Intelligence</div>
+      <div class="app-sub">Workforce Blueprint</div>
     </div>
   </div>
-</section>
 
-<!-- ─── TOOLS ─── -->
-<section id="tools" class="tools-section">
-  <div class="tools-header">
-    <h2>Tools to explore</h2>
-    <p>You don't need a budget or an engineering team. These tools work right now, in your browser, for under $30/month.</p>
+  <div class="mode-tabs">
+    <button class="mode-tab active" onclick="setMode('overview')" id="tab-overview">◧ Overview</button>
+    <button class="mode-tab" onclick="setMode('chart')" id="tab-chart">⊞ Chart</button>
+    <button class="mode-tab" onclick="setMode('build')" id="tab-build">✦ Build</button>
   </div>
-  <div class="tools-grid" id="toolsGrid"></div>
-</section>
 
-<!-- ─── FOOTER ─── -->
-<footer>
+  <div class="stats">
+    <div class="stat"><div class="sdot" style="background:var(--human)"></div><span class="sv" id="s-h">0</span><span class="sl">human</span></div>
+    <div class="stat"><div class="sdot" style="background:var(--agent)"></div><span class="sv" id="s-a">0</span><span class="sl">AI agents</span></div>
+    <div class="stat"><span class="sv" id="s-r" style="color:var(--accent)">0%</span><span class="sl">automated</span></div>
+  </div>
+
+  <div class="hdr-right">
+    <button class="btn btn-ghost btn-sm notes-toggle-btn" id="notes-header-btn" onclick="toggleNotes()">✏ Notes</button>
+    <div class="jmum"><span class="jmum-star">✦</span><span class="jmum-text">jmum</span></div>
+  </div>
+</header>
+
+<!-- ═══ BODY ═══ -->
+<div class="app-body">
+<div class="main-view">
+
+<!-- ────────────────── OVERVIEW VIEW ────────────────── -->
+<div class="view active" id="view-overview">
+  <div class="ov-top">
+    <div class="ov-top-left">
+      <h2>Example AI Augmented Org</h2>
+      <p>Build your workforce of the future. Here's an example from Claude to spark inspiration. Click the tiles to learn more.</p>
+    </div>
+    <button class="build-cta" onclick="startBuildOwn()">
+      <span class="build-cta-icon">🏗</span> Build My Own Org
+    </button>
+  </div>
+
+  <!-- Org health metrics -->
+  <div class="health-bar" id="health-bar"></div>
+
+  <!-- Department tiles -->
+  <div class="tile-grid" id="tile-grid"></div>
+
+  <!-- Expert recommendations -->
+  <div class="recs-section">
+    <div class="recs-title">💡 Org Design Recommendations</div>
+    <div class="recs-grid" id="recs-grid"></div>
+  </div>
+</div>
+
+<!-- ────────────────── CHART VIEW ────────────────── -->
+<div class="view" id="view-chart">
+  <div class="chart-toolbar">
+    <div class="filter-group">
+      <button class="fbtn active" onclick="setFilter('all')">All</button>
+      <button class="fbtn" onclick="setFilter('human')">♥ Human</button>
+      <button class="fbtn" onclick="setFilter('agent')">⚡ Agent</button>
+    </div>
+    <button class="btn btn-ghost btn-sm" onclick="openAddRole()">+ Add Role</button>
+    <button class="btn btn-ghost btn-sm" onclick="openAddDept()">+ Dept</button>
+    <div class="auto-legend">
+      <div class="al-item"><div class="al-dot" style="background:var(--human)"></div>♥ Advise — human-essential</div>
+      <div class="al-item"><div class="al-dot" style="background:var(--accent)"></div>⊕ Augment — AI-assisted</div>
+      <div class="al-item"><div class="al-dot" style="background:var(--agent)"></div>🚀 Automate — strong AI opportunity</div>
+      <div class="al-item"><div class="al-dot" style="background:var(--agent);border-radius:2px"></div>⚡ AI-Native</div>
+    </div>
+  </div>
+  <div class="chart-canvas" id="chart-canvas">
+    <div style="min-width:max-content">
+      <div class="dept-grid" id="dept-grid"></div>
+      <div class="orch" id="orch-layer" style="margin-top:16px">
+        <div class="orch-hd">
+          <span class="orch-title">⟡ AI Orchestration Layer</span>
+          <div class="orch-line"></div>
+          <span class="orch-sub">Cross-functional AI systems serving all departments</span>
+        </div>
+        <div class="orch-cards" id="orch-cards"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ────────────────── BUILD VIEW ────────────────── -->
+<div class="view" id="view-build" style="flex-direction:row">
+  <div style="flex:1;display:flex;flex-direction:column;min-width:0">
+    <div class="build-toolbar">
+      <button class="btn btn-accent btn-sm" onclick="addRootNode()" id="btn-add-root" style="display:none">+ Add CEO / Founder</button>
+      <button class="btn btn-ghost btn-sm" onclick="importFromChart()">↓ Import from Chart</button>
+      <button class="btn btn-ghost btn-sm" onclick="clearBuild()">✕ Clear All</button>
+      <div class="build-hint">Click a node to edit · Click + to add a direct report · Drag to reorder</div>
+    </div>
+    <div class="build-canvas" id="build-canvas">
+      <svg id="tree-svg"></svg>
+      <div class="tree-root-wrap" id="tree-root-wrap"></div>
+    </div>
+  </div>
+  <!-- Build side panel -->
+  <div class="build-side" id="build-side">
+    <div class="bs-head">
+      <div class="bs-title" id="bs-title">Edit Role</div>
+      <button class="bs-close" onclick="closeSide()">✕</button>
+    </div>
+    <div class="bs-form" id="bs-form"></div>
+  </div>
+</div>
+
+</div><!-- /main-view -->
+
+<!-- ═══ NOTES PANEL ═══ -->
+<div class="notes-panel" id="notes-panel">
+  <div class="notes-hd">
+    <div class="notes-hd-title">✏ Notes</div>
+    <div class="notes-btns">
+      <button class="nbtn" onclick="copyNotes()" title="Copy">⎘</button>
+      <button class="nbtn" onclick="clearNotes()" title="Clear">✕</button>
+      <button class="nbtn" id="notes-chevron" onclick="toggleNotes()" style="font-size:12px;padding:2px 7px">›</button>
+    </div>
+  </div>
+  <textarea id="notes" placeholder="Track org changes here...
+
+Ideas to explore:
+• Replace SDR headcount with Pipeline agents ×3
+• CAIO reporting directly to board
+• Q2 target: 40% AI automation ratio
+• New dept: Customer Success
+
+[Moves logged automatically ↓]" oninput="saveNotes(this.value)"></textarea>
+  <div class="notes-ft"><span>Auto-saved</span><span id="note-chars">0 chars</span></div>
+</div>
+</div><!-- /app-body -->
+
+<!-- Notes float tab -->
+<button class="notes-float" id="notes-float" onclick="toggleNotes()">
+  <span style="font-size:12px">✏</span>
+  <span class="notes-float-lbl">Notes</span>
+</button>
+
+<!-- Modal mount -->
+<div id="modal-root"></div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
   <div class="footer-inner">
-    <div class="footer-left">
-      <p style="font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:6px">AI for HR <span style="font-size:0.65rem;font-weight:600;color:var(--text3);letter-spacing:0.5px;vertical-align:middle;margin-left:6px">by jmum</span></p>
-      <p>Built for HR leaders who are ready to build. Inspired by the belief that the best HR teams are builders.<br>
-      Questions or ideas? <a href="https://therealjmum.github.io/time-to-play-ai/" target="_blank" rel="noopener">Start with the guide →</a></p>
-    </div>
-    <div class="footer-links">
-      <a href="#ideas">Ideas</a>
-      <a href="#tips">Prompt Tips</a>
-      <a href="#tools">Tools</a>
-      <a href="https://therealjmum.github.io/time-to-play-ai/" target="_blank" rel="noopener">Guide</a>
-    </div>
+    <div class="flbl">Frontier Reading ↗</div>
+    <a class="flink" href="https://x.com/karpathy" target="_blank" rel="noopener">𝕏 Karpathy · Software 2.0</a>
+    <a class="flink" href="https://karpathy.ai" target="_blank" rel="noopener">🌐 karpathy.ai</a>
+    <a class="flink" href="https://x.com/emollick" target="_blank" rel="noopener">𝕏 Ethan Mollick · AI + Work</a>
+    <a class="flink" href="https://www.oneusefulthing.org" target="_blank" rel="noopener">📖 One Useful Thing</a>
+    <a class="flink" href="https://x.com/darioamodei" target="_blank" rel="noopener">𝕏 Dario Amodei</a>
+    <a class="flink" href="https://x.com/sama" target="_blank" rel="noopener">𝕏 Sam Altman</a>
+    <a class="flink" href="https://hbr.org/topic/subject/artificial-intelligence" target="_blank" rel="noopener">📚 HBR · AI Strategy</a>
+    <a class="flink" href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai" target="_blank" rel="noopener">📊 McKinsey · Gen AI</a>
+    <a class="flink" href="https://x.com/benedictevans" target="_blank" rel="noopener">𝕏 Benedict Evans</a>
+    <a class="flink" href="https://www.anthropic.com/research" target="_blank" rel="noopener">🔬 Anthropic Research</a>
   </div>
 </footer>
 
-<!-- ─── TOAST ─── -->
-<div class="toast" id="toast"><span class="toast-dot"></span><span id="toastMsg"></span></div>
-
 <script>
-// ─────────────────────────────────────────────
-//  DATA
-// ─────────────────────────────────────────────
-const CAT = {
-  talent:    { label:'Talent',              color:'#0052ff', bg:'#0d1a3a', text:'#7ba8ff' },
-  comp:      { label:'Comp & Benefits',     color:'#00c896', bg:'#001a12', text:'#00c896' },
-  exp:       { label:'Employee Experience', color:'#7c3aed', bg:'#1a0d3a', text:'#a78bfa' },
-  comms:     { label:'Comms',               color:'#f59e0b', bg:'#1a1200', text:'#fbbf24' },
-  analytics:  { label:'Analytics',           color:'#06b6d4', bg:'#001a1f', text:'#22d3ee' },
-  strategy:   { label:'Strategy & Ops',      color:'#ef4444', bg:'#1a0000', text:'#f87171' },
-  compliance: { label:'Compliance',          color:'#f97316', bg:'#1a0d00', text:'#fb923c' },
+// ════════════════════════════════════════════════
+// DATA
+// ════════════════════════════════════════════════
+const DEPTS = [
+  // ── EXECUTIVE  7h · 3a = 30% AI ─────────────────────────────────────
+  // AI operates as a distributed chief of staff — board prep, OKR tracking,
+  // market intel — giving the C-Suite leverage without adding headcount.
+  {id:'exec',name:'Executive Team',short:'EXEC',color:'#D97757',icon:'★',desc:'C-Suite & Org Leadership',collapsed:false,roles:[
+    {id:'r1', title:'Chief Executive Officer',  name:'Alex Chen',      type:'human',tags:['Strategy','Vision'],  level:'C-Suite'},
+    {id:'r2', title:'Chief Technology Officer', name:'Marcus Rivera',  type:'human',tags:['Technology','Infra'], level:'C-Suite'},
+    {id:'r6', title:'Chief AI Officer',         name:'Yuki Tanaka',    type:'human',tags:['AI','Ethics'],        level:'C-Suite'},
+    {id:'r7', title:'Chief Operating Officer',  name:'James Okafor',   type:'human',tags:['Operations'],         level:'C-Suite'},
+    {id:'r8',  title:'Executive AI Copilot',    name:'Atlas',          type:'agent',tags:['Briefings','Intel'],  cap:'Board prep, earnings summaries, competitive intel and scenario planning', owner:'CEO'},
+    {id:'r157',title:'AI Board Prep Agent',     name:'Deck',           type:'agent',tags:['Board','Investor'],   cap:'Drafts board decks, investor updates and exec briefing packs from live data', owner:'CEO'},
+    {id:'r158',title:'AI OKR & Strategy Tracker',name:'Lens',          type:'agent',tags:['OKRs','KPIs'],        cap:'Tracks company-wide OKRs and KPIs, surfaces blockers and market signals to leadership in real-time', owner:'Chief AI Officer'},
+  ]},
+  // ── ENGINEERING  35h · 14a = 29% AI ──────────────────────────────────
+  // AI pair-programming, automated testing, CI/CD, security and ops agents
+  // absorb ~40% of routine engineering work vs a traditional team.
+  // Every engineer has a full AI co-pilot stack across the SDLC.
+  {id:'eng',name:'Engineering',short:'ENG',color:'#3B82F6',icon:'⟨/⟩',desc:'Platform, AI/ML & Mobile — AI co-pilot embedded throughout',collapsed:false,roles:[
+    {id:'r2x', title:'Chief Technology Officer',    name:'Marcus Rivera',  type:'human',tags:['Technology','Infra'],    level:'C-Suite'},
+    {id:'r6x', title:'Chief AI Officer',            name:'Yuki Tanaka',    type:'human',tags:['AI','Ethics'],           level:'C-Suite'},
+    {id:'r9',  title:'Head of Engineering',         name:'Lena Kowalski',  type:'human',tags:['Leadership'],            level:'Director'},
+    {id:'r66', title:'Engineering Lead — Platform',  name:'Ravi Gupta',    type:'human',tags:['Platform'],               level:'Senior'},
+    {id:'r67', title:'Engineering Lead — AI/ML',    name:'Chloe Wu',      type:'human',tags:['ML'],                     level:'Senior'},
+    {id:'r68', title:'Engineering Lead — Mobile',   name:'Omar Hassan',   type:'human',tags:['Mobile'],                 level:'Senior'},
+    {id:'r71', title:'Staff Engineer',              name:'',              type:'human',tags:['Architecture','Systems'],  level:'Senior', count:2},
+    {id:'r72', title:'Senior Engineer — Platform',  name:'',              type:'human',tags:['Backend','APIs'],          level:'Senior', count:3},
+    {id:'r73', title:'Senior Engineer — AI/ML',     name:'',              type:'human',tags:['ML','Models'],             level:'Senior', count:3},
+    {id:'r74', title:'Senior Engineer — Mobile',    name:'',              type:'human',tags:['iOS','Android'],           level:'Senior', count:2},
+    {id:'r75', title:'Engineer — Platform',         name:'',              type:'human',tags:['Backend','Frontend'],      level:'Senior',    count:6},
+    {id:'r76', title:'Engineer — AI/ML',            name:'',              type:'human',tags:['ML','Python'],             level:'Senior',    count:4},
+    {id:'r77', title:'Engineer — Mobile',           name:'',              type:'human',tags:['Mobile'],                 level:'Senior',    count:2},
+    {id:'r78', title:'ML Engineer',                 name:'',              type:'human',tags:['Training','Models'],       level:'Senior',    count:3},
+    {id:'r79', title:'DevOps / SRE',                name:'',              type:'human',tags:['Infrastructure','CI/CD'],  level:'Senior',    count:2},
+    {id:'r80', title:'Security Engineer',           name:'',              type:'human',tags:['Security','Audit'],        level:'Senior',    count:2},
+    {id:'r127',title:'Data Engineer',               name:'',              type:'human',tags:['Data','Pipelines'],        level:'Senior',    count:2},
+    {id:'r14', title:'AI Code Assistant',           name:'CodeGen',       type:'agent',tags:['Code','PRs'],              cap:'Pair-programmes with every engineer — writes boilerplate, suggests refactors, reviews PRs 24/7',   owner:'Engineering Leads'},
+    {id:'r15', title:'AI Test Engineer',            name:'TestBot',       type:'agent',tags:['QA','Coverage'],           cap:'Generates full test suites, flags regressions and maintains coverage automatically',             owner:'Engineering Leads'},
+    {id:'r16', title:'AI DevOps Agent',             name:'Deploy',        type:'agent',tags:['CI/CD','Monitoring'],      cap:'Automates deployments, rollbacks and environment provisioning',                                 owner:'Engineering Lead — Platform'},
+    {id:'r17', title:'AI Security Scanner',         name:'Sentinel',      type:'agent',tags:['Security','Audit'],        cap:'Continuous vulnerability scanning, dependency CVEs and compliance checks',                       owner:'Head of Engineering'},
+    {id:'r81', title:'AI Documentation Writer',     name:'DocBot',        type:'agent',tags:['Docs','API'],              cap:'Auto-generates API docs, changelogs and wikis from code commits',                               owner:'Engineering Leads'},
+    {id:'r82', title:'AI Data Pipeline Agent',      name:'Stream',        type:'agent',tags:['Data','ETL'],              cap:'Monitors and auto-repairs data pipelines, surfaces quality issues in real-time',                 owner:'Engineering Lead — Platform'},
+    {id:'r130',title:'AI Architecture Advisor',     name:'Design',        type:'agent',tags:['Architecture','Patterns'], cap:'Reviews system designs, flags anti-patterns, suggests scalable architectures',                   owner:'CTO'},
+    {id:'r131',title:'AI Performance Monitor',      name:'Uptime',        type:'agent',tags:['Performance','SLA'],       cap:'24/7 performance monitoring, capacity planning alerts, SLA breach prediction',                   owner:'Head of Engineering'},
+    {id:'r150',title:'AI Code Reviewer',            name:'Critiquer',     type:'agent',tags:['Code Review','Standards'], cap:'Async PR review — enforces code standards, catches logic errors, scores readability',            owner:'Engineering Leads'},
+    {id:'r151',title:'AI Incident Response',        name:'Triage',        type:'agent',tags:['On-Call','Runbooks'],      cap:'On-call automation — routes alerts, executes runbooks, reduces MTTR by 60%+',                    owner:'Head of Engineering'},
+    {id:'r152',title:'AI ML Ops Agent',             name:'Vortex',        type:'agent',tags:['MLOps','Experiments'],     cap:'Manages model training pipelines, tracks experiments, detects model drift automatically',          owner:'Engineering Lead — AI/ML'},
+    {id:'r153',title:'AI Dependency Manager',       name:'Graph',         type:'agent',tags:['Dependencies','CVEs'],     cap:'Tracks all library updates, flags security patches and breaking changes before they land',         owner:'Engineering Lead — Platform'},
+    {id:'r160',title:'AI Observability Agent',      name:'Trace',         type:'agent',tags:['Tracing','RootCause'],     cap:'Distributed tracing, log correlation and automated root cause analysis across services',           owner:'Head of Engineering'},
+    {id:'r161',title:'AI Sprint Planner',           name:'Scope',         type:'agent',tags:['Sprint','Velocity'],       cap:'AI-driven sprint planning — story sizing, capacity matching, velocity forecasting',               owner:'Head of Engineering'},
+  ]},
+  // ── PRODUCT & DESIGN  15 humans · 7 agents ─────────────────────────
+  {id:'proddes',name:'Product',short:'PROD',color:'#A855F7',icon:'◎✦',desc:'Strategy, Roadmap, UX & Research',collapsed:false,roles:[
+    {id:'r3x', title:'VP of Product',                name:'',               type:'human',tags:['Product','UX'],         level:'VP'},
+    {id:'r18', title:'Head of Product',             name:'Nina Osei',      type:'human',tags:['Strategy','Roadmap'],   level:'Director'},
+    {id:'r24', title:'Head of Design',              name:'Carlos Mendez', type:'human',tags:['Creative Direction'],   level:'Director'},
+    {id:'r86', title:'UX Research Lead',            name:'Keiko Tanaka',  type:'human',tags:['Research','Insights'],  level:'Director'},
+    {id:'r83', title:'Senior Product Manager',      name:'',              type:'human',tags:['Strategy','Roadmap'],   level:'Senior', count:3},
+    {id:'r84', title:'Product Manager',             name:'',              type:'human',tags:['Features','Discovery'], level:'Senior',    count:4},
+    {id:'r87', title:'Senior UX Designer',          name:'',              type:'human',tags:['UX','Flows'],           level:'Senior', count:2},
+    {id:'r21', title:'AI Product Analyst',          name:'Insight',       type:'agent',tags:['Data','Analytics'],     cap:'Mines user data, surfaces insights to shape roadmap',                            owner:'Head of Product'},
+    {id:'r22', title:'AI Roadmap Planner',          name:'Compass',       type:'agent',tags:['Planning'],             cap:'Scores feature requests, synthesises customer feedback',                         owner:'Head of Product'},
+    {id:'r23', title:'AI User Researcher',          name:'Empathy',       type:'agent',tags:['Research'],             cap:'Synthetic user interviews, transcript analysis at scale',                        owner:'UX Research Lead'},
+    {id:'r28', title:'AI Design Assistant',         name:'Palette',       type:'agent',tags:['Generative'],           cap:'Generates visual concepts, iterates mockups from briefs',                        owner:'Senior UX Designer'},
+    {id:'r132',title:'AI Competitive Intel',        name:'Scan',          type:'agent',tags:['Competitive','Market'], cap:'Monitors competitor features, pricing moves and market shifts in real-time',      owner:'Head of Product'},
+    {id:'r133',title:'AI Specs Writer',             name:'Brief',         type:'agent',tags:['Specs','PRDs'],         cap:'Converts high-level goals into detailed product specs and acceptance criteria',   owner:'Product Manager'},
+  ]},
+  // ── SALES  12h · 8a = 40% AI ────────────────────────────────────────
+  // AI owns the full pipeline ops stack: outbound, CRM, meeting prep, forecasting,
+  // contract drafts and win/loss analysis. Human team focuses exclusively on
+  // strategic relationships, negotiation and closing complex enterprise deals.
+  {id:'sales',name:'Sales',short:'SALES',color:'#10B981',icon:'↗',desc:'Enterprise & Strategic Accounts — AI owns pipeline ops',collapsed:false,roles:[
+    {id:'r30', title:'VP of Sales',                name:'Rachel Kim', type:'human',tags:['Revenue','Strategy'],    level:'VP'},
+    {id:'r92', title:'Head of Revenue Operations', name:'Jay Patel',  type:'human',tags:['RevOps','Strategy'],      level:'Director'},
+    {id:'r94', title:'Forward Deployed Engineer',   name:'',           type:'human',tags:['Pre-Sales','Technical'], level:'Senior', count:4},
+    {id:'r95', title:'Senior Account Executive',   name:'',           type:'human',tags:['Enterprise','Closing'],  level:'Senior', count:3},
+    {id:'r96', title:'Account Executive',          name:'',           type:'human',tags:['Pipeline','Closing'],    level:'Senior',    count:3},
+    {id:'r162',title:'CRM Manager',                name:'',           type:'human',tags:['CRM','RevOps'],          level:'Senior'},
+    {id:'r34', title:'AI Outbound Agent',          name:'Pipeline',   type:'agent',tags:['Prospecting'],           cap:'Automates personalised outreach sequences, qualifies inbound leads at scale',                      owner:'Senior Account Executive'},
+    {id:'r140',title:'AI SDR Agent',               name:'Prospect',   type:'agent',tags:['Outbound','LinkedIn'],   cap:'Dedicated outbound SDR — LinkedIn sequencing, email cadences, meeting booking',                   owner:'Senior Account Executive'},
+    {id:'r35', title:'AI Deal Coach',              name:'Closer',     type:'agent',tags:['Deal Intel'],            cap:'Live deal coaching — surfaces risks, objection responses and competitive traps mid-call',          owner:'Senior Account Executive'},
+    {id:'r36', title:'AI CRM Manager',             name:'Sync',       type:'agent',tags:['CRM'],                  cap:'Keeps CRM clean, auto-logs all activity, generates call notes and next steps',                   owner:'CRM Manager'},
+    {id:'r98', title:'AI Revenue Forecaster',      name:'Predict',    type:'agent',tags:['Forecasting','Pipeline'],cap:'Real-time pipeline analysis, close probability scoring and revenue forecasting',                  owner:'Head of Revenue Operations'},
+    {id:'r154',title:'AI Meeting Prep Agent',      name:'Brief',      type:'agent',tags:['Prep','Intel'],          cap:'Generates battle cards, customer intel and personalised agendas before every sales call',          owner:'Senior Account Executive'},
+    {id:'r155',title:'AI Contract Assistant',      name:'Draft',      type:'agent',tags:['Contracts','Legal'],     cap:'First-pass contract drafting, redlines and approval routing — cuts contract cycle by 60%',          owner:'Head of Revenue Operations'},
+    {id:'r156',title:'AI Win/Loss Analyst',        name:'Debrief',    type:'agent',tags:['Win/Loss','Coaching'],   cap:'Analyses every won and lost deal, surfaces patterns and feeds coaching insights to the team',       owner:'Head of Revenue Operations'},
+  ]},
+  // ── MARKETING  8 humans · 6 agents ─────────────────────────────────
+  // Content writing, analytics and event logistics handled by AI
+  {id:'mkt',name:'Marketing',short:'MKT',color:'#F59E0B',icon:'◉',desc:'Growth, Product Marketing, DevRel & Community',collapsed:false,roles:[
+    {id:'r5x', title:'VP of Marketing',             name:'',                type:'human',tags:['Brand','Growth'],       level:'VP'},
+    {id:'r99', title:'Head of Marketing',         name:'Isabel Fernandez',type:'human',tags:['Content','Strategy'],   level:'Director'},
+    {id:'r38', title:'Growth Lead',               name:'Finn Larsen',    type:'human',tags:['Growth','Paid'],        level:'Director'},
+    {id:'r100',title:'Product Marketing Manager', name:'',               type:'human',tags:['PMM','Positioning'],    level:'Senior', count:2},
+    {id:'r157',title:'Developer Relations Lead',  name:'',               type:'human',tags:['DevRel','Community'],   level:'Senior'},
+    {id:'r39', title:'AI Content Creator',        name:'Scribe',         type:'agent',tags:['Blog','Social'],        cap:'Drafts blog posts, social content and ad copy at scale',                         owner:'Product Marketing Manager'},
+    {id:'r40', title:'AI SEO Agent',              name:'Rank',           type:'agent',tags:['SEO'],                  cap:'Optimises content for search, monitors rankings and surfaces gaps',               owner:'Growth Lead'},
+    {id:'r41', title:'AI Campaign Manager',       name:'Amplify',        type:'agent',tags:['Paid','A/B'],           cap:'Manages ad spend, runs A/B tests, reports on ROAS continuously',                  owner:'Product Marketing Manager'},
+    {id:'r42', title:'AI Brand Monitor',          name:'Signal',         type:'agent',tags:['Sentiment'],            cap:'Tracks brand mentions and share of voice continuously',                           owner:'Head of Marketing'},
+    {id:'r108',title:'AI PMM Agent',              name:'Narrate',        type:'agent',tags:['Positioning','Messaging'],cap:'Generates product messaging, competitive analysis and launch briefs',            owner:'Product Marketing Manager'},
+    {id:'r141',title:'AI Social & Events Agent',  name:'Engage',         type:'agent',tags:['Social','Events'],      cap:'Manages social channels, event logistics, community engagement and email campaigns',owner:'Developer Relations Lead'},
+  ]},
+  // ── FINANCE  7 humans · 5 agents ───────────────────────────────────
+  {id:'finance',name:'Finance',short:'FIN',color:'#6366F1',icon:'⬡',desc:'FP&A, Accounting & Legal',collapsed:false,roles:[
+    {id:'r4x', title:'VP of Finance',             name:'',               type:'human',tags:['Finance'],               level:'VP'},
+    {id:'r43', title:'Head of Finance',          name:'Hannah Brooks',  type:'human',tags:['FP&A','Strategy'],       level:'Director'},
+    {id:'r109',title:'Controller',               name:'Mei Lin',       type:'human',tags:['Accounting','Compliance'],level:'Senior'},
+    {id:'r114',title:'Legal Counsel',            name:'Jordan Taylor', type:'human',tags:['Contracts','Compliance'], level:'Senior'},
+    {id:'r110',title:'Senior Financial Analyst', name:'',              type:'human',tags:['FP&A','Modelling'],       level:'Senior', count:2},
+    {id:'r113',title:'Senior Accountant',        name:'',              type:'human',tags:['Accounting'],             level:'Senior',    count:1},
+    {id:'r46', title:'AI Finance Assistant',     name:'Ledger',        type:'agent',tags:['Reconciliation'],         cap:'Automates reconciliation, month-end close tasks and financial summaries',          owner:'Controller'},
+    {id:'r47', title:'AI Forecasting Agent',     name:'Oracle',        type:'agent',tags:['Forecasting'],            cap:'Scenario models, budget variance alerts and rolling forecasts in real-time',        owner:'Senior Financial Analyst'},
+    {id:'r115',title:'AI Legal Research Agent',  name:'Counsel',       type:'agent',tags:['Legal','Contracts'],      cap:'Contract review, regulatory research and compliance monitoring',                    owner:'Legal Counsel'},
+    {id:'r142',title:'AI Payroll & Expenses',    name:'Pay',           type:'agent',tags:['Payroll','Expenses'],     cap:'Processes payroll runs, handles expense approvals, flags anomalies automatically',  owner:'Controller'},
+    {id:'r143',title:'AI Tax & Compliance',      name:'Audit',         type:'agent',tags:['Tax','Compliance'],       cap:'Tracks regulatory changes, prepares tax workpapers, flags compliance risks early',  owner:'Head of Finance'},
+  ]},
+  // ── OPERATIONS  7 humans · 5 agents ────────────────────────────────
+  {id:'ops',name:'Operations',short:'OPS',color:'#14B8A6',icon:'⟳',desc:'IT, Workplace & AI Tooling/Spend',collapsed:false,roles:[
+    {id:'r7x', title:'Chief Operating Officer',  name:'James Okafor',   type:'human',tags:['Operations'],             level:'C-Suite'},
+    {id:'r48', title:'Head of Operations',       name:'Victor Nkosi',   type:'human',tags:['IT','Process'],           level:'Director'},
+    {id:'r49', title:'Operations Lead',          name:'Clara Schmidt', type:'human',tags:['Process','Scaling'],      level:'Senior'},
+    {id:'r116',title:'IT Support Engineer',      name:'',              type:'human',tags:['IT','Support'],           level:'Senior',    count:2},
+    {id:'r118',title:'Head of AI & Business Systems', name:'Pat Chen',  type:'human',tags:['AI Tooling','Spend','Automation'], level:'Director'},
+    {id:'r51', title:'AI Ops Analyst',           name:'Streamline',    type:'agent',tags:['Process Mining'],         cap:'Identifies bottlenecks, recommends efficiency improvements continuously',              owner:'Operations Lead'},
+    {id:'r53', title:'AI IT Support',            name:'Helpdesk',      type:'agent',tags:['IT','Tier-1'],            cap:'Resolves tier-1 IT issues, provisions access instantly, deflects 70% of tickets',      owner:'Head of AI & Business Systems'},
+    {id:'r61', title:'AI Vendor Manager',        name:'Procure',       type:'agent',tags:['Procurement','Contracts'], cap:'Manages vendor renewals, benchmarks pricing, flags contract risks',                   owner:'Head of AI & Business Systems'},
+    {id:'r121',title:'AI Business Systems Agent',name:'Automate',      type:'agent',tags:['Systems','Automation'],   cap:'Manages SaaS/AI stack, tracks spend vs ROI, surfaces unused tools and automation opportunities', owner:'Head of AI & Business Systems'},
+    {id:'r144',title:'AI IT Monitor',            name:'Watch',         type:'agent',tags:['Monitoring','Infra'],     cap:'Proactive infrastructure monitoring — predicts failures before users are impacted',      owner:'Head of AI & Business Systems'},
+  ]},
+  // ── PEOPLE & TALENT  5 humans · 7 agents ───────────────────────────────
+  {id:'people',name:'People & Talent',short:'People',color:'#F472B6',icon:'❋',desc:'Talent, Recruiting & People Ops',collapsed:false,roles:[
+    {id:'r54c',title:'VP of People & Talent',         name:'Sarah Okonkwo',  type:'human',tags:['Culture','People','Talent'], level:'VP'},
+    {id:'r55', title:'Head of Talent',                name:'Priya Mehta',    type:'human',tags:['Hiring','TA'],             level:'Director'},
+    {id:'r62', title:'Senior Recruiter',            name:'Liam Torres',    type:'human',tags:['Sourcing','Interviews'],   level:'Senior'},
+    {id:'r124',title:'HR Business Partner',         name:'Aisha Nwosu',    type:'human',tags:['HRBP','Employee Relations'],level:'Senior'},
+    {id:'r158',title:'HR Generalist',               name:'Tom Eriksson',   type:'human',tags:['HR Ops','Employee Experience'],level:'Senior'},
+    {id:'r63', title:'AI Sourcing Agent',           name:'Scout',          type:'agent',tags:['Sourcing','Outreach'],     cap:'Finds and qualifies candidates from LinkedIn, job boards and referrals',               owner:'Senior Recruiter'},
+    {id:'r64', title:'AI Interview Scheduler',      name:'Coordinate',     type:'agent',tags:['Scheduling','TA'],         cap:'Handles all interview logistics — calendar coordination, reminders, panel briefings',   owner:'Senior Recruiter'},
+    {id:'r52', title:'AI Onboarding Agent',         name:'Welcome',        type:'agent',tags:['Onboarding'],              cap:'End-to-end new hire onboarding automation — day 1 to 90-day ramp',                    owner:'HR Generalist'},
+    {id:'r57', title:'AI People Analytics',         name:'Pulse',          type:'agent',tags:['Analytics','Retention'],   cap:'Tracks engagement signals, flags attrition risk, models headcount scenarios',           owner:'VP of People & Talent'},
+    {id:'r58', title:'AI Learning Coach',           name:'Mentor',         type:'agent',tags:['L&D','Coaching'],          cap:'Personalised learning paths, skill gap analysis, performance nudges',                  owner:'HR Business Partner'},
+    {id:'r145',title:'AI Performance Review',       name:'Review',         type:'agent',tags:['Performance','Feedback'],  cap:'Collects 360 feedback, synthesises review data, surfaces patterns for managers',       owner:'HR Business Partner'},
+    {id:'r146',title:'AI Comp & Benefits',          name:'Reward',         type:'agent',tags:['Comp','Benefits'],         cap:'Benchmarks compensation, models total reward scenarios, flags pay equity gaps',        owner:'VP of People & Talent'},
+    {id:'r159',title:'AI HR Ops Agent',             name:'Assist',         type:'agent',tags:['HR Ops','Helpdesk'],       cap:'Handles employee queries, policy lookups, offboarding workflows and document requests — deflects 80% of HR helpdesk tickets', owner:'HR Generalist'},
+  ]},
+];
+
+const ORCH = [
+  {id:'o1',title:'AI Data Platform',name:'Nexus',serves:['ALL'],desc:'Unified data access & real-time analytics across every function'},
+  {id:'o2',title:'AI Comms Hub',name:'Relay',serves:['ALL'],desc:'Summarises meetings, routes decisions, manages async threads'},
+  {id:'o3',title:'AI Compliance Engine',name:'Govern',serves:['FIN','OPS','EXEC'],desc:'Real-time regulatory compliance monitoring and audit reporting'},
+  {id:'o4',title:'AI Knowledge Base',name:'Memory',serves:['ALL'],desc:'Institutional memory — surfaces docs, decisions, prior context'},
+  {id:'o5',title:'AI Workflow Orchestrator',name:'Flow',serves:['ALL'],desc:'Coordinates multi-step cross-functional AI agent workflows'},
+  {id:'o6',title:'AI Anomaly Detector',name:'Radar',serves:['ENG','FIN','OPS'],desc:'Detects anomalies across systems, metrics, spending patterns'},
+  {id:'o7',title:'AI Strategy Analyst',name:'Foresight',serves:['EXEC','SALES','MKT'],desc:'Cross-functional strategic analysis, competitive landscape and scenario planning for leadership'},
+  {id:'o8',title:'AI Dependency Mapper',name:'Bridge',serves:['ALL'],desc:'Maps cross-team dependencies in real-time, surfaces blockers and keeps projects moving'},
+];
+
+// ════════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════════
+const S = {
+  mode: 'overview',
+  filter: 'all',
+  depts: JSON.parse(JSON.stringify(DEPTS)),
+  buildNodes: {},
+  buildRoot: null,
+  selectedNode: null,
+  editType: 'human',
+  editAuto: 'low',
+  idN: 300,
 };
-
-const examples = [
-  // ── TALENT ──
-  {
-    cat:'talent', icon:'🎯',
-    title:'Job Description Optimizer',
-    summary:'Sharpen the pitch, focus on outcomes over credentials, and make it compelling.',
-    desc:'Paste in any job description and get a rewrite that replaces years-of-experience requirements with skill outcomes, adds a compelling "why this role" hook, and improves overall clarity and impact.',
-    prompt:`You are an expert recruiting strategist. I'm hiring a [ROLE] at a [SIZE] [STAGE] company based in [CITY].
-
-Here is my current job description:
-[PASTE JD HERE]
-
-Please rewrite it to:
-1. Replace "X years of experience" with skill-based outcomes
-2. Add a 2–3 sentence "Why this role matters" opening
-3. Highlight growth and learning opportunities
-4. Sharpen the language to be clear, direct, and compelling
-
-Keep the total under 450 words. Return the rewritten JD plus a brief note on the top 3 changes you made and why.`,
-    learnMore: null,
-  },
-  {
-    cat:'talent', icon:'🧠',
-    title:'Interview Question Generator',
-    summary:'Generate structured behavioral questions with scoring rubrics for any role.',
-    desc:'Go beyond "tell me about yourself." Get competency-based interview questions with strong-answer benchmarks, red flag signals, and follow-up probes — ready to share with your hiring panel in minutes.',
-    prompt:`Act as a senior talent acquisition partner. Generate structured interview questions for a [ROLE] at a Series B SaaS startup.
-
-I need 5 behavioral questions that assess: [COMPETENCIES e.g. "cross-functional influence, operating in ambiguity, data-driven decision making, stakeholder management"].
-
-For each question include:
-- The competency being assessed
-- The question itself (STAR-format friendly)
-- What a strong (4/4) answer looks like
-- What a weak or red-flag answer sounds like
-- One sharp follow-up probe
-
-Format as a table I can paste into our interview guide.`,
-    learnMore: null,
-  },
-  {
-    cat:'talent', icon:'✉️',
-    title:'Offer Letter Personalization Engine',
-    summary:'Create compelling offer narratives that make candidates excited to sign.',
-    desc:'The legal offer letter doesn\'t close candidates — the narrative does. Generate a warm, personalized letter that makes total comp feel real, celebrates why they were chosen, and brings the company\'s vision and culture to life.',
-    prompt:`Write a personalized offer narrative (the accompanying letter, not the legal document) for [CANDIDATE NAME], who is joining as [ROLE] at [COMPANY].
-
-Context about this candidate:
-- They care most about: [VALUES e.g. "impact, learning, flexibility, mission"]
-- What impressed us most: [1-2 sentences]
-- Their offer: $[BASE] base, $[BONUS] annual bonus target, [X] RSUs over 4 years at $[PRICE]/share, [BENEFITS highlights]
-
-Write it in a warm, confident tone — not corporate. Make the total value feel tangible. Include a brief "why you" paragraph. Keep it under 300 words. End with genuine excitement about them joining.`,
-    learnMore: null,
-  },
-  {
-    cat:'talent', icon:'📋',
-    title:'Interview Feedback Synthesizer',
-    summary:'Turn scattered panel notes into a clear hire/no-hire recommendation.',
-    desc:'Four interviewers, four different formats, four conflicting opinions. Paste in the raw notes and get a clean synthesis with a recommendation, evidence-backed strengths, ranked concerns, and a summary you can share with the hiring manager.',
-    prompt:`I have interview feedback from [N] interviewers for [CANDIDATE NAME], applying for [ROLE].
-
-Please synthesize the following notes into:
-1. An overall hire / no-hire / strong hire recommendation with confidence level
-2. Top 3 strengths with direct quotes or evidence from the feedback
-3. Top 2 concerns with risk level (High / Medium / Low) and why
-4. One paragraph I can share with the hiring manager summarizing the decision
-5. Any gaps in the interview panel coverage I should fill before deciding
-
-Interviewer notes:
-[PASTE FEEDBACK HERE]`,
-    learnMore: null,
-  },
-  {
-    cat:'talent', icon:'📡',
-    title:'Recruiter Outreach Personalizer',
-    summary:'Write LinkedIn outreach messages that actually get responses.',
-    desc:'Generic InMail is ignored. Generate hyper-personalized outreach for passive candidates by combining their background, your role, and a compelling "why now" hook — all in under 300 characters.',
-    prompt:`You are a senior recruiter who writes outreach messages with above-average response rates.
-
-Write 3 variations of a LinkedIn outreach message for a passive candidate with this background:
-[PASTE CANDIDATE'S LINKEDIN SUMMARY OR KEY POINTS]
-
-The role is: [ROLE TITLE + 1 sentence on why it's special]
-At: [COMPANY + 1 sentence on why the company is compelling right now]
-
-Requirements:
-- Under 300 characters each (LinkedIn InMail limit)
-- Lead with something specific to THEM, not the role
-- Don't use "I came across your profile" or "I think you'd be a great fit"
-- End with a low-friction ask (not "are you open to a call?")
-
-Label each variation by tone: Direct / Curious / Value-First`,
-    learnMore: null,
-  },
-  {
-    cat:'talent', icon:'🔍',
-    title:'Employer Brand Pulse',
-    summary:'Audit your external employer brand across Glassdoor, LinkedIn, and the web — and know exactly what candidates see.',
-    desc:'Candidates research you before they apply. AI can synthesize your Glassdoor reviews, LinkedIn presence, social mentions, and competitor positioning into a clear picture of how your employer brand lands — and where it\'s leaking talent.',
-    prompt:`Act as an employer brand strategist. Help me audit our external employer brand presence.
-
-Company: [COMPANY NAME] | Industry: [INDUSTRY] | Size: [HEADCOUNT] | Stage: [e.g. Series C / public]
-
-Please help me build a structured employer brand audit by analyzing the following:
-
-1. Glassdoor Audit (I'll paste recent reviews below)
-   - Identify the top 3 recurring positive themes candidates mention
-   - Identify the top 3 recurring criticisms or red flags
-   - Note any patterns by department, tenure, or recency
-   - Flag any review responses from leadership that helped or hurt perception
-
-2. LinkedIn Presence Checklist
-   - What should our Life tab and About section communicate to stand out?
-   - What content types perform best for employer brand on LinkedIn?
-   - What are 3 signs our LinkedIn presence is underperforming?
-
-3. Competitor Positioning
-   Competitors to benchmark against: [COMPANY 1, COMPANY 2, COMPANY 3]
-   - What employer brand angles are they using that we could learn from?
-   - Where do we have a differentiated story they're not telling?
-
-4. Candidate Perception Gaps
-   - Based on the above, where is there likely a gap between how we see ourselves and how candidates see us?
-   - What's the single most important thing we should fix in the next 90 days?
-
-5. Give me a one-paragraph "employer brand story" we could use as a foundation for all external content.
-
-[PASTE GLASSDOOR REVIEWS OR OTHER DATA HERE]`,
-    learnMore: null,
-  },
-  {
-    cat:'talent', icon:'🔎',
-    title:'Boolean Search Generator',
-    summary:'Generate precise Boolean search strings for LinkedIn, GitHub, and ATS in seconds.',
-    desc:'Stop writing Boolean strings from scratch. Describe the role and AI builds the strings — including synonyms, exclusions, and platform-specific syntax for LinkedIn Recruiter, GitHub, Google X-Ray, and your ATS.',
-    prompt:`Act as a technical recruiter and Boolean search expert.
-
-I'm sourcing for a: [JOB TITLE — e.g. "Senior Backend Engineer"]
-Key must-have skills: [e.g. "Python, Kubernetes, distributed systems"]
-Nice-to-have skills: [e.g. "Rust, Kafka, AWS"]
-Experience level: [e.g. "5+ years"]
-Location: [e.g. "San Francisco Bay Area / open to remote in US"]
-Industries to target: [e.g. "fintech, infrastructure, developer tools"]
-Companies to target (optional): [LIST]
-Companies to exclude (optional): [LIST]
-
-Please generate:
-1. LinkedIn Recruiter Boolean string (using AND, OR, NOT, quotes)
-2. Google X-Ray search string to find LinkedIn profiles (site:linkedin.com/in format)
-3. GitHub search string to find active engineers with relevant repos
-4. A plain-language sourcing summary I can share with a hiring manager explaining where and how we'll find this person
-5. 3 alternative job titles we should also be searching for`,
-    learnMore: null,
-  },
-  {
-    cat:'talent', icon:'🗺️',
-    title:'Talent Pipeline Builder',
-    summary:'Build a full sourcing strategy for hard-to-fill roles — target companies, candidate personas, and outreach approach.',
-    desc:'Hard-to-fill roles need a sourcing strategy, not just a job post. AI helps you identify target companies, build a candidate persona, prioritize sourcing channels, and map out a 30-day pipeline plan that gives you coverage before you need it.',
-    prompt:`Act as a senior talent strategist helping me build a sourcing pipeline for a critical hire.
-
-Role: [JOB TITLE] | Team: [TEAM/FUNCTION] | Level: [e.g. "IC4 / Staff / Director"]
-Why this role is hard to fill: [e.g. "niche skill set", "comp constraints", "competitive market", "unknown brand"]
-Hiring timeline: [e.g. "need to close in 60 days"]
-Location: [e.g. "NYC hybrid / fully remote US"]
-Our company: [NAME, STAGE, INDUSTRY]
-Competitors we lose candidates to most often: [LIST]
-
-Please build me a sourcing strategy that includes:
-1. Ideal candidate persona — background, career path, motivations, what makes them move
-2. Top 10 target companies to poach from and why
-3. Sourcing channel priority list (LinkedIn, GitHub, communities, conferences, referrals, etc.) with effort vs. yield estimate for each
-4. 3 compelling angles to lead with in outreach (what would make THIS person respond?)
-5. A 30-day pipeline plan: week-by-week actions to build from 0 to a shortlist of 5 qualified candidates
-6. What "good" looks like at day 30 — leading indicators we're on track`,
-    learnMore: null,
-  },
-  {
-    cat:'talent', icon:'🧭',
-    title:'Market Mapping Assistant',
-    summary:'Map the competitive talent landscape for any function — who\'s out there, where they are, and what it takes to hire them.',
-    desc:'Before you open a req, know the market. AI helps you build a talent map for any function — estimating addressable pool size, key talent hubs, compensation benchmarks, competing employers, and the realistic timeline to hire.',
-    prompt:`Act as a talent intelligence analyst. Help me map the talent market for a key function we're hiring into.
-
-Function / Role family: [e.g. "Data Engineering", "Product Design", "Revenue Operations"]
-Seniority range: [e.g. "mid to senior IC"]
-Location(s): [e.g. "US remote", "NYC", "London"]
-Our company: [NAME, STAGE, INDUSTRY, HEADCOUNT]
-
-Please produce a market map covering:
-1. Estimated talent pool size — how many people in the US (or specified market) hold this profile?
-2. Top talent hubs — which cities or regions have the highest concentration?
-3. Key feeder companies — which employers produce the most talent in this space?
-4. Top competing employers — who are we fighting for this talent and what are they offering?
-5. Compensation landscape — typical base, equity, and total comp ranges at each level (IC3–IC5 or equivalent)
-6. Candidate motivations — what typically makes someone in this function move jobs?
-7. Hiring timeline benchmark — how long does it realistically take to close a role like this?
-8. 3 strategic recommendations for how we should position ourselves to win in this market`,
-    learnMore: null,
-  },
-
-  // ── COMP & BENEFITS ──
-  {
-    cat:'comp', icon:'💰',
-    title:'Total Comp Statement Generator',
-    summary:'Create personalized total comp narratives that make employees feel genuinely valued.',
-    desc:'Most employees underestimate how much their company invests in them. Generate a total comp narrative that translates RSUs, 401k match, benefits, and bonus into a human story — not a spreadsheet.',
-    prompt:`Generate a personalized total compensation narrative for [EMPLOYEE NAME], who has been with us since [DATE] as a [ROLE].
-
-Their compensation:
-- Base salary: $[X]
-- Annual bonus target: $[X] ([X]%)
-- Equity: [X] RSUs vesting over 4 years, currently worth ~$[X]
-- 401(k) match: [X]% up to [X]% of salary = ~$[X]/year
-- Health, dental, vision: ~$[X]/year company contribution
-- Other benefits: [LIST e.g. learning stipend, wellness, parental leave]
-
-Write this as a warm reward letter narrative — make the total value feel tangible and appreciated. Include a "what this means for you" section that converts annual values to daily/monthly equivalents. Keep it under 400 words.`,
-    learnMore: 'index.html',
-  },
-  {
-    cat:'comp', icon:'📊',
-    title:'Compensation Band Builder',
-    summary:'Build market-aligned pay bands with philosophy and rationale for your stage and location.',
-    desc:'No more guessing at salary ranges. Build a defensible compensation framework anchored to market percentiles, with a comp philosophy statement you can actually share with candidates.',
-    prompt:`Act as a compensation expert who works with high-growth tech companies.
-
-Build a compensation framework for a [SIZE] [STAGE] company in [CITY/REGION].
-
-For [FUNCTION e.g. "Engineering"] at levels [IC3 through IC6 + Manager through VP], create:
-1. Base salary range (25th–75th percentile)
-2. Annual bonus target %
-3. Equity refresh philosophy (how much, how often, what triggers it)
-4. Geographic differential guidance (if remote or multi-location)
-
-Anchor to [PERCENTILE e.g. "65th"] percentile of market. Reference relevant survey data (Radford, Levels.fyi, Comp XL) where applicable.
-
-Also write a 1-paragraph comp philosophy statement I can share with candidates that explains our approach honestly.
-
-Format as a table + philosophy paragraph.`,
-    learnMore: null,
-  },
-  {
-    cat:'comp', icon:'🏗️',
-    title:'Leveling Framework Builder',
-    summary:'Design career ladders with competencies, expectations, and promotion criteria.',
-    desc:'Give employees a clear view of what "next level" actually looks like. Generate a complete leveling framework for any function, formatted and ready to drop into Notion or Confluence.',
-    prompt:`Build a leveling framework for [FUNCTION e.g. "Product Management"] at a [STAGE] tech startup.
-
-Create [N] levels: [e.g. "Associate PM → PM → Senior PM → Staff PM → Principal PM"].
-
-For each level include:
-1. One-line level summary ("You own X and are expected to Y")
-2. Core responsibilities (4–5 bullets)
-3. Key competencies: Technical/Craft | Influence/Leadership | Strategic thinking
-4. What "meets bar" looks like vs. what "exceptional" looks like
-5. Promotion criteria: what does the committee need to see?
-6. Common mistakes people make at this level
-
-Format as a clean table I can paste into Notion. Use plain language — avoid jargon. The goal is for ICs to read this and immediately know where they stand.`,
-    learnMore: null,
-  },
-  {
-    cat:'comp', icon:'🏥',
-    title:'Open Enrollment Buddy',
-    summary:'Help employees navigate benefits decisions with plain-language, personalized guidance.',
-    desc:'Benefits jargon loses people fast. Build an AI assistant that walks employees through their health plan options, HSA math, and life stage tradeoffs — so they actually choose the right plan.',
-    prompt:`Act as a knowledgeable but approachable benefits advisor. An employee needs help choosing between our health plan options during open enrollment.
-
-Our options:
-- Plan A: [HDHP + HSA: deductible $X, OOP max $X, premium $X/month]
-- Plan B: [PPO: deductible $X, OOP max $X, premium $X/month]
-- Plan C: [HMO: deductible $X, OOP max $X, premium $X/month]
-
-About this employee:
-- Age: [X], [single / couple / family of X]
-- Healthcare usage: [rarely / moderate / frequent — e.g. managing a chronic condition]
-- Budget priority: [low premiums / low unpredictable costs / maximum flexibility]
-
-Walk them through:
-1. Which plan is likely best for their situation and why
-2. The HSA math if they go HDHP (annual savings potential)
-3. 2 questions they should ask HR before deciding
-4. One thing most people overlook during open enrollment
-
-Use plain language. No acronyms without explanation.`,
-    learnMore: null,
-  },
-  {
-    cat:'comp', icon:'📦',
-    title:'Severance Calculator & Letter Writer',
-    summary:'Calculate fair severance packages and draft compassionate separation communications.',
-    desc:'One of the hardest moments in HR. Get the math right and the words right — severance calculation, a manager\'s talking points script, and a separation letter that treats people with dignity.',
-    prompt:`Help me handle a separation thoughtfully and correctly.
-
-Employee details:
-- Name: [NAME], Role: [ROLE], Level: [LEVEL]
-- Tenure: [X years, X months] | Start date: [DATE]
-- Base salary: $[X]/year
-- Reason for separation: [e.g. "restructuring / performance / role elimination"]
-
-Our severance policy: [X weeks per year of service, minimum [X] weeks, maximum [X] weeks. Includes: COBRA continuation, accelerated vesting of cliff / pro-rata vesting, outplacement services.]
-
-Please provide:
-1. Total severance weeks and dollar amount
-2. COBRA cost estimate and duration
-3. Draft separation letter (compassionate, professional, clear on logistics)
-4. Manager talking points for the conversation (what to say, what not to say)
-5. 3 legal considerations to flag for review with counsel
-
-Note any assumptions you're making about our policy.`,
-    learnMore: null,
-  },
-  {
-    cat:'comp', icon:'🏥',
-    title:'US Medical Benefit Cost Analyzer',
-    summary:'Decode your medical claims data, benchmark costs, and find savings without cutting coverage.',
-    desc:'US employer healthcare is one of the largest and most opaque line items in your budget. Use AI to interpret claims trends, benchmark your spend against market, identify cost drivers, and build a data-driven case for plan design changes.',
-    prompt:`Act as an employee benefits consultant specializing in US employer-sponsored healthcare.
-
-Here is our current medical benefits data:
-- Plan type(s): [e.g. "HDHP + PPO"]
-- Total employees enrolled: [X] | Employee + dependent mix: [X% EE only, X% EE+spouse, X% family]
-- Annual employer premium cost: $[X]
-- Annual employee premium contributions: $[X]
-- Claims data (if available): [paste or summarize — total claims, top diagnosis categories, high-cost claimants %]
-- Current deductibles / OOP max: [X]
-- Carrier: [NAME] | Renewal date: [DATE]
-
-Help me:
-1. Benchmark our PEPY (per employee per year) cost against US tech industry norms
-2. Identify the top 3 cost drivers I should investigate
-3. Suggest 3 plan design changes that could reduce cost without significantly impacting employee experience
-4. Evaluate whether an HSA-paired HDHP strategy makes sense for our population
-5. Prepare 5 questions I should ask our broker at our next renewal meeting
-6. Draft a 1-paragraph summary I can share with our CFO explaining the cost trend`,
-    learnMore: null,
-  },
-
-  // ── EMPLOYEE EXPERIENCE ──
-  {
-    cat:'exp', icon:'🚀',
-    title:'Onboarding Buddy',
-    summary:'Create personalized 30/60/90-day onboarding plans for any role, any team.',
-    desc:'A great first 90 days is the single biggest predictor of long-term retention. Generate a complete, role-specific onboarding plan — with manager actions, learning milestones, and a first-week checklist — in minutes.',
-    prompt:`Create a 30/60/90-day onboarding plan for a new [ROLE] joining [COMPANY TYPE e.g. "Series B SaaS startup of 200 people"].
-
-Team: [TEAM NAME]
-Manager: [MANAGER NAME]
-Key projects they'll own: [BRIEF DESCRIPTION]
-
-For each phase (30/60/90 days) include:
-1. The core theme of this phase ("Learn / Build / Lead")
-2. 3 specific, measurable goals
-3. Key people to meet (with context on why each matters)
-4. Resources/docs/tools to explore
-5. What "success looks like" in concrete terms
-6. One mistake new hires often make at this stage
-
-Also create:
-- A Day 1 schedule (hour by hour)
-- A "First Week" checklist for their manager
-- 3 check-in questions for the manager to ask at the 30-day mark
-
-Format cleanly — I'll paste this into Notion.`,
-    learnMore: null,
-  },
-  {
-    cat:'exp', icon:'🧑‍💼',
-    title:'Manager Coach',
-    summary:'Get real-time coaching on performance conversations, feedback, and team dynamics.',
-    desc:'Most managers avoid hard conversations because they don\'t know how to start them. Get a coach in your pocket — with scripted openers, anticipated responses, and de-escalation moves for any situation.',
-    prompt:`Act as an experienced executive coach specializing in people management in tech companies.
-
-I'm a manager preparing for a difficult conversation. Here's the situation:
-[DESCRIBE THE SITUATION — e.g. "My direct report has missed two key deliverables this quarter. She's technically strong but defensive when given feedback. She also has significant institutional knowledge and I don't want to lose her."]
-
-Help me:
-1. Frame the conversation using the SBI model (Situation, Behavior, Impact)
-2. Write out the exact opening 2–3 sentences I'll use to start
-3. Anticipate 3 ways they might respond, and how I should reply to each
-4. Tell me what NOT to say (common mistakes managers make in this conversation)
-5. Define what a successful conversation looks like (what I want them to walk away thinking/feeling)
-6. Suggest a follow-up action within 48 hours
-
-Be direct. I need this in the next hour.`,
-    learnMore: null,
-  },
-  {
-    cat:'exp', icon:'🎯',
-    title:'OKR Prep Assistant',
-    summary:'Draft, refine, and cascade OKRs that are ambitious, measurable, and actually strategic.',
-    desc:'Most OKRs are either too vague or just KPIs in disguise. Build a set that\'s genuinely stretchy, cascades cleanly from company goals, and passes the "so what?" test when you present them to leadership.',
-    prompt:`Help me write OKRs for the [TEAM] team at a [SIZE] company for [QUARTER + YEAR].
-
-Company-level goal: [e.g. "Grow from 150 to 300 employees while maintaining culture health scores above 75 and keeping voluntary attrition under 12%"]
-
-My team's role in this: [1–2 sentences]
-Key constraints or dependencies: [e.g. "headcount budget frozen, no new tools approved until Q3"]
-
-Draft 3 Objectives with 3–4 Key Results each:
-- KRs must be measurable with a specific number and deadline
-- At least one KR per Objective should be a leading indicator (not just a lagging outcome)
-- Flag any KR that might be a vanity metric and suggest a stronger alternative
-- Rate each KR: Input, Output, or Outcome
-
-After drafting, add:
-- One "health check" KR I might be missing
-- The top 3 risks that could prevent us from hitting these OKRs`,
-    learnMore: null,
-  },
-  {
-    cat:'exp', icon:'🤝',
-    title:'Employee Relations Advisor',
-    summary:'Navigate complex ER cases with structured guidance, documentation checklists, and legal flags.',
-    desc:'Employee relations cases are high-stakes and hard to navigate alone. Get a structured framework for any ER situation — from the right categorization to documentation requirements to what you should escalate to counsel. Always to be used in conjunction with employment counsel.',
-    prompt:`I'm an HRBP handling an employee relations case. Here are the facts as I know them:
-
-[DESCRIBE THE SITUATION in detail — who is involved, what happened, timeline, any prior documentation, what the employee or manager has said]
-
-Please help me:
-1. Categorize this issue: Performance | Conduct | Policy violation | Interpersonal | Potential legal claim
-2. Immediate next steps (in order of priority)
-3. Documentation I need to gather before any conversation
-4. Legal considerations to flag for counsel (be specific — discrimination, retaliation, leave law, etc.)
-5. Draft talking points for my initial conversation with [the employee / their manager]
-6. What a reasonable resolution looks like in 30 days
-
-Also tell me: what am I probably not thinking about that I should be?`,
-    learnMore: null,
-  },
-  {
-    cat:'exp', icon:'📈',
-    title:'Performance Review Coach',
-    summary:'Help employees write strong self-reviews and help managers give feedback that sticks.',
-    desc:'Self-reviews are painful to write and reviews are painful to give. Generate compelling self-assessment narratives from raw notes, and help managers frame constructive feedback that actually leads to change.',
-    prompt:`Help me write a strong performance self-review for [TIME PERIOD e.g. "H2 2024"].
-
-My role: [ROLE] at [COMPANY]
-Key projects this period: [LIST 3–5 with brief descriptions]
-Metrics I hit (or missed): [LIST]
-What I'm most proud of: [1–2 things]
-Where I struggled: [1–2 things — be honest]
-
-Write my self-review in a confident, evidence-based tone. Structure:
-1. Executive summary (3 sentences)
-2. Key accomplishments with impact (use numbers wherever possible)
-3. Growth areas: honest but constructive framing (not self-flagellation)
-4. Goals for next period (2–3, specific and measurable)
-
-Keep the total under 500 words. Make me sound like someone who has high self-awareness AND high ambition.`,
-    learnMore: null,
-  },
-
-  // ── COMMUNICATIONS ──
-  {
-    cat:'comms', icon:'📢',
-    title:'Internal Comms Coach',
-    summary:'Draft sensitive all-hands announcements, leadership memos, and change communications.',
-    desc:'The hardest thing in HR comms is saying something difficult clearly, honestly, and without creating panic. Generate the draft, the FAQ, the manager talking points, and the follow-up — all at once.',
-    prompt:`Write an all-company communication announcing [CHANGE e.g. "a return-to-office policy requiring 3 days/week starting April 1"].
-
-Audience: [X] employees, mostly [TYPE e.g. "engineers and PMs who have been fully remote for 2 years"]
-Sender: [NAME + ROLE]
-Tone: Transparent, empathetic, clear about the "why", leaves room for questions
-
-Deliverables:
-1. Email to all employees (400 words max)
-2. FAQ section (5 most likely questions with honest answers)
-3. Manager talking points (what to say in team meetings, what to anticipate)
-4. Slack channel message (3 sentences — the "tl;dr" version)
-5. One thing we should NOT say (and why)
-
-Context on why we're making this change: [YOUR REASONING]
-What we're doing to support the transition: [SUPPORT MEASURES]`,
-    learnMore: null,
-  },
-  {
-    cat:'comms', icon:'🎤',
-    title:'CHRO Board Deck Builder',
-    summary:'Transform HR metrics into board-ready narratives with strategic framing and executive punch.',
-    desc:'Boards don\'t want a data dump — they want signal, trend, and recommendation. Turn your quarterly HR metrics into a concise, confident board narrative with strategic recommendations that drive conversation.',
-    prompt:`I'm a CHRO preparing my quarterly board update. Help me turn this data into a compelling narrative.
-
-My metrics this quarter:
-[PASTE METRICS — e.g.:
-- Headcount: 342 (was 310, target 380)
-- Attrition (voluntary): 14% annualized (up from 11% last quarter)
-- eNPS: 42 (down from 51)
-- Time to hire: 48 days (target 35)
-- Offer acceptance rate: 71%
-- Women in leadership: 31%]
-
-Please:
-1. Identify the 3 most important trends (not just the biggest numbers)
-2. Frame each as a narrative: what it means, what caused it, what we're doing
-3. Suggest 2 strategic recommendations to bring to the board (with rationale)
-4. Write an executive summary (150 words max) for slide 1
-5. Flag one thing I might be underplaying that the board will likely ask about anyway
-
-Make it sound like a confident CHRO who understands the business, not just HR.`,
-    learnMore: null,
-  },
-  {
-    cat:'comms', icon:'📰',
-    title:'Daily HR Intel Digest',
-    summary:'Curate and summarize the day\'s most relevant HR, legal, and tech industry news.',
-    desc:'Stay ahead of employment law changes, competitor moves, and HR tech trends without spending 45 minutes on news sites every morning. Get a crisp briefing that surfaces only what\'s actually relevant to your work.',
-    prompt:`Act as my daily HR intelligence briefing for [TODAY'S DATE].
-
-I'm an HR leader at a US-based tech company ([SIZE]) with employees in [STATES e.g. "CA, NY, TX, WA, CO"]. We are [growth stage].
-
-Brief me on:
-1. Employment law changes or pending legislation in those states (anything requiring action in the next 90 days)
-2. Federal updates: DOL, EEOC, NLRB — anything new this week
-3. Tech industry talent news: notable layoffs, hiring freezes, salary trend shifts
-4. One interesting trend in HR tech or AI tools I should know about
-5. One macro workforce trend I should be aware of
-
-Format: 3–4 bullets per section. Use plain language. Lead each bullet with the action or implication, not the news story. Flag anything requiring immediate action with "⚠️ ACTION NEEDED."`,
-    learnMore: null,
-  },
-  {
-    cat:'comms', icon:'🎨',
-    title:'Employer Brand Copywriter',
-    summary:'Write authentic employer brand content that attracts the candidates you actually want.',
-    desc:'Generic "we\'re building the future" copy repels good candidates. Generate career page copy, Glassdoor response templates, recruiter pitch narratives, and social content that\'s specific, honest, and magnetic.',
-    prompt:`Help me write employer brand content for [COMPANY], a [SIZE] [INDUSTRY] company.
-
-Our company personality: [e.g. "Direct, curious, low ego. We debate ideas loudly and implement fast. Remote-first with quarterly in-person."]
-Our culture differentiators (be honest, not aspirational): [LIST 3]
-What we don't do well (what candidates should know): [LIST 1–2 — honesty builds trust]
-The type of person who thrives here: [DESCRIBE]
-The type of person who doesn't: [DESCRIBE]
-
-Create:
-1. Careers page "Why us" section (150 words — no buzzwords)
-2. 3 LinkedIn posts from employees sharing a real work moment (authentic voice, not PR)
-3. A Glassdoor response template for a 3-star review that mentions [COMMON CRITICISM]
-4. A recruiter pitch (30 seconds verbal): what makes us different from [COMPETITOR]`,
-    learnMore: null,
-  },
-
-  // ── ANALYTICS ──
-  {
-    cat:'analytics', icon:'📊',
-    title:'Engagement Survey Analyzer',
-    summary:'Surface themes, sentiment, and action priorities from open-text survey responses.',
-    desc:'Quantitative scores tell you what\'s broken. The open-text responses tell you why. Paste in raw responses and get a structured analysis with themes, sentiment breakdown, and specific action recommendations.',
-    prompt:`Analyze the following open-text responses from our employee engagement survey.
-
-Question asked: "[SURVEY QUESTION e.g. 'What is the one thing leadership could do to make this a better place to work?']"
-Number of responses: [X]
-Context: [SIZE] company, [STAGE], [any relevant recent changes e.g. "we had layoffs 3 months ago"]
-
-Please:
-1. Identify the top 5 themes with approximate frequency (how many responses touch each theme)
-2. Assess overall sentiment per theme: Positive / Neutral / Negative / Mixed
-3. Surface the 3 most urgent action items (distinguish: quick wins vs. longer-term systemic issues)
-4. Identify any patterns suggesting retention risk (what are people close to leaving saying?)
-5. Suggest 2–3 specific manager-level actions vs. 2–3 leadership-level actions
-6. Flag any responses that require individual follow-up
-
-Responses:
-[PASTE RESPONSES]`,
-    learnMore: null,
-  },
-  {
-    cat:'analytics', icon:'🚪',
-    title:'Exit Interview Intelligence',
-    summary:'Identify systemic patterns and early warning signals from exit interview data.',
-    desc:'One exit interview is a story. Fifty exit interviews is a dataset. Surface the root causes, segment by team and tenure, and get targeted retention interventions before the next wave of attrition hits.',
-    prompt:`I have exit interview data from [X] departures over the past [TIMEFRAME] at our [SIZE] company.
-
-Please analyze the following data and help me understand what's really driving attrition:
-[PASTE DATA — can be raw responses, themes, or structured data]
-
-I need:
-1. Top 3 root causes of attrition (distinguish: systemic vs. isolated, fixable vs. not)
-2. Segmentation by: department, tenure band, level (if data allows)
-3. Which issues are manager-specific vs. company-wide vs. comp/market-driven
-4. 3 targeted retention interventions I can propose to leadership (with expected impact)
-5. Any patterns that are legally sensitive (I'll flag for counsel)
-6. The one thing in this data I might be tempted to explain away but shouldn't
-
-Also: What data am I NOT collecting in exit interviews that would help me understand this better?`,
-    learnMore: null,
-  },
-  {
-    cat:'analytics', icon:'🔭',
-    title:'Workforce Planning Assistant',
-    summary:'Model headcount scenarios, build hiring plans, and stress-test your org structure.',
-    desc:'Workforce planning is part spreadsheet, part strategy. Get a structured hiring plan with quarterly ramps, cost modeling, prioritization logic, and scenario analysis — in the time it takes to make coffee.',
-    prompt:`Help me build a workforce plan for [COMPANY / TEAM] for [FISCAL YEAR].
-
-Current state:
-- Total headcount: [X] | Open roles: [X] | Attrition rate (trailing 12mo): [X%]
-- Budget approved for net new hires: [X roles / $X headcount budget]
-
-Business goals driving this plan: [e.g. "Launch in 2 new markets, double ARR from $X to $X, build out a product-led growth motion"]
-
-Please:
-1. Recommend a headcount plan by function (prioritized, not just everything we want)
-2. Build a quarterly hiring ramp (Q1–Q4) that's realistic given typical time-to-fill of [X days]
-3. Estimate fully-loaded cost of planned hires (salary + benefits + equity + tools at [X%] overhead)
-4. What happens to the plan if headcount is cut 20%? Which roles should we protect?
-5. Flag 2 organizational risks in our current structure that the plan should address
-
-Assumptions you should state clearly.`,
-    learnMore: null,
-  },
-  {
-    cat:'analytics', icon:'⚠️',
-    title:'Retention Risk Identifier',
-    summary:'Analyze signals to flag at-risk employees and intervene before they\'re on their way out.',
-    desc:'By the time someone gives notice, you\'ve usually already lost them. Use this prompt to analyze behavioral, engagement, and tenure signals to surface who needs a retention conversation — before it\'s too late.',
-    prompt:`Act as an organizational psychologist and people analytics expert.
-
-I want to identify employees who may be at risk of leaving in the next 3–6 months.
-
-Here is the data I have access to:
-[LIST AVAILABLE DATA TYPES e.g. "eNPS scores, performance ratings, promotion history, tenure, manager change history, 1:1 meeting frequency, salary-to-band position, engagement survey responses, time since last meaningful project assignment"]
-
-For each data type, tell me:
-1. Which signals have the highest predictive validity for voluntary attrition (rank them)
-2. What threshold or pattern to watch for (e.g. "eNPS below 5 + no promotion in 18+ months + at top of band")
-3. A composite "risk score" framework I can build in a spreadsheet
-
-Also give me:
-- 5 interview questions a manager can ask in a 1:1 to detect disengagement early
-- A script for a "retention conversation" that doesn't feel desperate or weird
-- The 3 retention levers that actually work vs. the ones that don't`,
-    learnMore: null,
-  },
-  {
-    cat:'analytics', icon:'📈',
-    title:'People Metrics Dashboard Builder',
-    summary:'Turn raw HR data into a boardroom-ready people dashboard — no data team required.',
-    desc:'Most HR teams have the data but not the story. Use AI to define the right metrics, write the SQL or spreadsheet formulas to pull them, build a narrative around what the numbers mean, and create a dashboard your leadership team will actually read.',
-    prompt:`Act as a people analytics consultant helping me build an HR metrics dashboard for leadership.
-
-Company details: [SIZE, STAGE, INDUSTRY]
-Audience for this dashboard: [e.g. "CHRO + CFO monthly review", "CEO board update", "HRBP team"]
-Data I have access to: [e.g. "HRIS export, ATS data, engagement survey results, payroll data, Google Sheets"]
-Current biggest HR challenge: [e.g. "high attrition", "slow hiring", "low engagement", "headcount growth"]
-
-Please help me:
-1. Recommend the 8–10 most important people metrics for my company stage and audience (explain why each matters)
-2. Group them into categories (e.g. Talent Acquisition, Retention, Performance, Cost, Engagement)
-3. For each metric, provide:
-   - Definition and how to calculate it
-   - What "good" looks like as a benchmark
-   - What action it should trigger if it moves in the wrong direction
-4. Suggest a simple dashboard layout I can build in Google Sheets or Notion
-5. Write a 1-paragraph executive summary template I can fill in each month to accompany the data
-6. Flag the 2–3 metrics that are leading indicators (predict problems early) vs. lagging indicators (confirm what already happened)`,
-    learnMore: null,
-  },
-
-  // ── STRATEGY & OPS ──
-  {
-    cat:'strategy', icon:'🌍',
-    title:'International Culture Navigator',
-    summary:'Brief managers on cultural norms, communication styles, and HR practices for global teams.',
-    desc:'Misreading cultural signals in a global team is expensive — turnover, disengagement, and missed communication are usually cultural, not capability. Get a manager-ready briefing for any country in minutes.',
-    prompt:`I'm preparing to onboard a new team member from [COUNTRY] onto a US-based team led by a manager in [US CITY].
-
-Brief my manager on:
-1. Key cultural differences in workplace communication style (directness, hierarchy, disagreement)
-2. Attitudes toward: feedback, public recognition, deadlines, work-life boundaries
-3. Important national holidays and standard time-off norms they should know
-4. Employment law basics: notice period, mandatory benefits, anything that differs from US norms
-5. 3 specific things the US manager should do differently in this person's first 90 days
-6. 2 common mistakes American managers make with employees from this country
-
-Also: What questions should the manager NOT ask (culturally inappropriate or legally risky)?
-
-Format this as a one-pager I can email to the manager before their new hire's first day.`,
-    learnMore: null,
-  },
-  {
-    cat:'strategy', icon:'🎯',
-    title:'Chief of Staff Mode',
-    summary:'Synthesize priorities, prepare for leadership meetings, and think through strategic decisions.',
-    desc:'Sometimes you need a thought partner more than a task executor. Use this prompt to stress-test your thinking, organize a chaotic week, or prepare for a high-stakes leadership conversation.',
-    prompt:`Act as my Chief of Staff. I'm the [CHRO / VP HR / HRBP] at a [SIZE] company.
-
-Here's what's on my plate this week:
-[LIST YOUR PRIORITIES AND OPEN ITEMS]
-
-Here are the decisions I'm wrestling with:
-[LIST KEY DECISIONS OR AMBIGUOUS SITUATIONS]
-
-Upcoming meeting I'm preparing for: [MEETING NAME, DATE, AUDIENCE]
-
-Help me:
-1. Prioritize my list: what to decide this week vs. delegate vs. defer
-2. Identify what I'm probably procrastinating on that I shouldn't be
-3. Prepare 3 key points I want to land in [MEETING]
-4. Flag any HR risks I might be underweighting given what's on my plate
-5. Suggest one proactive move I should make this week that I haven't thought of
-
-Be direct. Tell me what you actually think, not what I want to hear.`,
-    learnMore: null,
-  },
-  {
-    cat:'strategy', icon:'⚙️',
-    title:'New Hire System Automator',
-    summary:'Design automated onboarding workflows from offer accept to day one — no engineering required.',
-    desc:'New hire onboarding is a maze of manual tasks spread across 6 systems. Map the ideal automated workflow, get email scripts, and learn which no-code tools can stitch it all together without IT.',
-    prompt:`I want to automate our new hire onboarding process. Here's the current state:
-[DESCRIBE CURRENT PROCESS — e.g. "Manager emails IT for laptop setup, HR manually sends 4 separate welcome emails, we use Greenhouse for ATS, Rippling for HRIS, Google Workspace for email"]
-
-Target state: seamless experience from offer accept to end of week 1, with minimal manual work for HR.
-
-Help me:
-1. Design the ideal automated workflow (trigger → action → outcome) from offer accept to day 1
-2. Map which systems need to talk to each other and what data flows between them
-3. Write scripts for 3 automated touchpoint emails:
-   - Offer accepted (Day 0)
-   - 48 hours before start date
-   - End of first week check-in
-4. Identify 3 no-code tools (Zapier, Make, Rippling automations, etc.) that could orchestrate this
-5. Tell me the one manual step I should keep human — and why
-
-Assume I have: [LIST YOUR SYSTEMS]. I do NOT have an engineering team.`,
-    learnMore: null,
-  },
-  {
-    cat:'strategy', icon:'🧭',
-    title:'Job Architecture Builder',
-    summary:'Create a complete job architecture — families, levels, and titles — that scales with your company.',
-    desc:'Title chaos is a real problem at fast-growing companies. Build a clean, consistent job architecture before your org gets too complex to untangle — with rationale that will hold up in calibration.',
-    prompt:`Help me build a job architecture for [COMPANY] — a [SIZE] [STAGE] [INDUSTRY] company.
-
-Current problem: [e.g. "We have 12 different titles for essentially the same job, no consistent leveling, and candidates negotiate levels based on their last title rather than our framework"]
-
-Build a complete job architecture for [X FUNCTIONS — e.g. "Engineering, Product, Design, GTM, G&A"]:
-1. Job families and sub-families for each function
-2. 5–6 universal levels that apply across functions (with consistent scope expectations)
-3. Title naming conventions with rationale (e.g. when to use "Staff" vs. "Principal" vs. "Lead")
-4. A level mapping table: how does each level map to market benchmarks (IC3 = P3 at Google, L5 at Amazon, etc.)
-5. A transition guide: how to migrate employees from current titles to the new framework without chaos
-
-Also: What are the top 3 mistakes companies make when rolling out a job architecture, and how do I avoid them?`,
-    learnMore: null,
-  },
-  {
-    cat:'strategy', icon:'🤖',
-    title:'Your AI Executive Assistant',
-    summary:'Start every week sharp — let AI prep your calendar, clear your inbox backlog, and handle the admin so you can focus on the work that matters.',
-    desc:'The best EAs don\'t just schedule meetings — they think ahead. Use AI to review your week, flag conflicts, draft agendas, summarise outstanding expenses, and surface what actually needs your attention before Monday hits.',
-    prompt:`Act as my Executive Assistant. Help me get ready for the week ahead.
-
-My role: [e.g. "VP People / CHRO at a 300-person tech company"]
-Today's date: [DATE] | Week of: [MONDAY DATE]
-
-Here's what I'm working with:
-- Calendar snapshot: [paste or describe upcoming meetings — titles, times, attendees]
-- Outstanding action items: [LIST any carry-overs from last week]
-- Expenses to submit: [e.g. "3 receipts from team offsite, one Uber, two client dinners — approx $640 total"]
-- Emails / Slack threads needing a response: [paste subjects or describe]
-
-Please help me:
-1. Weekly briefing — give me a 5-bullet "state of the week" with what's high priority, what to defer, and what I can delegate
-2. Calendar review — flag any back-to-backs, missing prep time, or meetings I should decline or shorten
-3. Draft agendas for my top 2 meetings this week (include suggested talking points and what decisions need to be made)
-4. Expense summary — draft a one-paragraph summary I can send to Finance with the spend breakdown and purpose of each item
-5. Suggested reply drafts for the 3 most important outstanding messages (keep each under 100 words, match my tone: direct, warm, no fluff)
-6. End-of-week plan — 3 things I should protect time for this Friday to close the week cleanly`,
-    learnMore: null,
-  },
-  {
-    cat:'compliance', icon:'⚖️',
-    title:'US Employment Law Tracker',
-    summary:'Monitor state and federal law changes and know exactly what action your HR team needs to take.',
-    desc:'Employment law changes constantly — and the penalties for missing them are real. Get a quarterly briefing on what changed, what it means for your handbook, and what you need to do before the deadline. Always to be used in conjunction with employment counsel.',
-    prompt:`I'm an HR leader at a tech company with employees in: [STATES — e.g. "CA, NY, TX, WA, CO, IL"].
-
-Summarize employment law changes from [TIMEFRAME e.g. "Q1 2025"] that impact us. Focus on:
-1. Wage and hour changes (minimum wage, overtime thresholds, pay transparency)
-2. Leave law updates (FMLA, state-specific sick leave, bereavement, PFML)
-3. Non-compete and non-solicitation enforceability changes by state
-4. AI in hiring regulations (any new rules on automated decision tools)
-5. Anything requiring an employee handbook update or policy change
-
-For each change:
-- State or federal source
-- Effective date
-- What we need to DO (specific action, not just awareness)
-- Risk if we don't act (legal exposure, penalty range)
-- Priority: Immediate / Before next quarter / By end of year
-
-Flag the top 2 I should discuss with employment counsel this month.`,
-    learnMore: null,
-  },
-  {
-    cat:'compliance', icon:'✈️',
-    title:'Immigration Toolkit',
-    summary:'Navigate visa sponsorship, green card timelines, and global mobility decisions with confidence.',
-    desc:'Immigration questions are high-stakes for employees and full of legal nuance. Use AI to get up to speed fast, draft manager briefings, build sponsorship policy frameworks, and prepare employees for what to expect — before looping in counsel.',
-    prompt:`Act as an experienced HR immigration specialist at a US tech company.
-
-I need help with: [DESCRIBE SITUATION — e.g. "We want to sponsor an H-1B for a current OPT employee", "An employee on a TN visa wants to apply for a green card", "We're considering sponsoring a UK employee for a US transfer"]
-
-Help me:
-1. Summarize the relevant visa category or pathway and what it requires from both the company and the employee
-2. Outline the realistic timeline (best case / typical / worst case)
-3. List the company obligations and costs we should budget for
-4. Draft a plain-language briefing I can share with the employee's manager
-5. Flag the top 3 things that commonly go wrong in this process
-6. List the questions I should bring to our immigration attorney
-
-Note: I understand this is not legal advice and I'll verify everything with qualified counsel before acting.`,
-    learnMore: null,
-  },
-  {
-    cat:'compliance', icon:'📋',
-    title:'LOA Process Automator',
-    summary:'Streamline leave of absence administration from request to return with AI-drafted workflows and communications.',
-    desc:'Leave administration is a legal minefield and a paperwork nightmare. Use AI to generate state-specific leave checklists, draft employee and manager communications, track concurrent leave entitlements, and build a process that protects the company and the employee.',
-    prompt:`Act as an HR operations specialist with deep expertise in US leave of absence administration.
-
-Employee situation:
-- State: [STATE] | Company size: [X employees]
-- Leave type requested: [e.g. "FMLA medical", "California CFRA + PDL", "parental leave", "personal leave"]
-- Employee's role: [ROLE] | Manager: [NAME]
-- Anticipated duration: [X weeks / unknown]
-- Reason (general): [e.g. "serious health condition", "birth of child", "family care"]
-
-Help me:
-1. Identify all applicable federal and state leave entitlements that run concurrently (FMLA, CFRA, PDL, PFL, etc.) and the total protected duration
-2. Generate a leave administration checklist: what HR needs to do, by when, in the right order
-3. Draft the initial leave approval letter to the employee (legally compliant, warm in tone)
-4. Draft a manager briefing: what they can and can't ask, how to handle coverage, what to communicate to the team
-5. Draft a return-to-work confirmation letter
-6. Flag any legal landmines I should discuss with employment counsel before proceeding
-
-Note: I will verify all legal requirements with qualified employment counsel before acting.`,
-    learnMore: null,
-  },
-  {
-    cat:'compliance', icon:'🌐',
-    title:'International Employment Relations Portal',
-    summary:'Navigate employment law, works councils, and labor relations across multiple countries in one place.',
-    desc:'Managing employees across borders means juggling different legal frameworks, union rules, consultation requirements, and termination processes. Use AI to build a country-by-country compliance reference, draft works council communications, and stay ahead of international labor obligations.',
-    prompt:`Act as an international employment law specialist with expertise in multi-country HR compliance.
-
-Our company operates in: [COUNTRIES — e.g. "UK, Germany, France, Netherlands, Australia"]
-Total international headcount: [X] | Largest countries by headcount: [LIST]
-
-Help me build an international employment relations reference by covering:
-
-For each country listed:
-1. Key employment law requirements: probation periods, notice periods, mandatory benefits, working time limits
-2. Works council / employee representative body requirements (where applicable) — when consultation is required and on what topics
-3. Termination process: required steps, minimum notice, severance entitlements, risk areas
-4. Any upcoming legal changes (2025–2026) we should be preparing for
-
-Then provide:
-5. A matrix comparing notice periods and severance across all countries
-6. Top 3 compliance risks for a US-headquartered company operating in these markets
-7. A checklist of what HR must do before making any cross-border redundancy or restructure announcement
-
-Note: I will validate all information with qualified local employment counsel before acting.`,
-    learnMore: null,
-  },
-];
-
-const samplePrompts = [
-  {
-    label: 'Manager Coaching',
-    prompt: `Act as an executive coach. My direct report is technically excellent but has been receiving feedback that they're hard to work with cross-functionally. They get defensive in code reviews and tend to dismiss ideas from people they see as less technical. I have a 1:1 with them tomorrow. Write me an opening statement and 3 questions I can ask that create self-awareness without triggering defensiveness. Keep each question under 15 words.`,
-  },
-  {
-    label: 'Job Description Audit',
-    prompt: `Review this job description for a Senior Engineer role and identify every phrase that might discourage a qualified candidate from applying — especially women, career changers, or candidates from non-traditional backgrounds. For each issue, suggest a specific rewrite. Then score the overall JD on inclusivity from 1–10 with a brief rationale. JD: [PASTE HERE]`,
-  },
-  {
-    label: 'Compensation Conversation',
-    prompt: `Help me prepare a manager for a compensation conversation with a top performer who thinks they're underpaid. The employee is at the 65th percentile of their band. The band maximum is at the 75th. We can offer a 5% increase and a spot bonus but can't promote. Write the talking points, what to say when they push back, and what NOT to promise. Keep it under 300 words.`,
-  },
-  {
-    label: 'All-Hands Memo',
-    prompt: `Write an all-company Slack message announcing that our CEO is departing and the COO is stepping in as interim CEO. 200 employees. Some will be nervous. We want to be transparent about the why (she's pursuing a new opportunity), express genuine gratitude, and convey stability. Max 150 words. Empathetic but confident in tone. No corporate jargon.`,
-  },
-];
-
-const tools = [
-  { icon:'🤖', name:'Claude', desc:'Best for long, complex HR documents, nuanced writing, and structured analysis.', tag:'AI Assistant', url:'https://claude.ai' },
-  { icon:'💬', name:'ChatGPT', desc:'Great for quick drafts, brainstorming, and conversational exploration of ideas.', tag:'AI Assistant', url:'https://chatgpt.com' },
-  { icon:'💻', name:'Replit', desc:'Build and deploy custom HR tools in minutes — no engineering team required.', tag:'Build', url:'https://replit.com' },
-  { icon:'🌸', name:'Lovable', desc:'Describe the HR app you want and Lovable builds it. Ideal for internal tools and dashboards.', tag:'Build', url:'https://lovable.dev' },
-  { icon:'🔀', name:'n8n', desc:'Open-source workflow automation. Connect your HRIS, ATS, and Slack with full control over your data.', tag:'Automation', url:'https://n8n.io' },
-  { icon:'🔗', name:'Zapier', desc:'Automate new hire workflows across Greenhouse, Rippling, Slack, and 7,000+ apps.', tag:'Automation', url:'https://zapier.com' },
-  { icon:'🎨', name:'Gamma', desc:'Turn your HR data, policies, and updates into beautiful presentations and docs with AI.', tag:'Presentations', url:'https://gamma.app' },
-  { icon:'🌿', name:'Lattice', desc:'Run AI-assisted performance cycles and get manager coaching suggestions built in.', tag:'HR Platform', url:'https://lattice.com' },
-  { icon:'🧲', name:'Ashby', desc:'Modern ATS with built-in analytics. Pairs well with AI to optimize your hiring funnel.', tag:'Recruiting', url:'https://ashbyhq.com' },
-  { icon:'🎙️', name:'Metaview', desc:'AI meeting notes built for recruiting. Auto-summarizes interviews so interviewers stay present.', tag:'Recruiting', url:'https://metaview.ai' },
-  { icon:'🔎', name:'Juicebox', desc:'AI-powered people search. Find candidates and leads from a database of 800M+ profiles.', tag:'Sourcing', url:'https://www.juicebox.ai' },
-  { icon:'🏠', name:'Time to Play AI', desc:'Start here — a free guide to AI built specifically for non-technical HR leaders.', tag:'Free Resource', url:'https://therealjmum.github.io/time-to-play-ai/' },
-];
-
-// ─────────────────────────────────────────────
-//  RENDER CARDS
-// ─────────────────────────────────────────────
-function renderCards(filter='all') {
-  const grid = document.getElementById('cardsGrid');
+let dragSrc = null;
+
+// ════════════════════════════════════════════════
+// HELPERS
+// ════════════════════════════════════════════════
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// ════════════════════════════════════════════════
+// EXPERT ANALYSIS
+// ════════════════════════════════════════════════
+function automationPotential(role) {
+  if (role.type === 'agent') return 'done';
+  const title = (role.title + ' ' + (role.tags||[]).join(' ')).toLowerCase();
+  const level = (role.level || '').toLowerCase();
+  // Directors and above: strategic, relational — human-essential
+  if (['c-suite','vp','director'].includes(level)) return 'low';
+  // Topic signals that require sustained human judgment
+  if (/vision|culture|ethics|leadership|creative.direct|partnership|relationship/.test(title)) return 'low';
+  // High automation potential: repetitive, data-driven, infra, monitoring, rules-based
+  if (/reconcil|reporting|\bqa\b|testing|documentation|scheduling|monitor|scan|audit|logging|devops|\bsre\b|ci.cd|infrastructure|etl\b|pipelines|revops|analytics|forecasting|revenue.oper|\banalyst\b/.test(title)) return 'high';
+  return 'mid';
+}
+// Automate / Augment / Advise — McKinsey/BCG AI opportunity framework
+function autoBadgeHTML(auto) {
+  if (auto === 'done') return '<span class="auto-badge auto-done">⚡ AI-Native</span>';
+  if (auto === 'high') return '<span class="auto-badge auto-high">🚀 Automate</span>';
+  if (auto === 'mid')  return '<span class="auto-badge auto-mid">⊕ Augment</span>';
+  return ''; // Advise is the default human state — no badge needed
+}
+function autoColor(auto) {
+  if (auto === 'done') return 'var(--agent)';
+  if (auto === 'high') return 'var(--agent)';   // teal = opportunity
+  if (auto === 'mid')  return 'var(--orange)';  // orange = collaboration
+  return 'var(--human)';                         // purple = human-essential
+}
+function calcStats() {
+  let h=0, a=0;
+  S.depts.forEach(d => d.roles.forEach(r => {
+    const n = r.count || 1;
+    r.type==='human' ? h+=n : a+=n;
+  }));
+  a += ORCH.length;
+  return {h, a, total: h+a, pct: h+a > 0 ? Math.round(a/(h+a)*100) : 0};
+}
+function updateHeaderStats() {
+  const {h,a,pct} = calcStats();
+  document.getElementById('s-h').textContent = h;
+  document.getElementById('s-a').textContent = a;
+  document.getElementById('s-r').textContent = pct + '%';
+}
+function calcSpanOfControl(dept) {
+  const mgrs = dept.roles.filter(r => r.type==='human' && ['VP','Manager','Director','C-Suite'].includes(r.level||''));
+  if (mgrs.length === 0) return null;
+  const mgrCount = mgrs.reduce((s,r) => s+(r.count||1), 0);
+  const reports  = dept.roles.filter(r => !['VP','C-Suite'].includes(r.level||''));
+  const repCount = reports.reduce((s,r) => s+(r.count||1), 0);
+  return mgrCount > 0 ? +(repCount / mgrCount).toFixed(1) : null;
+}
+function deptHasAgents(dept) {
+  return dept.roles.some(r => r.type === 'agent');
+}
+function spanClass(span, hasAgents) {
+  if (span === null) return '';
+  const upper = hasAgents ? 15 : 10; // AI agents expand effective span
+  if (span <= 2) return 'span-warn-y';
+  if (span > upper) return 'span-warn-r';
+  return 'span-ok';
+}
+
+// ════════════════════════════════════════════════
+// MODE SWITCHING
+// ════════════════════════════════════════════════
+function setMode(mode) {
+  S.mode = mode;
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('view-' + mode).classList.add('active');
+  document.getElementById('tab-' + mode).classList.add('active');
+  if (mode === 'overview') renderOverview();
+  if (mode === 'chart') renderChart();
+  if (mode === 'build') renderBuild();
+  updateHeaderStats();
+}
+
+// ════════════════════════════════════════════════
+// OVERVIEW MODE
+// ════════════════════════════════════════════════
+function renderOverview() {
+  renderHealthBar();
+  renderTiles();
+  renderRecs();
+}
+
+function renderHealthBar() {
+  const {h, a, pct} = calcStats();
+  // Avg span of control
+  let totalSpan = 0, spanCount = 0;
+  S.depts.forEach(d => {
+    const sp = calcSpanOfControl(d);
+    if (sp !== null) { totalSpan += sp; spanCount++; }
+  });
+  const avgSpan = spanCount > 0 ? (totalSpan/spanCount).toFixed(1) : '—';
+  const spanOk = avgSpan >= 4 && avgSpan <= 15; // wider with AI agents
+  // Count distinct org layers from role levels
+  const levelOrder = ['C-Suite','VP','Director','Senior','Mid'];
+  const presentLevels = new Set(S.depts.flatMap(d => d.roles.map(r => r.level)).filter(Boolean));
+  const layers = levelOrder.filter(l => presentLevels.has(l)).length || presentLevels.size;
+  // Automation ratio
+  const autoOk = pct >= 20 && pct <= 60;
+
+  document.getElementById('health-bar').innerHTML = `
+    <div class="hm ${autoOk ? 'agent-c' : 'warn'}">
+      <div class="hm-label">AI Automation Ratio</div>
+      <div class="hm-value">${pct}%</div>
+      <div class="hm-sub">${autoOk ? '✓ Healthy range (20–60%)' : '⚠ Consider rebalancing'}</div>
+    </div>
+    <div class="hm ${spanOk ? 'good' : 'warn'}">
+      <div class="hm-label">Avg Span of Control</div>
+      <div class="hm-value">${avgSpan}</div>
+      <div class="hm-sub">${spanOk ? '✓ Good (5–15 with AI agents)' : '⚠ Review reporting structure'}</div>
+    </div>
+    <div class="hm info">
+      <div class="hm-label">Org Layers</div>
+      <div class="hm-value">${layers}</div>
+      <div class="hm-sub">✓ Lean structure (3–5 optimal)</div>
+    </div>
+    <div class="hm good">
+      <div class="hm-label">Total Workforce</div>
+      <div class="hm-value">${h + a}</div>
+      <div class="hm-sub">${h} human · ${a} AI agents</div>
+    </div>
+    <div class="hm info">
+      <div class="hm-label">Departments</div>
+      <div class="hm-value">${S.depts.length}</div>
+      <div class="hm-sub">Functional org structure</div>
+    </div>
+  `;
+}
+
+function renderTiles() {
+  const grid = document.getElementById('tile-grid');
+  const tiles = S.depts.map(dept => {
+    const h = dept.roles.filter(r=>r.type==='human').reduce((s,r)=>s+(r.count||1),0);
+    const a = dept.roles.filter(r=>r.type==='agent').reduce((s,r)=>s+(r.count||1),0);
+    const total = h + a;
+    const pct = total > 0 ? Math.round(a/total*100) : 0;
+    const preview = dept.roles.slice(0,4);
+    const span = calcSpanOfControl(dept);
+    const spanCl = spanClass(span, deptHasAgents(dept));
+    const hasAgents = deptHasAgents(dept);
+    const spanTip = span !== null
+      ? 'Span of control: ' + span + ' direct reports per leader. ' + (hasAgents ? 'In a 3-layer AI-native org, healthy spans reach 15–20 (vs 5–8 traditional) — AI handles coordination, reporting and admin.' : 'Traditional guideline: 5–8 direct reports per manager.')
+      : '';
+
+    const roleRows = preview.map(r => {
+      const auto = automationPotential(r);
+      const dot = r.type==='agent' ? 'var(--agent)' : autoColor(auto);
+      return '<div class="tile-role-row">'
+        + '<div class="tile-role-dot" style="background:' + dot + '"></div>'
+        + '<span>' + esc(r.title) + ((r.count||1)>1 ? ' <span style="color:var(--t3)">×'+r.count+'</span>' : '') + '</span>'
+        + '<span style="margin-left:auto;font-size:9px;color:var(--t2)">' + (r.type==='agent' ? '⚡' : '') + '</span>'
+        + '</div>';
+    }).join('');
+
+    const moreRow = total > 4
+      ? '<div style="font-size:9px;color:var(--t2);margin-top:3px">+' + (total-4) + ' more roles</div>'
+      : '';
+
+    const spanBadge = span !== null
+      ? '<span class="span-warn span-tip ' + spanCl + '" data-tip="' + esc(spanTip) + '" style="margin-left:4px;cursor:help">⊛ ' + span + '</span>'
+      : '';
+
+    return '<div class="dept-tile" onclick="drillInto(\'' + dept.id + '\')">'
+      + '<div class="tile-head">'
+      + '<span class="tile-icon" style="color:' + dept.color + '">' + esc(dept.icon) + '</span>'
+      + '<div class="tile-info">'
+      + '<div class="tile-name" style="color:' + dept.color + '">' + esc(dept.name) + '</div>'
+      + '<div class="tile-desc">' + esc(dept.desc) + '</div>'
+      + '</div>'
+      + '<span class="tile-arrow" style="color:' + dept.color + '">→</span>'
+      + '</div>'
+      + '<div class="tile-stats">'
+      + '<div class="tile-count"><span style="color:var(--human)">♥ ' + h + '</span></div>'
+      + '<div class="tile-count"><span style="color:var(--agent)">⚡ ' + a + '</span></div>'
+      + '<div class="tile-ratio-track" style="flex:1"><div class="tile-ratio-fill" style="width:' + pct + '%"></div></div>'
+      + '<div class="tile-ratio-lbl">' + pct + '% AI</div>'
+      + spanBadge
+      + '</div>'
+      + '<div class="tile-roles">' + roleRows + moreRow + '</div>'
+      + '</div>';
+  });
+  grid.innerHTML = tiles.join('');
+}
+
+function renderRecs() {
+  const {pct} = calcStats();
+  const recs = [
+    {title:'Automate · Augment · Advise', body:'The three AI opportunity tiers: Automate = hand the task entirely to an agent (repetitive, rules-based). Augment = human + AI working in tandem (knowledge work). Advise = AI provides data, human decides (strategic, relational). Tag every role to one tier before redesigning.'},
+    {title:'Wider Spans with AI Agents', body:'Traditional rule: 5–8 directs per manager. In a 3-layer AI-native org, that changes fundamentally. With AI absorbing coordination overhead — status updates, meeting prep, reporting, first-draft reviews, scheduling — healthy spans reach 15–20 per leader. A Head of Engineering with 30+ ICs is viable when AI handles the admin layer. Recalibrate department by department based on AI agent coverage.'},
+    {title:'The Player-Coach is Now the Default', body:'AI absorbs admin and coordination work, freeing every manager to contribute individually again. Design roles assuming managers spend 50–60% doing IC work themselves. This compresses layers, accelerates delivery, and keeps senior talent engaged in real problems rather than governance.'},
+    {title:'Org Layers & Design', body:'Target 3–5 layers CEO to front-line. Each extra layer costs ~25% in coordination overhead. As AI agents handle cross-team handoffs, orgs can run flatter. Test: can a team operate autonomously for a week without escalation? If yes, it may not need its own management layer.'},
+    {title:'AI Agent Placement', body:'Never create a standalone "AI team". Agents belong inside functional departments — each team owns and is accountable for its agents. Cross-cutting infrastructure (data, compliance, comms) sits in the Orchestration Layer. Distributed ownership drives faster iteration and clearer accountability.'},
+    {title:'Future-State Workforce Planning', body:'AI-native tech companies are targeting 35–45% agent coverage by 2026. Engineering teams shrink by ~40% as pair-programming AI absorbs routine coding. Sales teams halve their SDR headcount as outbound agents run 24/7. Build your future-state org first, then work backwards to a 12–24 month workforce roadmap — with reskilling paths for every displaced role.'},
+  ];
+  document.getElementById('recs-grid').innerHTML = recs.map(r =>
+    `<div class="rec-card"><strong>${r.title}</strong>${r.body}</div>`
+  ).join('');
+}
+
+function drillInto(deptId) {
+  // Switch to chart mode, briefly highlight that dept
+  S.depts.forEach(d => d.collapsed = d.id !== deptId);
+  setMode('chart');
+  // Scroll to the dept column
+  setTimeout(() => {
+    const el = document.querySelector(`[data-dept-id="${deptId}"]`);
+    if (el) el.scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'});
+    // Expand it
+    const dept = S.depts.find(d => d.id === deptId);
+    if (dept) { dept.collapsed = false; renderChart(); }
+  }, 100);
+}
+
+// ════════════════════════════════════════════════
+// CHART MODE
+// ════════════════════════════════════════════════
+function renderChart() {
+  renderDepts();
+  renderOrch();
+  updateHeaderStats();
+}
+function renderDepts() {
+  const grid = document.getElementById('dept-grid');
   grid.innerHTML = '';
-
-  const filtered = filter === 'all' ? examples : examples.filter(e => e.cat === filter);
-
-  filtered.forEach((ex, i) => {
-    const cat = CAT[ex.cat];
-    const id = `card-${i}`;
-    const promptId = `prompt-${i}`;
-    const toggleId = `toggle-${i}`;
-
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.dataset.cat = ex.cat;
-
-    const encodedPrompt = encodeURIComponent(ex.prompt);
-
-    card.innerHTML = `
-      <div class="card-stripe" style="background:${cat.color}"></div>
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-icon">${ex.icon}</span>
-          <span class="cat-badge" style="background:${cat.bg};color:${cat.text}">${cat.label}</span>
+  S.depts.forEach(dept => {
+    const visible = S.filter==='all' ? dept.roles : dept.roles.filter(r=>r.type===S.filter);
+    const col = document.createElement('div');
+    col.className = 'dc';
+    col.dataset.deptId = dept.id;
+    const span = calcSpanOfControl(dept);
+    const spanCl = spanClass(span, deptHasAgents(dept));
+    col.innerHTML = `
+      <div class="dc-head" style="--dc-color:${dept.color}">
+        <span class="dc-icon" style="color:${dept.color}">${dept.icon}</span>
+        <div class="dc-info">
+          <div class="dc-name" style="color:${dept.color}">${dept.short}</div>
+          <div class="dc-desc">${dept.desc}</div>
         </div>
-        <h3>${ex.title}</h3>
-        <p class="card-desc">${ex.desc}</p>
+        <div class="dc-meta">
+          <span class="dc-cnt">${visible.length}</span>
+          ${span !== null ? `<span class="span-warn span-tip ${spanCl}" data-tip="Span of control: ${span} direct reports per leader. ${deptHasAgents(dept) ? 'In a 3-layer AI-native org, healthy spans reach 15–20 (vs 5–8 traditional) — AI handles coordination, reporting and admin.' : 'Traditional guideline: 5–8 per manager.'}">⊛ ${span}</span>` : ''}
+          <button class="dc-edbtn" onclick="editDept('${dept.id}')">✎</button>
+          <button class="dc-tgl" onclick="toggleDept('${dept.id}')">${dept.collapsed?'▶':'▾'}</button>
+        </div>
       </div>
-      <div class="card-footer">
-        <button class="prompt-toggle" id="${toggleId}" onclick="togglePrompt('${promptId}','${toggleId}')">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          View Prompt
+      <div class="dz ${dept.collapsed?'col':''}"
+           data-dept-id="${dept.id}"
+           ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event,'${dept.id}')">
+        ${visible.map(r => cardHTML(r, dept.id)).join('')}
+        <button class="add-btn" onclick="openAddRole('${dept.id}')">+ add role</button>
+      </div>
+    `;
+    grid.appendChild(col);
+  });
+}
+function cardHTML(r, deptId) {
+  const isAgent = r.type==='agent';
+  const auto = automationPotential(r);
+  const dept = S.depts.find(d => d.id === deptId);
+  const deptColor = dept ? dept.color : 'var(--human)';
+  const borderStyle = isAgent ? '' : `border-left:2px solid ${deptColor};`;
+  // Human badge tinted to dept color
+  const humanBadgeStyle = `background:${deptColor}22;color:${deptColor};border:1px solid ${deptColor}44`;
+  return `
+    <div class="rcard" data-role-id="${r.id}" data-dept-id="${deptId}" data-type="${r.type}"
+         draggable="true" style="${borderStyle}"
+         ondragstart="onDragStart(event,'${r.id}','${deptId}')"
+         ondragend="onDragEnd(event)"
+         ondblclick="editRole('${r.id}','${deptId}')">
+      <div class="rc-top">
+        <div class="rc-title">${r.title}</div>
+        <div style="display:flex;gap:3px;align-items:center;flex-shrink:0">
+          ${(r.count||1)>1 ? `<span class="badge" style="background:rgba(255,255,255,.06);color:var(--t2);border:1px solid var(--b)">×${r.count}</span>` : ''}
+          ${isAgent ? `<span class="badge ba">⚡ AI</span>` : `<span class="badge" style="${humanBadgeStyle}">♥</span>`}
+        </div>
+      </div>
+      <div class="rc-name">${r.name}</div>
+      ${isAgent && r.cap ? `<div class="rc-cap">${r.cap}</div>` : ''}
+      ${isAgent && r.owner ? `<div class="rc-owner">${r.owner}</div>` : ''}
+      <div class="rc-tags">
+        ${r.level ? `<span class="tag">${r.level}</span>` : ''}
+        ${(r.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}
+        ${autoBadgeHTML(auto)}
+      </div>
+      <div class="rc-actions">
+        <button class="rcbtn" onclick="editRole('${r.id}','${deptId}')">Edit</button>
+        <button class="rcbtn" onclick="dupeRole('${r.id}','${deptId}')">Dupe</button>
+        <button class="rcbtn del" onclick="rmRole('${r.id}','${deptId}')">Remove</button>
+      </div>
+    </div>
+  `;
+}
+function renderOrch() {
+  document.getElementById('orch-cards').innerHTML = ORCH.map(a => `
+    <div class="oc">
+      <div class="oc-title">⚡ ${a.title}</div>
+      <div class="oc-name">${a.name}</div>
+      <div class="oc-desc">${a.desc}</div>
+      <div class="oc-tags">${a.serves.map(s=>`<span class="oc-tag">${s}</span>`).join('')}</div>
+    </div>
+  `).join('');
+}
+
+// ════════════════════════════════════════════════
+// BUILD MODE (tree)
+// ════════════════════════════════════════════════
+function renderBuild() {
+  const wrap = document.getElementById('tree-root-wrap');
+  const svg = document.getElementById('tree-svg');
+  svg.innerHTML = '';
+
+  if (!S.buildRoot || !S.buildNodes[S.buildRoot]) {
+    wrap.innerHTML = `
+      <div class="build-empty">
+        <div class="build-empty-icon">🏗</div>
+        <div class="build-empty-title">Start Building Your Org</div>
+        <div class="build-empty-sub">Add a CEO or Founder to begin. Then build out your reporting structure — human roles and AI agents alike.</div>
+        <button class="btn btn-accent" onclick="addRootNode()">+ Add CEO / Founder</button>
+      </div>
+    `;
+    return;
+  }
+
+  wrap.innerHTML = renderTreeNode(S.buildRoot, true);
+
+  // Draw SVG lines after layout
+  requestAnimationFrame(() => {
+    const canvas = document.getElementById('build-canvas');
+    const wrapEl = document.getElementById('tree-root-wrap');
+    svg.style.width = wrapEl.scrollWidth + 'px';
+    svg.style.height = wrapEl.scrollHeight + 'px';
+    drawLines(svg, canvas);
+  });
+}
+
+function renderTreeNode(nodeId, isRoot) {
+  const n = S.buildNodes[nodeId];
+  if (!n) return '';
+  const isAgent = n.type==='agent';
+  const auto = n.automationPotential || 'low';
+  const autoColors = {low:'var(--green)',mid:'var(--yellow)',high:'var(--red)'};
+  const autoLabels = {low:'Low risk',mid:'Medium',high:'High risk'};
+  const childCount = (n.children||[]).length;
+  const spanWarn = childCount > 10 ? '⚠ Wide span' : childCount === 1 ? '△ Narrow' : '';
+  return `
+    <div class="tnode" data-nid="${nodeId}">
+      <div class="tcard ${S.selectedNode===nodeId?'selected':''}"
+           data-type="${n.type}" data-nid="${nodeId}"
+           onclick="selectNode('${nodeId}')">
+        <div class="tc-head">
+          <div class="tc-type-icon">${isAgent ? '⚡' : '♥'}</div>
+          <div class="tc-body">
+            <div class="tc-title">${n.title || 'Untitled Role'}</div>
+            <div class="tc-name">${n.name || 'Add name →'}</div>
+          </div>
+        </div>
+        <div class="tc-foot">
+          <span class="tc-auto-badge auto-${auto === 'done' ? 'done' : auto}"
+                style="background:${auto==='done'?'var(--qdim)':''}">
+            ${isAgent ? '⚡ Agent' : autoLabels[auto]||'Low risk'}
+          </span>
+          ${spanWarn ? `<span style="font-size:8px;color:var(--yellow)">${spanWarn}</span>` : ''}
+          <div class="tc-actions">
+            <button class="tc-add" onclick="event.stopPropagation();addChild('${nodeId}')" title="Add direct report">+</button>
+            ${!isRoot ? `<button class="tc-del" onclick="event.stopPropagation();removeNode('${nodeId}')" title="Remove">×</button>` : ''}
+          </div>
+        </div>
+        <button class="tc-type-toggle" onclick="event.stopPropagation();toggleNodeType('${nodeId}')" title="Toggle human/agent">
+          <span class="tt-opt human ${!isAgent?'active':''}" style="${!isAgent?'background:var(--hdim);color:var(--human)':''}">♥ Human</span>
+          <span class="tt-opt agent ${isAgent?'active':''}" style="${isAgent?'background:var(--qdim);color:var(--agent)':''}">⚡ Agent</span>
         </button>
-        <div class="prompt-box" id="${promptId}">
-          <pre class="prompt-text">${ex.prompt}</pre>
+      </div>
+      ${(n.children||[]).length > 0 ? `
+        <div class="tchildren">
+          ${(n.children||[]).map(cid => renderTreeNode(cid, false)).join('')}
         </div>
-        <div class="card-actions">
-          <button class="action-btn" onclick="copyPrompt(this,'${promptId}')">
-            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="3.5" y="3.5" width="6" height="6" rx="1" stroke="currentColor"/><path d="M3.5 7.5H2a1 1 0 01-1-1v-5a1 1 0 011-1h5a1 1 0 011 1v1.5" stroke="currentColor"/></svg>
-            Copy
-          </button>
-          <button class="action-btn claude" onclick="openInAI('claude','${promptId}')">✦ Claude</button>
-          <button class="action-btn gpt" onclick="openInAI('gpt','${promptId}')">⊕ ChatGPT</button>
-          ${ex.learnMore ? `<a class="action-btn" href="${ex.learnMore}" target="_blank" style="text-decoration:none">↗ Example</a>` : ''}
-        </div>
-      </div>`;
+      ` : ''}
+    </div>
+  `;
+}
 
-    grid.appendChild(card);
+function drawLines(svg, canvas) {
+  const canvasRect = canvas.getBoundingClientRect();
+  const scrollLeft = canvas.scrollLeft;
+  const scrollTop = canvas.scrollTop;
+
+  function draw(nodeId) {
+    const n = S.buildNodes[nodeId];
+    if (!n || !(n.children||[]).length) return;
+    const pEl = document.querySelector(`.tnode[data-nid="${nodeId}"] > .tcard`);
+    if (!pEl) return;
+    const pR = pEl.getBoundingClientRect();
+    const px = pR.left + pR.width/2 - canvasRect.left + scrollLeft;
+    const py = pR.bottom - canvasRect.top + scrollTop;
+
+    (n.children||[]).forEach(cid => {
+      const cEl = document.querySelector(`.tnode[data-nid="${cid}"] > .tcard`);
+      if (!cEl) return;
+      const cR = cEl.getBoundingClientRect();
+      const cx = cR.left + cR.width/2 - canvasRect.left + scrollLeft;
+      const cy = cR.top - canvasRect.top + scrollTop;
+      const midY = py + (cy - py) * 0.5;
+      const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('d', `M ${px} ${py} C ${px} ${midY}, ${cx} ${midY}, ${cx} ${cy}`);
+      const isAgent = S.buildNodes[cid]?.type === 'agent';
+      path.setAttribute('stroke', isAgent ? 'rgba(34,211,238,.25)' : 'rgba(167,139,250,.2)');
+      path.setAttribute('stroke-width', '1.5');
+      path.setAttribute('fill', 'none');
+      svg.appendChild(path);
+      draw(cid);
+    });
+  }
+  if (S.buildRoot) draw(S.buildRoot);
+}
+
+function selectNode(nodeId) {
+  S.selectedNode = nodeId;
+  const n = S.buildNodes[nodeId];
+  if (!n) return;
+  // Open side panel
+  const side = document.getElementById('build-side');
+  side.classList.add('open');
+  document.getElementById('bs-title').textContent = 'Edit: ' + (n.title || 'Role');
+  S.editType = n.type;
+  S.editAuto = n.automationPotential || 'low';
+  document.getElementById('bs-form').innerHTML = `
+    <div class="fg"><label>Role Title</label><input id="bs-title-in" value="${n.title||''}" placeholder="e.g. Chief Technology Officer" oninput="updateNodeField('${nodeId}','title',this.value)" /></div>
+    <div class="fg"><label>Name</label><input id="bs-name-in" value="${n.name||''}" placeholder="e.g. Alex Chen" oninput="updateNodeField('${nodeId}','name',this.value)" /></div>
+    <div class="fg"><label>Type</label>
+      <div class="type-row">
+        <button id="bst-h" class="type-btn th ${n.type!=='agent'?'active':''}" onclick="setNodeType('${nodeId}','human')">♥ Human</button>
+        <button id="bst-a" class="type-btn ta ${n.type==='agent'?'active':''}" onclick="setNodeType('${nodeId}','agent')">⚡ AI Agent</button>
+      </div>
+    </div>
+    <div class="fg" id="bs-auto-fg" style="${n.type==='agent'?'display:none':''}">
+      <label>Automation Potential</label>
+      <div class="auto-row">
+        <button class="auto-opt low ${(n.automationPotential||'low')==='low'?'sel':''}" onclick="setNodeAuto('${nodeId}','low')">♥ Advise</button>
+        <button class="auto-opt mid ${n.automationPotential==='mid'?'sel':''}" onclick="setNodeAuto('${nodeId}','mid')">⊕ Augment</button>
+        <button class="auto-opt high ${n.automationPotential==='high'?'sel':''}" onclick="setNodeAuto('${nodeId}','high')">🚀 Automate</button>
+      </div>
+    </div>
+    ${n.type==='agent'?`<div class="fg"><label>Agent Capability</label><textarea placeholder="What does this agent do autonomously?" oninput="updateNodeField('${nodeId}','cap',this.value)">${n.cap||''}</textarea></div>`:''}
+    <div class="fg"><label>Department / Function</label><input value="${n.dept||''}" placeholder="e.g. Engineering" oninput="updateNodeField('${nodeId}','dept',this.value)" /></div>
+    <div style="margin-top:4px">
+      <button class="btn btn-accent btn-sm" style="width:100%" onclick="addChild('${nodeId}')">+ Add Direct Report</button>
+    </div>
+    <div style="margin-top:4px">
+      <button class="btn-danger" style="width:100%;padding:6px;border-radius:6px;font-size:10px;cursor:pointer;border:1px solid rgba(248,113,113,.3);background:transparent;color:var(--red);font-family:var(--font)" onclick="removeNode('${nodeId}')">Remove this role</button>
+    </div>
+  `;
+  renderBuild();
+}
+
+function closeSide() {
+  S.selectedNode = null;
+  document.getElementById('build-side').classList.remove('open');
+  renderBuild();
+}
+
+function updateNodeField(nodeId, field, value) {
+  if (S.buildNodes[nodeId]) {
+    S.buildNodes[nodeId][field] = value;
+    renderBuild();
+  }
+}
+function setNodeType(nodeId, type) {
+  if (!S.buildNodes[nodeId]) return;
+  S.buildNodes[nodeId].type = type;
+  selectNode(nodeId);
+}
+function setNodeAuto(nodeId, auto) {
+  if (!S.buildNodes[nodeId]) return;
+  S.buildNodes[nodeId].automationPotential = auto;
+  selectNode(nodeId);
+}
+function toggleNodeType(nodeId) {
+  const n = S.buildNodes[nodeId];
+  if (!n) return;
+  n.type = n.type === 'agent' ? 'human' : 'agent';
+  if (S.selectedNode === nodeId) selectNode(nodeId);
+  else renderBuild();
+}
+
+function addRootNode() {
+  const id = 'n' + (++S.idN);
+  S.buildNodes[id] = {id, title:'CEO / Founder', name:'Your Name', type:'human', automationPotential:'low', children:[]};
+  S.buildRoot = id;
+  renderBuild();
+  setTimeout(() => selectNode(id), 100);
+}
+
+function addChild(parentId) {
+  const id = 'n' + (++S.idN);
+  S.buildNodes[id] = {id, title:'New Role', name:'', type:'human', automationPotential:'low', children:[]};
+  if (!S.buildNodes[parentId]) return;
+  S.buildNodes[parentId].children = S.buildNodes[parentId].children || [];
+  S.buildNodes[parentId].children.push(id);
+  appendNote(`Added new direct report under "${S.buildNodes[parentId].title}"`);
+  renderBuild();
+  setTimeout(() => selectNode(id), 150);
+}
+
+function removeNode(nodeId) {
+  if (nodeId === S.buildRoot) {
+    if (!confirm('Remove root node? This will clear the entire tree.')) return;
+    S.buildRoot = null;
+    S.buildNodes = {};
+    S.selectedNode = null;
+    document.getElementById('build-side').classList.remove('open');
+    renderBuild();
+    return;
+  }
+  // Remove from parent's children
+  Object.values(S.buildNodes).forEach(n => {
+    if (n.children) n.children = n.children.filter(c => c !== nodeId);
   });
+  // Recursively delete node and all descendants
+  function del(id) {
+    const n = S.buildNodes[id];
+    if (!n) return;
+    (n.children||[]).forEach(del);
+    delete S.buildNodes[id];
+  }
+  del(nodeId);
+  if (S.selectedNode === nodeId) { S.selectedNode = null; document.getElementById('build-side').classList.remove('open'); }
+  renderBuild();
 }
 
-// ─────────────────────────────────────────────
-//  RENDER SAMPLE PROMPTS
-// ─────────────────────────────────────────────
-function renderSamples() {
-  const row = document.getElementById('sampleRow');
-  samplePrompts.forEach((s, i) => {
-    const div = document.createElement('div');
-    div.className = 'sample-card';
-    const promptId = `sample-prompt-${i}`;
-    div.innerHTML = `
-      <div class="sample-card-label">${s.label}</div>
-      <div class="sample-card-prompt" id="${promptId}">${s.prompt}</div>
-      <div class="sample-card-actions">
-        <button class="action-btn" onclick="copyPrompt(this,'${promptId}')">Copy</button>
-        <button class="action-btn claude" onclick="openInAI('claude','${promptId}')">✦ Claude</button>
-        <button class="action-btn gpt" onclick="openInAI('gpt','${promptId}')">⊕ ChatGPT</button>
-      </div>`;
-    row.appendChild(div);
+function clearBuild() {
+  if (Object.keys(S.buildNodes).length > 0 && !confirm('Clear the entire org tree?')) return;
+  S.buildRoot = null;
+  S.buildNodes = {};
+  S.selectedNode = null;
+  document.getElementById('build-side').classList.remove('open');
+  renderBuild();
+}
+
+function importFromChart() {
+  if (Object.keys(S.buildNodes).length > 0 && !confirm('Import from Chart will replace your current Build. Continue?')) return;
+  S.buildNodes = {};
+  // Create root from exec team
+  const execDept = S.depts.find(d => d.id === 'exec');
+  if (!execDept) return;
+  const ceo = execDept.roles.find(r => r.level === 'C-Suite') || execDept.roles[0];
+  if (!ceo) return;
+  const rootId = 'n' + (++S.idN);
+  S.buildNodes[rootId] = {id:rootId, title:ceo.title, name:ceo.name, type:ceo.type, automationPotential:'low', children:[], dept:'Executive'};
+  S.buildRoot = rootId;
+  // Add other depts as direct reports
+  S.depts.forEach(dept => {
+    if (dept.id === 'exec') return;
+    const head = dept.roles.find(r => ['VP','Director','C-Suite'].includes(r.level||'')) || dept.roles[0];
+    if (!head) return;
+    const headId = 'n' + (++S.idN);
+    S.buildNodes[headId] = {id:headId, title:head.title, name:head.name, type:head.type, automationPotential:automationPotential(head), children:[], dept:dept.name};
+    S.buildNodes[rootId].children.push(headId);
+    // Add remaining roles as their directs
+    dept.roles.filter(r => r !== head).slice(0, 5).forEach(r => {
+      const rid = 'n' + (++S.idN);
+      S.buildNodes[rid] = {id:rid, title:r.title, name:r.name, type:r.type, automationPotential:automationPotential(r), children:[], dept:dept.name, cap:r.cap};
+      S.buildNodes[headId].children.push(rid);
+    });
   });
+  renderBuild();
+  appendNote('Imported org structure from Chart mode');
 }
 
-// ─────────────────────────────────────────────
-//  RENDER TOOLS
-// ─────────────────────────────────────────────
-function renderTools() {
-  const grid = document.getElementById('toolsGrid');
-  tools.forEach(t => {
-    const a = document.createElement('a');
-    a.className = 'tool-card';
-    a.href = t.url;
-    a.target = '_blank';
-    a.rel = 'noopener';
-    a.innerHTML = `
-      <span class="tool-icon">${t.icon}</span>
-      <div class="tool-name">${t.name}</div>
-      <div class="tool-desc">${t.desc}</div>
-      <div class="tool-tag">${t.tag}</div>`;
-    grid.appendChild(a);
-  });
+function startBuildOwn() {
+  clearBuild();
+  setMode('build');
 }
 
-// ─────────────────────────────────────────────
-//  INTERACTIONS
-// ─────────────────────────────────────────────
-function togglePrompt(promptId, toggleId) {
-  const box = document.getElementById(promptId);
-  const btn = document.getElementById(toggleId);
-  const isOpen = box.classList.contains('visible');
-  box.classList.toggle('visible', !isOpen);
-  btn.classList.toggle('open', !isOpen);
-  btn.querySelector('span') && (btn.querySelector('span').textContent = isOpen ? 'View Prompt' : 'Hide Prompt');
-  // Update text node
-  btn.childNodes.forEach(n => { if(n.nodeType === 3) n.textContent = isOpen ? ' View Prompt' : ' Hide Prompt'; });
+// ════════════════════════════════════════════════
+// CHART DRAG & DROP
+// ════════════════════════════════════════════════
+function onDragStart(e, roleId, deptId) {
+  dragSrc = {roleId, deptId};
+  e.dataTransfer.effectAllowed = 'move';
+  setTimeout(() => e.target.classList.add('dragging'), 0);
+}
+function onDragEnd(e) {
+  e.target.classList.remove('dragging');
+  document.querySelectorAll('.dz').forEach(z => z.classList.remove('drag-over'));
+}
+function onDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+function onDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+function onDrop(e, toId) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  if (!dragSrc || dragSrc.deptId === toId) return;
+  const from = S.depts.find(d => d.id === dragSrc.deptId);
+  const to   = S.depts.find(d => d.id === toId);
+  if (!from || !to) return;
+  const idx = from.roles.findIndex(r => r.id === dragSrc.roleId);
+  if (idx === -1) return;
+  const [role] = from.roles.splice(idx, 1);
+  to.roles.push(role);
+  appendNote(`Moved "${role.title}" → ${to.name}`);
+  renderChart();
+  dragSrc = null;
 }
 
-function getPromptText(promptId) {
-  const el = document.getElementById(promptId);
-  return el ? el.textContent.trim() : '';
+// ════════════════════════════════════════════════
+// FILTER
+// ════════════════════════════════════════════════
+function setFilter(f) {
+  S.filter = f;
+  document.querySelectorAll('.fbtn').forEach((b,i) => b.classList.toggle('active', ['all','human','agent'][i]===f));
+  renderChart();
+}
+function toggleDept(id) {
+  const d = S.depts.find(d => d.id === id);
+  if (d) { d.collapsed = !d.collapsed; renderChart(); }
 }
 
-function copyPrompt(btn, promptId) {
-  const text = getPromptText(promptId);
-  navigator.clipboard.writeText(text).then(() => {
-    btn.classList.add('copy-done');
-    btn.textContent = '✓ Copied';
-    showToast('Prompt copied to clipboard!');
-    setTimeout(() => {
-      btn.classList.remove('copy-done');
-      btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="3.5" y="3.5" width="6" height="6" rx="1" stroke="currentColor"/><path d="M3.5 7.5H2a1 1 0 01-1-1v-5a1 1 0 011-1h5a1 1 0 011 1v1.5" stroke="currentColor"/></svg> Copy`;
-    }, 2000);
-  }).catch(() => {
-    showToast('Copy failed — please select and copy manually.');
-  });
+// ════════════════════════════════════════════════
+// MODALS
+// ════════════════════════════════════════════════
+function showModal(html) {
+  S.editType = 'human';
+  document.getElementById('modal-root').innerHTML = `
+    <div class="mo" onclick="ovClick(event)"><div class="modal">${html}</div></div>`;
+}
+function closeModal() { document.getElementById('modal-root').innerHTML = ''; }
+function ovClick(e) { if (e.target.classList.contains('mo')) closeModal(); }
+
+function selType(t) {
+  S.editType = t;
+  document.getElementById('mt-h').className = `type-btn th ${t==='human'?'active':''}`;
+  document.getElementById('mt-a').className = `type-btn ta ${t==='agent'?'active':''}`;
+  const cap = document.getElementById('fg-cap');
+  if (cap) cap.style.display = t==='agent' ? '' : 'none';
+  const nl = document.getElementById('name-lbl');
+  if (nl) nl.textContent = t==='agent' ? 'Agent Code Name' : 'Person Name';
 }
 
-function openInAI(platform, promptId) {
-  const text = getPromptText(promptId);
-  navigator.clipboard.writeText(text).then(() => {
-    showToast('Prompt copied! Paste it when the new tab opens.');
-  }).catch(() => {});
-  const urls = {
-    claude: 'https://claude.ai/new',
-    gpt: 'https://chatgpt.com/',
-  };
-  window.open(urls[platform], '_blank', 'noopener');
+function openAddRole(deptId=null) {
+  const opts = S.depts.map(d=>`<option value="${d.id}" ${deptId===d.id?'selected':''}>${d.name}</option>`).join('');
+  showModal(`
+    <div class="modal-title">Add New Role</div>
+    <div class="mform">
+      <div class="fg"><label>Type</label><div class="type-row">
+        <button id="mt-h" class="type-btn th active" onclick="selType('human')">♥ Human</button>
+        <button id="mt-a" class="type-btn ta" onclick="selType('agent')">⚡ AI Agent</button>
+      </div></div>
+      <div class="fg"><label>Department</label><select id="m-dept">${opts}</select></div>
+      <div class="fg"><label>Title</label><input id="m-title" placeholder="e.g. Senior Engineer" /></div>
+      <div class="fg"><label id="name-lbl">Person Name</label><input id="m-name" placeholder="e.g. Sarah Kim" /></div>
+      <div class="fg" id="fg-cap" style="display:none"><label>Capability</label><textarea id="m-cap" placeholder="What does this agent do?"></textarea></div>
+      <div class="fg"><label>Tags (comma separated)</label><input id="m-tags" placeholder="Backend, APIs" /></div>
+      <div class="fg"><label>Level</label><input id="m-level" placeholder="VP, Senior, Manager, Junior" /></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-accent btn-sm" onclick="doAddRole()">Add Role</button>
+      </div>
+    </div>`);
+}
+function doAddRole() {
+  const deptId = document.getElementById('m-dept').value;
+  const title  = document.getElementById('m-title').value.trim();
+  const name   = document.getElementById('m-name').value.trim();
+  const capEl  = document.getElementById('m-cap');
+  const tags   = document.getElementById('m-tags').value.split(',').map(t=>t.trim()).filter(Boolean);
+  const level  = document.getElementById('m-level').value.trim();
+  if (!title) { alert('Please enter a title'); return; }
+  const dept = S.depts.find(d => d.id === deptId);
+  if (!dept) return;
+  const role = {id:'r'+(++S.idN), title, name: name||(S.editType==='agent'?'Agent':'TBH'), type:S.editType, tags, level, cap:capEl?capEl.value.trim():''};
+  dept.roles.push(role);
+  appendNote(`Added "${role.title}" to ${dept.name}`);
+  closeModal(); renderChart();
+}
+function editRole(roleId, deptId) {
+  const dept = S.depts.find(d=>d.id===deptId);
+  const role = dept?.roles.find(r=>r.id===roleId);
+  if (!role) return;
+  S.editType = role.type;
+  showModal(`
+    <div class="modal-title">Edit Role</div>
+    <div class="mform">
+      <div class="fg"><label>Type</label><div class="type-row">
+        <button id="mt-h" class="type-btn th ${role.type!=='agent'?'active':''}" onclick="selType('human')">♥ Human</button>
+        <button id="mt-a" class="type-btn ta ${role.type==='agent'?'active':''}" onclick="selType('agent')">⚡ AI Agent</button>
+      </div></div>
+      <div class="fg"><label>Title</label><input id="m-title" value="${role.title}" /></div>
+      <div class="fg"><label id="name-lbl">${role.type==='agent'?'Agent Code Name':'Person Name'}</label><input id="m-name" value="${role.name}" /></div>
+      <div class="fg" id="fg-cap" style="${role.type==='agent'?'':'display:none'}"><label>Capability</label><textarea id="m-cap">${role.cap||''}</textarea></div>
+      <div class="fg"><label>Tags</label><input id="m-tags" value="${(role.tags||[]).join(', ')}" /></div>
+      <div class="fg"><label>Level</label><input id="m-level" value="${role.level||''}" /></div>
+      <div class="modal-actions">
+        <button class="btn-danger" onclick="rmRole('${roleId}','${deptId}')">Remove Role</button>
+        <button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-accent btn-sm" onclick="doSaveRole('${roleId}','${deptId}')">Save</button>
+      </div>
+    </div>`);
+}
+function doSaveRole(roleId, deptId) {
+  const dept = S.depts.find(d=>d.id===deptId);
+  const role = dept?.roles.find(r=>r.id===roleId);
+  if (!role) return;
+  role.title = document.getElementById('m-title').value.trim() || role.title;
+  role.name  = document.getElementById('m-name').value.trim() || role.name;
+  role.type  = S.editType;
+  const capEl = document.getElementById('m-cap');
+  if (capEl) role.cap = capEl.value.trim();
+  role.tags  = document.getElementById('m-tags').value.split(',').map(t=>t.trim()).filter(Boolean);
+  role.level = document.getElementById('m-level').value.trim();
+  closeModal(); renderChart();
+}
+function openAddDept() {
+  showModal(`
+    <div class="modal-title">Add Department</div>
+    <div class="mform">
+      <div class="fg"><label>Name</label><input id="d-name" placeholder="e.g. Customer Success" /></div>
+      <div class="fg"><label>Short label</label><input id="d-short" placeholder="e.g. CS" maxlength="6" /></div>
+      <div class="fg"><label>Description</label><input id="d-desc" placeholder="e.g. Retention, Onboarding" /></div>
+      <div class="fg"><label>Accent Colour</label><input type="color" id="d-color" value="#A78BFA" style="height:38px;padding:3px" /></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-accent btn-sm" onclick="doAddDept()">Add</button>
+      </div>
+    </div>`);
+}
+function doAddDept() {
+  const name = document.getElementById('d-name').value.trim();
+  const short= document.getElementById('d-short').value.trim().toUpperCase();
+  const desc = document.getElementById('d-desc').value.trim();
+  const color= document.getElementById('d-color').value;
+  if (!name) { alert('Enter a name'); return; }
+  const icons = ['⊕','◈','⊛','◆','◐','⊡','⬟'];
+  S.depts.push({id:'dept'+(++S.idN), name, short:short||name.slice(0,4).toUpperCase(), color, icon:icons[S.idN%icons.length], desc:desc||name, collapsed:false, roles:[]});
+  closeModal(); renderChart(); if (S.mode==='overview') renderOverview();
+}
+function editDept(id) {
+  const d = S.depts.find(d=>d.id===id);
+  if (!d) return;
+  showModal(`
+    <div class="modal-title">Edit Department</div>
+    <div class="mform">
+      <div class="fg"><label>Name</label><input id="d-name" value="${d.name}" /></div>
+      <div class="fg"><label>Short</label><input id="d-short" value="${d.short}" maxlength="6" /></div>
+      <div class="fg"><label>Description</label><input id="d-desc" value="${d.desc}" /></div>
+      <div class="fg"><label>Colour</label><input type="color" id="d-color" value="${d.color}" style="height:38px;padding:3px" /></div>
+      <div class="modal-actions">
+        <button class="btn-danger" onclick="doDelDept('${id}')">Delete Dept</button>
+        <button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-accent btn-sm" onclick="doSaveDept('${id}')">Save</button>
+      </div>
+    </div>`);
+}
+function doSaveDept(id) {
+  const d = S.depts.find(d=>d.id===id);
+  if (!d) return;
+  d.name = document.getElementById('d-name').value.trim()||d.name;
+  d.short= document.getElementById('d-short').value.trim().toUpperCase()||d.short;
+  d.desc = document.getElementById('d-desc').value.trim()||d.desc;
+  d.color= document.getElementById('d-color').value;
+  closeModal(); renderChart(); if (S.mode==='overview') renderOverview();
+}
+function doDelDept(id) {
+  const d = S.depts.find(d=>d.id===id);
+  if (d?.roles.length && !confirm(`"${d.name}" has ${d.roles.length} roles. Delete?`)) return;
+  S.depts = S.depts.filter(d=>d.id!==id);
+  closeModal(); renderChart(); if (S.mode==='overview') renderOverview();
+}
+function rmRole(roleId, deptId) {
+  const dept = S.depts.find(d=>d.id===deptId);
+  const role = dept?.roles.find(r=>r.id===roleId);
+  if (!role || !confirm(`Remove "${role.title}"?`)) return;
+  dept.roles = dept.roles.filter(r=>r.id!==roleId);
+  appendNote(`Removed "${role.title}" from ${dept.name}`);
+  closeModal(); renderChart(); if (S.mode==='overview') renderOverview();
+}
+function dupeRole(roleId, deptId) {
+  const dept = S.depts.find(d=>d.id===deptId);
+  const role = dept?.roles.find(r=>r.id===roleId);
+  if (!role) return;
+  dept.roles.push({...role, id:'r'+(++S.idN), name:role.name+' (2)'});
+  renderChart();
 }
 
-let toastTimer;
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  document.getElementById('toastMsg').textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+// ════════════════════════════════════════════════
+// NOTES
+// ════════════════════════════════════════════════
+function toggleNotes() {
+  const panel = document.getElementById('notes-panel');
+  const float = document.getElementById('notes-float');
+  const hbtn  = document.getElementById('notes-header-btn');
+  const chev  = document.getElementById('notes-chevron');
+  const hidden = panel.classList.toggle('hidden');
+  float.classList.toggle('show', hidden);
+  if (hbtn) hbtn.classList.toggle('on', !hidden);
+  if (chev) chev.textContent = hidden ? '‹' : '›';
 }
+function appendNote(msg) {
+  const el = document.getElementById('notes');
+  const ts = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  el.value = (el.value ? el.value.trimEnd()+'\n' : '') + `[${ts}] ${msg}`;
+  updateNoteCount(el.value);
+  saveNotes(el.value);
+}
+function saveNotes(v) { try{localStorage.setItem('oi-notes',v);}catch(e){} updateNoteCount(v); }
+function updateNoteCount(v) { const el=document.getElementById('note-chars'); if(el) el.textContent=v.length+' chars'; }
+function loadNotes() { try{const v=localStorage.getItem('oi-notes'); if(v){document.getElementById('notes').value=v;updateNoteCount(v);}}catch(e){} }
+function clearNotes() { if(!confirm('Clear notes?')) return; document.getElementById('notes').value=''; saveNotes(''); }
+function copyNotes() { navigator.clipboard.writeText(document.getElementById('notes').value); }
 
-// ─────────────────────────────────────────────
-//  FILTER TABS
-// ─────────────────────────────────────────────
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    renderCards(tab.dataset.filter);
-  });
-});
+// ════════════════════════════════════════════════
+// KEYBOARD
+// ════════════════════════════════════════════════
+document.addEventListener('keydown', e => { if (e.key==='Escape') { closeModal(); closeSide(); }});
 
-// ─────────────────────────────────────────────
-//  INIT
-// ─────────────────────────────────────────────
-renderCards();
-renderSamples();
-renderTools();
+// ════════════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════════════
+renderOverview();
+loadNotes();
+updateHeaderStats();
+// Notes hidden by default — user can open via header button or floating tab
+(function(){
+  const panel = document.getElementById('notes-panel');
+  const float = document.getElementById('notes-float');
+  const hbtn  = document.getElementById('notes-header-btn');
+  const chev  = document.getElementById('notes-chevron');
+  panel.classList.add('hidden');
+  float.classList.add('show');
+  if (hbtn) hbtn.classList.remove('on');
+  if (chev) chev.textContent = '‹';
+})();
 </script>
 </body>
 </html>
