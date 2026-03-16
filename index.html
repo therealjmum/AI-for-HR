@@ -144,6 +144,8 @@ nav{
 .action-btn.claude:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
 .action-btn.gpt:hover{border-color:#19c37d;color:#19c37d;background:#001a0e}
 .action-btn.copy-done{border-color:#00c896;color:#00c896}
+.action-btn.example{border-color:#f59e0b;color:#f59e0b;background:#1a1200;font-weight:700}
+.action-btn.example:hover{border-color:#fbbf24;color:#fbbf24;background:#211500}
 
 /* ─── PROMPT TIPS ─── */
 .tips-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 0}
@@ -256,12 +258,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px;mar
   <div class="section-label">Browse by Category</div>
   <div class="filter-tabs">
     <button class="tab active" data-filter="all">All Ideas</button>
+    <button class="tab" data-filter="strategy"><span class="tab-dot" style="background:#ef4444"></span>Strategy &amp; Ops</button>
     <button class="tab" data-filter="talent"><span class="tab-dot" style="background:#0052ff"></span>Talent</button>
     <button class="tab" data-filter="comp"><span class="tab-dot" style="background:#00c896"></span>Comp &amp; Benefits</button>
     <button class="tab" data-filter="exp"><span class="tab-dot" style="background:#7c3aed"></span>Employee Experience</button>
-    <button class="tab" data-filter="comms"><span class="tab-dot" style="background:#f59e0b"></span>Communications</button>
     <button class="tab" data-filter="analytics"><span class="tab-dot" style="background:#06b6d4"></span>Analytics</button>
-    <button class="tab" data-filter="strategy"><span class="tab-dot" style="background:#ef4444"></span>Strategy &amp; Ops</button>
+    <button class="tab" data-filter="comms"><span class="tab-dot" style="background:#f59e0b"></span>Communications</button>
     <button class="tab" data-filter="compliance"><span class="tab-dot" style="background:#f97316"></span>Compliance</button>
   </div>
 </section>
@@ -369,6 +371,142 @@ const CAT = {
 };
 
 const examples = [
+  // ── STRATEGY & OPS ──
+  {
+    cat:'strategy', icon:'🌍',
+    title:'International Culture Navigator',
+    summary:'Brief managers on cultural norms, communication styles, and HR practices for global teams.',
+    desc:'Misreading cultural signals in a global team is expensive — turnover, disengagement, and missed communication are usually cultural, not capability. Get a manager-ready briefing for any country in minutes.',
+    prompt:`I'm preparing to onboard a new team member from [COUNTRY] onto a US-based team led by a manager in [US CITY].
+
+Brief my manager on:
+1. Key cultural differences in workplace communication style (directness, hierarchy, disagreement)
+2. Attitudes toward: feedback, public recognition, deadlines, work-life boundaries
+3. Important national holidays and standard time-off norms they should know
+4. Employment law basics: notice period, mandatory benefits, anything that differs from US norms
+5. 3 specific things the US manager should do differently in this person's first 90 days
+6. 2 common mistakes American managers make with employees from this country
+
+Also: What questions should the manager NOT ask (culturally inappropriate or legally risky)?
+
+Format this as a one-pager I can email to the manager before their new hire's first day.`,
+    learnMore: null,
+  },
+  {
+    cat:'strategy', icon:'🎯',
+    title:'Chief of Staff Mode',
+    summary:'Synthesize priorities, prepare for leadership meetings, and think through strategic decisions.',
+    desc:'Sometimes you need a thought partner more than a task executor. Use this prompt to stress-test your thinking, organize a chaotic week, or prepare for a high-stakes leadership conversation.',
+    prompt:`Act as my Chief of Staff. I'm the [CHRO / VP HR / HRBP] at a [SIZE] company.
+
+Here's what's on my plate this week:
+[LIST YOUR PRIORITIES AND OPEN ITEMS]
+
+Here are the decisions I'm wrestling with:
+[LIST KEY DECISIONS OR AMBIGUOUS SITUATIONS]
+
+Upcoming meeting I'm preparing for: [MEETING NAME, DATE, AUDIENCE]
+
+Help me:
+1. Prioritize my list: what to decide this week vs. delegate vs. defer
+2. Identify what I'm probably procrastinating on that I shouldn't be
+3. Prepare 3 key points I want to land in [MEETING]
+4. Flag any HR risks I might be underweighting given what's on my plate
+5. Suggest one proactive move I should make this week that I haven't thought of
+
+Be direct. Tell me what you actually think, not what I want to hear.`,
+    learnMore: null,
+  },
+  {
+    cat:'strategy', icon:'⚙️',
+    title:'New Hire System Automator',
+    summary:'Design automated onboarding workflows from offer accept to day one — no engineering required.',
+    desc:'New hire onboarding is a maze of manual tasks spread across 6 systems. Map the ideal automated workflow, get email scripts, and learn which no-code tools can stitch it all together without IT.',
+    prompt:`I want to automate our new hire onboarding process. Here's the current state:
+[DESCRIBE CURRENT PROCESS — e.g. "Manager emails IT for laptop setup, HR manually sends 4 separate welcome emails, we use Greenhouse for ATS, Rippling for HRIS, Google Workspace for email"]
+
+Target state: seamless experience from offer accept to end of week 1, with minimal manual work for HR.
+
+Help me:
+1. Design the ideal automated workflow (trigger → action → outcome) from offer accept to day 1
+2. Map which systems need to talk to each other and what data flows between them
+3. Write scripts for 3 automated touchpoint emails:
+   - Offer accepted (Day 0)
+   - 48 hours before start date
+   - End of first week check-in
+4. Identify 3 no-code tools (Zapier, Make, Rippling automations, etc.) that could orchestrate this
+5. Tell me the one manual step I should keep human — and why
+
+Assume I have: [LIST YOUR SYSTEMS]. I do NOT have an engineering team.`,
+    learnMore: null,
+  },
+  {
+    cat:'strategy', icon:'🧭',
+    title:'Job Architecture Builder',
+    summary:'Create a complete job architecture — families, levels, and titles — that scales with your company.',
+    desc:'Title chaos is a real problem at fast-growing companies. Build a clean, consistent job architecture before your org gets too complex to untangle — with rationale that will hold up in calibration.',
+    prompt:`Help me build a job architecture for [COMPANY] — a [SIZE] [STAGE] [INDUSTRY] company.
+
+Current problem: [e.g. "We have 12 different titles for essentially the same job, no consistent leveling, and candidates negotiate levels based on their last title rather than our framework"]
+
+Build a complete job architecture for [X FUNCTIONS — e.g. "Engineering, Product, Design, GTM, G&A"]:
+1. Job families and sub-families for each function
+2. 5–6 universal levels that apply across functions (with consistent scope expectations)
+3. Title naming conventions with rationale (e.g. when to use "Staff" vs. "Principal" vs. "Lead")
+4. A level mapping table: how does each level map to market benchmarks (IC3 = P3 at Google, L5 at Amazon, etc.)
+5. A transition guide: how to migrate employees from current titles to the new framework without chaos
+
+Also: What are the top 3 mistakes companies make when rolling out a job architecture, and how do I avoid them?`,
+    learnMore: null,
+  },
+  {
+    cat:'strategy', icon:'🗂️',
+    title:'Dynamic Org Design',
+    summary:'Use AI to map, stress-test, and redesign your org structure for the next stage of growth.',
+    desc:'Org design is one of the highest-leverage things a People leader can do — and AI makes it faster to model options, identify spans and layers issues, and present a clear rationale to the exec team. See a live example of an AI-augmented org chart.',
+    prompt:`Act as an org design expert who has worked with high-growth tech companies scaling from 100 to 1,000+ people.
+
+I need to redesign the structure for [TEAM/FUNCTION] at a [SIZE] [STAGE] company.
+
+Current state:
+- Team size: [X] people
+- Current structure: [describe e.g. "3 managers, each with 6–8 ICs, all reporting to a VP"]
+- Key challenges: [e.g. "too many layers, unclear ownership between teams, managers are overwhelmed"]
+- Growth plan: [e.g. "hiring 20 more engineers in the next 6 months"]
+
+Please provide:
+1. A diagnosis of the current structure — what's working, what's breaking
+2. Two alternative org design options with trade-offs for each
+3. Recommended spans of control for each management layer
+4. A one-page rationale I can present to the exec team
+5. The top 3 risks of the recommended design and how to mitigate them`,
+    learnMore: 'https://therealjmum.github.io/org-intelligence/',
+  },
+  {
+    cat:'strategy', icon:'🤖',
+    title:'Your AI Executive Assistant',
+    summary:'Start every week sharp — let AI prep your calendar, clear your inbox backlog, and handle the admin so you can focus on the work that matters.',
+    desc:'The best EAs don\'t just schedule meetings — they think ahead. Use AI to review your week, flag conflicts, draft agendas, summarise outstanding expenses, and surface what actually needs your attention before Monday hits.',
+    prompt:`Act as my Executive Assistant. Help me get ready for the week ahead.
+
+My role: [e.g. "VP People / CHRO at a 300-person tech company"]
+Today's date: [DATE] | Week of: [MONDAY DATE]
+
+Here's what I'm working with:
+- Calendar snapshot: [paste or describe upcoming meetings — titles, times, attendees]
+- Outstanding action items: [LIST any carry-overs from last week]
+- Expenses to submit: [e.g. "3 receipts from team offsite, one Uber, two client dinners — approx $640 total"]
+- Emails / Slack threads needing a response: [paste subjects or describe]
+
+Please help me:
+1. Weekly briefing — give me a 5-bullet "state of the week" with what's high priority, what to defer, and what I can delegate
+2. Calendar review — flag any back-to-backs, missing prep time, or meetings I should decline or shorten
+3. Draft agendas for my top 2 meetings this week (include suggested talking points and what decisions need to be made)
+4. Expense summary — draft a one-paragraph summary I can send to Finance with the spend breakdown and purpose of each item
+5. Suggested reply drafts for the 3 most important outstanding messages (keep each under 100 words, match my tone: direct, warm, no fluff)
+6. End-of-week plan — 3 things I should protect time for this Friday to close the week cleanly`,
+    learnMore: null,
+  },
   // ── TALENT ──
   {
     cat:'talent', icon:'🎯',
@@ -587,7 +725,7 @@ Their compensation:
 - Other benefits: [LIST e.g. learning stipend, wellness, parental leave]
 
 Write this as a warm reward letter narrative — make the total value feel tangible and appreciated. Include a "what this means for you" section that converts annual values to daily/monthly equivalents. Keep it under 400 words.`,
-    learnMore: 'index.html',
+    learnMore: 'https://therealjmum.github.io/comp-calc/',
   },
   {
     cat:'comp', icon:'📊',
@@ -705,7 +843,7 @@ Help me:
 4. Evaluate whether an HSA-paired HDHP strategy makes sense for our population
 5. Prepare 5 questions I should ask our broker at our next renewal meeting
 6. Draft a 1-paragraph summary I can share with our CFO explaining the cost trend`,
-    learnMore: null,
+    learnMore: 'https://therealjmum.github.io/claims-analyzer/',
   },
 
   // ── EMPLOYEE EXPERIENCE ──
@@ -820,95 +958,6 @@ Write my self-review in a confident, evidence-based tone. Structure:
 4. Goals for next period (2–3, specific and measurable)
 
 Keep the total under 500 words. Make me sound like someone who has high self-awareness AND high ambition.`,
-    learnMore: null,
-  },
-
-  // ── COMMUNICATIONS ──
-  {
-    cat:'comms', icon:'📢',
-    title:'Internal Comms Coach',
-    summary:'Draft sensitive all-hands announcements, leadership memos, and change communications.',
-    desc:'The hardest thing in HR comms is saying something difficult clearly, honestly, and without creating panic. Generate the draft, the FAQ, the manager talking points, and the follow-up — all at once.',
-    prompt:`Write an all-company communication announcing [CHANGE e.g. "a return-to-office policy requiring 3 days/week starting April 1"].
-
-Audience: [X] employees, mostly [TYPE e.g. "engineers and PMs who have been fully remote for 2 years"]
-Sender: [NAME + ROLE]
-Tone: Transparent, empathetic, clear about the "why", leaves room for questions
-
-Deliverables:
-1. Email to all employees (400 words max)
-2. FAQ section (5 most likely questions with honest answers)
-3. Manager talking points (what to say in team meetings, what to anticipate)
-4. Slack channel message (3 sentences — the "tl;dr" version)
-5. One thing we should NOT say (and why)
-
-Context on why we're making this change: [YOUR REASONING]
-What we're doing to support the transition: [SUPPORT MEASURES]`,
-    learnMore: null,
-  },
-  {
-    cat:'comms', icon:'🎤',
-    title:'CHRO Board Deck Builder',
-    summary:'Transform HR metrics into board-ready narratives with strategic framing and executive punch.',
-    desc:'Boards don\'t want a data dump — they want signal, trend, and recommendation. Turn your quarterly HR metrics into a concise, confident board narrative with strategic recommendations that drive conversation.',
-    prompt:`I'm a CHRO preparing my quarterly board update. Help me turn this data into a compelling narrative.
-
-My metrics this quarter:
-[PASTE METRICS — e.g.:
-- Headcount: 342 (was 310, target 380)
-- Attrition (voluntary): 14% annualized (up from 11% last quarter)
-- eNPS: 42 (down from 51)
-- Time to hire: 48 days (target 35)
-- Offer acceptance rate: 71%
-- Women in leadership: 31%]
-
-Please:
-1. Identify the 3 most important trends (not just the biggest numbers)
-2. Frame each as a narrative: what it means, what caused it, what we're doing
-3. Suggest 2 strategic recommendations to bring to the board (with rationale)
-4. Write an executive summary (150 words max) for slide 1
-5. Flag one thing I might be underplaying that the board will likely ask about anyway
-
-Make it sound like a confident CHRO who understands the business, not just HR.`,
-    learnMore: null,
-  },
-  {
-    cat:'comms', icon:'📰',
-    title:'Daily HR Intel Digest',
-    summary:'Curate and summarize the day\'s most relevant HR, legal, and tech industry news.',
-    desc:'Stay ahead of employment law changes, competitor moves, and HR tech trends without spending 45 minutes on news sites every morning. Get a crisp briefing that surfaces only what\'s actually relevant to your work.',
-    prompt:`Act as my daily HR intelligence briefing for [TODAY'S DATE].
-
-I'm an HR leader at a US-based tech company ([SIZE]) with employees in [STATES e.g. "CA, NY, TX, WA, CO"]. We are [growth stage].
-
-Brief me on:
-1. Employment law changes or pending legislation in those states (anything requiring action in the next 90 days)
-2. Federal updates: DOL, EEOC, NLRB — anything new this week
-3. Tech industry talent news: notable layoffs, hiring freezes, salary trend shifts
-4. One interesting trend in HR tech or AI tools I should know about
-5. One macro workforce trend I should be aware of
-
-Format: 3–4 bullets per section. Use plain language. Lead each bullet with the action or implication, not the news story. Flag anything requiring immediate action with "⚠️ ACTION NEEDED."`,
-    learnMore: null,
-  },
-  {
-    cat:'comms', icon:'🎨',
-    title:'Employer Brand Copywriter',
-    summary:'Write authentic employer brand content that attracts the candidates you actually want.',
-    desc:'Generic "we\'re building the future" copy repels good candidates. Generate career page copy, Glassdoor response templates, recruiter pitch narratives, and social content that\'s specific, honest, and magnetic.',
-    prompt:`Help me write employer brand content for [COMPANY], a [SIZE] [INDUSTRY] company.
-
-Our company personality: [e.g. "Direct, curious, low ego. We debate ideas loudly and implement fast. Remote-first with quarterly in-person."]
-Our culture differentiators (be honest, not aspirational): [LIST 3]
-What we don't do well (what candidates should know): [LIST 1–2 — honesty builds trust]
-The type of person who thrives here: [DESCRIBE]
-The type of person who doesn't: [DESCRIBE]
-
-Create:
-1. Careers page "Why us" section (150 words — no buzzwords)
-2. 3 LinkedIn posts from employees sharing a real work moment (authentic voice, not PR)
-3. A Glassdoor response template for a 3-star review that mentions [COMMON CRITICISM]
-4. A recruiter pitch (30 seconds verbal): what makes us different from [COMPETITOR]`,
     learnMore: null,
   },
 
@@ -1028,119 +1077,95 @@ Please help me:
     learnMore: null,
   },
 
-  // ── STRATEGY & OPS ──
+  // ── COMMUNICATIONS ──
   {
-    cat:'strategy', icon:'🌍',
-    title:'International Culture Navigator',
-    summary:'Brief managers on cultural norms, communication styles, and HR practices for global teams.',
-    desc:'Misreading cultural signals in a global team is expensive — turnover, disengagement, and missed communication are usually cultural, not capability. Get a manager-ready briefing for any country in minutes.',
-    prompt:`I'm preparing to onboard a new team member from [COUNTRY] onto a US-based team led by a manager in [US CITY].
+    cat:'comms', icon:'📢',
+    title:'Internal Comms Coach',
+    summary:'Draft sensitive all-hands announcements, leadership memos, and change communications.',
+    desc:'The hardest thing in HR comms is saying something difficult clearly, honestly, and without creating panic. Generate the draft, the FAQ, the manager talking points, and the follow-up — all at once.',
+    prompt:`Write an all-company communication announcing [CHANGE e.g. "a return-to-office policy requiring 3 days/week starting April 1"].
 
-Brief my manager on:
-1. Key cultural differences in workplace communication style (directness, hierarchy, disagreement)
-2. Attitudes toward: feedback, public recognition, deadlines, work-life boundaries
-3. Important national holidays and standard time-off norms they should know
-4. Employment law basics: notice period, mandatory benefits, anything that differs from US norms
-5. 3 specific things the US manager should do differently in this person's first 90 days
-6. 2 common mistakes American managers make with employees from this country
+Audience: [X] employees, mostly [TYPE e.g. "engineers and PMs who have been fully remote for 2 years"]
+Sender: [NAME + ROLE]
+Tone: Transparent, empathetic, clear about the "why", leaves room for questions
 
-Also: What questions should the manager NOT ask (culturally inappropriate or legally risky)?
+Deliverables:
+1. Email to all employees (400 words max)
+2. FAQ section (5 most likely questions with honest answers)
+3. Manager talking points (what to say in team meetings, what to anticipate)
+4. Slack channel message (3 sentences — the "tl;dr" version)
+5. One thing we should NOT say (and why)
 
-Format this as a one-pager I can email to the manager before their new hire's first day.`,
+Context on why we're making this change: [YOUR REASONING]
+What we're doing to support the transition: [SUPPORT MEASURES]`,
     learnMore: null,
   },
   {
-    cat:'strategy', icon:'🎯',
-    title:'Chief of Staff Mode',
-    summary:'Synthesize priorities, prepare for leadership meetings, and think through strategic decisions.',
-    desc:'Sometimes you need a thought partner more than a task executor. Use this prompt to stress-test your thinking, organize a chaotic week, or prepare for a high-stakes leadership conversation.',
-    prompt:`Act as my Chief of Staff. I'm the [CHRO / VP HR / HRBP] at a [SIZE] company.
+    cat:'comms', icon:'🎤',
+    title:'CHRO Board Deck Builder',
+    summary:'Transform HR metrics into board-ready narratives with strategic framing and executive punch.',
+    desc:'Boards don\'t want a data dump — they want signal, trend, and recommendation. Turn your quarterly HR metrics into a concise, confident board narrative with strategic recommendations that drive conversation.',
+    prompt:`I'm a CHRO preparing my quarterly board update. Help me turn this data into a compelling narrative.
 
-Here's what's on my plate this week:
-[LIST YOUR PRIORITIES AND OPEN ITEMS]
+My metrics this quarter:
+[PASTE METRICS — e.g.:
+- Headcount: 342 (was 310, target 380)
+- Attrition (voluntary): 14% annualized (up from 11% last quarter)
+- eNPS: 42 (down from 51)
+- Time to hire: 48 days (target 35)
+- Offer acceptance rate: 71%
+- Women in leadership: 31%]
 
-Here are the decisions I'm wrestling with:
-[LIST KEY DECISIONS OR AMBIGUOUS SITUATIONS]
+Please:
+1. Identify the 3 most important trends (not just the biggest numbers)
+2. Frame each as a narrative: what it means, what caused it, what we're doing
+3. Suggest 2 strategic recommendations to bring to the board (with rationale)
+4. Write an executive summary (150 words max) for slide 1
+5. Flag one thing I might be underplaying that the board will likely ask about anyway
 
-Upcoming meeting I'm preparing for: [MEETING NAME, DATE, AUDIENCE]
-
-Help me:
-1. Prioritize my list: what to decide this week vs. delegate vs. defer
-2. Identify what I'm probably procrastinating on that I shouldn't be
-3. Prepare 3 key points I want to land in [MEETING]
-4. Flag any HR risks I might be underweighting given what's on my plate
-5. Suggest one proactive move I should make this week that I haven't thought of
-
-Be direct. Tell me what you actually think, not what I want to hear.`,
+Make it sound like a confident CHRO who understands the business, not just HR.`,
     learnMore: null,
   },
   {
-    cat:'strategy', icon:'⚙️',
-    title:'New Hire System Automator',
-    summary:'Design automated onboarding workflows from offer accept to day one — no engineering required.',
-    desc:'New hire onboarding is a maze of manual tasks spread across 6 systems. Map the ideal automated workflow, get email scripts, and learn which no-code tools can stitch it all together without IT.',
-    prompt:`I want to automate our new hire onboarding process. Here's the current state:
-[DESCRIBE CURRENT PROCESS — e.g. "Manager emails IT for laptop setup, HR manually sends 4 separate welcome emails, we use Greenhouse for ATS, Rippling for HRIS, Google Workspace for email"]
+    cat:'comms', icon:'📰',
+    title:'Daily HR Intel Digest',
+    summary:'Curate and summarize the day\'s most relevant HR, legal, and tech industry news.',
+    desc:'Stay ahead of employment law changes, competitor moves, and HR tech trends without spending 45 minutes on news sites every morning. Get a crisp briefing that surfaces only what\'s actually relevant to your work.',
+    prompt:`Act as my daily HR intelligence briefing for [TODAY'S DATE].
 
-Target state: seamless experience from offer accept to end of week 1, with minimal manual work for HR.
+I'm an HR leader at a US-based tech company ([SIZE]) with employees in [STATES e.g. "CA, NY, TX, WA, CO"]. We are [growth stage].
 
-Help me:
-1. Design the ideal automated workflow (trigger → action → outcome) from offer accept to day 1
-2. Map which systems need to talk to each other and what data flows between them
-3. Write scripts for 3 automated touchpoint emails:
-   - Offer accepted (Day 0)
-   - 48 hours before start date
-   - End of first week check-in
-4. Identify 3 no-code tools (Zapier, Make, Rippling automations, etc.) that could orchestrate this
-5. Tell me the one manual step I should keep human — and why
+Brief me on:
+1. Employment law changes or pending legislation in those states (anything requiring action in the next 90 days)
+2. Federal updates: DOL, EEOC, NLRB — anything new this week
+3. Tech industry talent news: notable layoffs, hiring freezes, salary trend shifts
+4. One interesting trend in HR tech or AI tools I should know about
+5. One macro workforce trend I should be aware of
 
-Assume I have: [LIST YOUR SYSTEMS]. I do NOT have an engineering team.`,
+Format: 3–4 bullets per section. Use plain language. Lead each bullet with the action or implication, not the news story. Flag anything requiring immediate action with "⚠️ ACTION NEEDED."`,
     learnMore: null,
   },
   {
-    cat:'strategy', icon:'🧭',
-    title:'Job Architecture Builder',
-    summary:'Create a complete job architecture — families, levels, and titles — that scales with your company.',
-    desc:'Title chaos is a real problem at fast-growing companies. Build a clean, consistent job architecture before your org gets too complex to untangle — with rationale that will hold up in calibration.',
-    prompt:`Help me build a job architecture for [COMPANY] — a [SIZE] [STAGE] [INDUSTRY] company.
+    cat:'comms', icon:'🎨',
+    title:'Employer Brand Copywriter',
+    summary:'Write authentic employer brand content that attracts the candidates you actually want.',
+    desc:'Generic "we\'re building the future" copy repels good candidates. Generate career page copy, Glassdoor response templates, recruiter pitch narratives, and social content that\'s specific, honest, and magnetic.',
+    prompt:`Help me write employer brand content for [COMPANY], a [SIZE] [INDUSTRY] company.
 
-Current problem: [e.g. "We have 12 different titles for essentially the same job, no consistent leveling, and candidates negotiate levels based on their last title rather than our framework"]
+Our company personality: [e.g. "Direct, curious, low ego. We debate ideas loudly and implement fast. Remote-first with quarterly in-person."]
+Our culture differentiators (be honest, not aspirational): [LIST 3]
+What we don't do well (what candidates should know): [LIST 1–2 — honesty builds trust]
+The type of person who thrives here: [DESCRIBE]
+The type of person who doesn't: [DESCRIBE]
 
-Build a complete job architecture for [X FUNCTIONS — e.g. "Engineering, Product, Design, GTM, G&A"]:
-1. Job families and sub-families for each function
-2. 5–6 universal levels that apply across functions (with consistent scope expectations)
-3. Title naming conventions with rationale (e.g. when to use "Staff" vs. "Principal" vs. "Lead")
-4. A level mapping table: how does each level map to market benchmarks (IC3 = P3 at Google, L5 at Amazon, etc.)
-5. A transition guide: how to migrate employees from current titles to the new framework without chaos
-
-Also: What are the top 3 mistakes companies make when rolling out a job architecture, and how do I avoid them?`,
+Create:
+1. Careers page "Why us" section (150 words — no buzzwords)
+2. 3 LinkedIn posts from employees sharing a real work moment (authentic voice, not PR)
+3. A Glassdoor response template for a 3-star review that mentions [COMMON CRITICISM]
+4. A recruiter pitch (30 seconds verbal): what makes us different from [COMPETITOR]`,
     learnMore: null,
   },
-  {
-    cat:'strategy', icon:'🤖',
-    title:'Your AI Executive Assistant',
-    summary:'Start every week sharp — let AI prep your calendar, clear your inbox backlog, and handle the admin so you can focus on the work that matters.',
-    desc:'The best EAs don\'t just schedule meetings — they think ahead. Use AI to review your week, flag conflicts, draft agendas, summarise outstanding expenses, and surface what actually needs your attention before Monday hits.',
-    prompt:`Act as my Executive Assistant. Help me get ready for the week ahead.
 
-My role: [e.g. "VP People / CHRO at a 300-person tech company"]
-Today's date: [DATE] | Week of: [MONDAY DATE]
-
-Here's what I'm working with:
-- Calendar snapshot: [paste or describe upcoming meetings — titles, times, attendees]
-- Outstanding action items: [LIST any carry-overs from last week]
-- Expenses to submit: [e.g. "3 receipts from team offsite, one Uber, two client dinners — approx $640 total"]
-- Emails / Slack threads needing a response: [paste subjects or describe]
-
-Please help me:
-1. Weekly briefing — give me a 5-bullet "state of the week" with what's high priority, what to defer, and what I can delegate
-2. Calendar review — flag any back-to-backs, missing prep time, or meetings I should decline or shorten
-3. Draft agendas for my top 2 meetings this week (include suggested talking points and what decisions need to be made)
-4. Expense summary — draft a one-paragraph summary I can send to Finance with the spend breakdown and purpose of each item
-5. Suggested reply drafts for the 3 most important outstanding messages (keep each under 100 words, match my tone: direct, warm, no fluff)
-6. End-of-week plan — 3 things I should protect time for this Friday to close the week cleanly`,
-    learnMore: null,
-  },
   {
     cat:'compliance', icon:'⚖️',
     title:'US Employment Law Tracker',
@@ -1183,7 +1208,7 @@ Help me:
 6. List the questions I should bring to our immigration attorney
 
 Note: I understand this is not legal advice and I'll verify everything with qualified counsel before acting.`,
-    learnMore: null,
+    learnMore: 'https://therealjmum.github.io/us-immigration-toolkit/',
   },
   {
     cat:'compliance', icon:'📋',
@@ -1318,7 +1343,7 @@ function renderCards(filter='all') {
           </button>
           <button class="action-btn claude" onclick="openInAI('claude','${promptId}')">✦ Claude</button>
           <button class="action-btn gpt" onclick="openInAI('gpt','${promptId}')">⊕ ChatGPT</button>
-          ${ex.learnMore ? `<a class="action-btn" href="${ex.learnMore}" target="_blank" style="text-decoration:none">↗ Example</a>` : ''}
+          ${ex.learnMore ? `<a class="action-btn example" href="${ex.learnMore}" target="_blank" style="text-decoration:none">⚡ Live Example</a>` : ''}
         </div>
       </div>`;
 
