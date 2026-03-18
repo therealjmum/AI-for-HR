@@ -30,7 +30,7 @@
   --border:#1e1e1e;--border2:#2a2a2a;
   --text:#f0f0f0;--text2:#c0c0c0;--text3:#999;--text4:#777;
   --blue:#0052ff;--blue2:#3b74ff;--blue-light:#7ba8ff;--blue-bg:#0d1a3a;--blue-border:#0052ff33;
-  --talent:#0052ff;--comp:#00c896;--exp:#7c3aed;--comms:#f59e0b;--analytics:#06b6d4;--strategy:#ef4444;
+  --talent:#0052ff;--comp:#fb7185;--exp:#7c3aed;--comms:#f59e0b;--analytics:#06b6d4;--strategy:#14b8a6;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
@@ -263,9 +263,9 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px;mar
   <div class="section-label">Browse by Category</div>
   <div class="filter-tabs">
     <button class="tab active" data-filter="all">All Ideas</button>
-    <button class="tab" data-filter="strategy"><span class="tab-dot" style="background:#ef4444"></span>Strategy &amp; Ops</button>
+    <button class="tab" data-filter="strategy"><span class="tab-dot" style="background:#14b8a6"></span>Strategy &amp; Ops</button>
     <button class="tab" data-filter="talent"><span class="tab-dot" style="background:#0052ff"></span>Talent</button>
-    <button class="tab" data-filter="comp"><span class="tab-dot" style="background:#00c896"></span>Comp &amp; Benefits</button>
+    <button class="tab" data-filter="comp"><span class="tab-dot" style="background:#fb7185"></span>Comp &amp; Benefits</button>
     <button class="tab" data-filter="exp"><span class="tab-dot" style="background:#7c3aed"></span>Employee Experience</button>
     <button class="tab" data-filter="analytics"><span class="tab-dot" style="background:#06b6d4"></span>Analytics</button>
     <button class="tab" data-filter="comms"><span class="tab-dot" style="background:#f59e0b"></span>Communications</button>
@@ -367,11 +367,11 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px;mar
 // ─────────────────────────────────────────────
 const CAT = {
   talent:    { label:'Talent',              color:'#0052ff', bg:'#0d1a3a', text:'#7ba8ff' },
-  comp:      { label:'Comp & Benefits',     color:'#00c896', bg:'#001a12', text:'#00c896' },
+  comp:      { label:'Comp & Benefits',     color:'#fb7185', bg:'#1a0010', text:'#fda4af' },
   exp:       { label:'Employee Experience', color:'#7c3aed', bg:'#1a0d3a', text:'#a78bfa' },
   comms:     { label:'Comms',               color:'#f59e0b', bg:'#1a1200', text:'#fbbf24' },
   analytics:  { label:'Analytics',           color:'#06b6d4', bg:'#001a1f', text:'#22d3ee' },
-  strategy:   { label:'Strategy & Ops',      color:'#ef4444', bg:'#1a0000', text:'#f87171' },
+  strategy:   { label:'Strategy & Ops',      color:'#14b8a6', bg:'#001a18', text:'#2dd4bf' },
   compliance: { label:'Compliance',          color:'#f97316', bg:'#1a0d00', text:'#fb923c' },
 };
 
