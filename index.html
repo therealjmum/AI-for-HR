@@ -209,6 +209,10 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px;mar
 .toast.show{opacity:1;transform:translateY(0)}
 .toast-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#00c896;margin-right:8px;vertical-align:middle}
 
+/* ─── SKILLS NOTE ─── */
+.skills-note{font-size:0.78rem;color:var(--text3);line-height:1.6;margin-bottom:16px}
+.skills-note strong{color:var(--blue-light)}
+
 /* ─── HIDDEN ─── */
 .card.hidden{display:none}
 
@@ -255,6 +259,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px;mar
 <!-- ─── FILTER TABS ─── -->
 <section id="ideas" class="filter-section">
   <h2 class="ideas-heading">Ideas on what to build</h2>
+  <p class="skills-note">💡 Many of these ideas are also buildable as <a href="https://support.claude.com/en/articles/12512180-use-skills-in-claude" target="_blank" rel="noopener"><strong>Claude Skills</strong></a> — reusable AI workflows you can install and run directly in the Claude desktop app.</p>
   <div class="section-label">Browse by Category</div>
   <div class="filter-tabs">
     <button class="tab active" data-filter="all">All Ideas</button>
@@ -505,6 +510,31 @@ Please help me:
 4. Expense summary — draft a one-paragraph summary I can send to Finance with the spend breakdown and purpose of each item
 5. Suggested reply drafts for the 3 most important outstanding messages (keep each under 100 words, match my tone: direct, warm, no fluff)
 6. End-of-week plan — 3 things I should protect time for this Friday to close the week cleanly`,
+    learnMore: null,
+  },
+  {
+    cat:'strategy', icon:'🧠',
+    title:'AI Fluency Framework',
+    summary:'Design a tiered AI fluency curriculum for your people team and broader org — from zero to functional.',
+    desc:'The companies winning with AI aren\'t just buying better tools — they\'re building internal capability. Design a practical AI fluency program with skill levels, learning paths, and a rollout plan that HR can own and execute. This is also something you can build as a Claude Skill.',
+    prompt:`Act as a learning & development strategist with deep expertise in AI adoption at work.
+
+I want to design an AI Fluency Framework for our company: [SIZE] company, [STAGE], [INDUSTRY].
+
+Current state: [e.g. "Most employees have heard of AI but fewer than 20% use it regularly. Our People team has no formal AI program."]
+
+Goals: [e.g. "Help every employee use AI safely and effectively in their daily work within 6 months"]
+
+Build me a complete AI Fluency Framework including:
+1. 3–4 fluency tiers with clear definitions (e.g. Aware / Practitioner / Builder / Champion) and what distinguishes each level
+2. Core AI skills every employee should have regardless of role — and role-specific skills for key functions (HR, Sales, Engineering, Finance)
+3. A learning path for each tier: recommended resources, exercises, and how long to complete
+4. A self-assessment tool: 5–7 questions employees can use to find their current tier
+5. An HR-owned rollout plan: how to launch this across the org in 90 days
+6. How to measure adoption and progress (leading and lagging indicators)
+7. 3 common pitfalls companies hit when rolling out AI fluency programs — and how to avoid them
+
+Format as a program framework I can present to the CHRO and then share with L&D.`,
     learnMore: null,
   },
   // ── TALENT ──
@@ -958,6 +988,35 @@ Write my self-review in a confident, evidence-based tone. Structure:
 4. Goals for next period (2–3, specific and measurable)
 
 Keep the total under 500 words. Make me sound like someone who has high self-awareness AND high ambition.`,
+    learnMore: null,
+  },
+  {
+    cat:'exp', icon:'🤖',
+    title:'AI Agent Supervisor',
+    summary:'Build an AI that manages your other AI agents — so you only have one thing to supervise.',
+    desc:'You shouldn\'t be managing five AI agents. You should manage one — a Supervisor Agent that manages the rest. Design the AI layer that sits between you and your specialist agents, handling routing, coordination, and escalation. Your job becomes supervising the supervisor. You can build this as a Claude Skill.',
+    prompt:`Act as an AI systems architect specializing in multi-agent orchestration.
+
+I want to build an AI Supervisor Agent for our HR function — an intelligent orchestration layer that manages a team of specialist sub-agents on my behalf, so I only have to supervise one thing.
+
+My specialist agents (or the ones I plan to build):
+[LIST YOUR SUB-AGENTS — e.g.
+- Onboarding Agent: handles new hire questions for the first 90 days
+- Benefits Agent: handles open enrollment FAQs and plan comparisons
+- Policy Agent: looks up and interprets internal HR policies
+- ER Triage Agent: does initial intake on employee relations cases]
+
+Design the AI Supervisor Agent that sits between me (the human HR leader) and those sub-agents:
+
+1. Routing intelligence — how does the Supervisor Agent decide which sub-agent to invoke for any given request? Write the routing logic and the rules it should follow.
+2. What the Supervisor can decide autonomously — what actions can it take without checking with me? Where should it always pause and surface to the human?
+3. Escalation protocol — when something is outside the system's competence, how does the Supervisor communicate that to me? What information should it hand me, and in what format?
+4. Contradiction handling — if two sub-agents would give conflicting answers, how does the Supervisor resolve or flag that before responding?
+5. Context passing — what shared context does the Supervisor maintain across sub-agent calls so nothing gets lost between handoffs?
+6. My supervisory interface — as the human supervising the Supervisor, what should I see? Design a simple daily/weekly review I can do to stay in control without getting into the weeds.
+7. Failure detection — how does the Supervisor know when a sub-agent is underperforming, and how does it alert me?
+
+What's the most important thing to get right in the Supervisor design — and where do HR multi-agent systems most commonly break down?`,
     learnMore: null,
   },
 
