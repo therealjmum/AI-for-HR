@@ -259,7 +259,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px;mar
 <!-- ─── FILTER TABS ─── -->
 <section id="ideas" class="filter-section">
   <h2 class="ideas-heading">Ideas on what to build</h2>
-  <p class="skills-note">💡 Many of these ideas are also buildable as <a href="https://support.claude.com/en/articles/12512180-use-skills-in-claude" target="_blank" rel="noopener"><strong>Claude Skills</strong></a> — reusable AI workflows you can install and run directly in the Claude desktop app.</p>
+  <p class="skills-note">💡 Many of these ideas can be built as agents, skills or HTML sites.</p>
   <div class="section-label">Browse by Category</div>
   <div class="filter-tabs">
     <button class="tab active" data-filter="all">All Ideas</button>
@@ -1363,7 +1363,12 @@ function renderCards(filter='all') {
   const grid = document.getElementById('cardsGrid');
   grid.innerHTML = '';
 
-  const filtered = filter === 'all' ? examples : examples.filter(e => e.cat === filter);
+  const pool = filter === 'all' ? examples : examples.filter(e => e.cat === filter);
+  // Shuffle within each priority tier so examples appear in random order
+  const shuffle = arr => arr.slice().sort(() => Math.random() - 0.5);
+  const withLive    = shuffle(pool.filter(e => e.learnMore));
+  const withoutLive = shuffle(pool.filter(e => !e.learnMore));
+  const filtered = [...withLive, ...withoutLive];
 
   filtered.forEach((ex, i) => {
     const cat = CAT[ex.cat];
